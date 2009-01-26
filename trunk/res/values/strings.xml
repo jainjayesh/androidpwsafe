@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name='app_name'>Password Safe</string>
+    <string name='confirm'>Confirm</string>
+    <string name='database_name'>Database Name</string>
+    <string name='empty_database_list'>No Databases</string>
+    <string name='menu_add'>Add Item</string>
+    <string name='menu_delete'>Delete Item</string>
+    <string name='passphrase'>Passphrase</string>
+    <string name='url'>URL</string>
+    <string name='username'>Username</string>
+</resources>
