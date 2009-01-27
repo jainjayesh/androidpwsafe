@@ -29,6 +29,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,12 +48,14 @@ public class RecordListPresenter {
     /**
      * ArrayAdapterPwsRecord is an ArrayAdapter that sorts its elements by URL.
      */
-    private static class ArrayAdapterPwsRecord extends ArrayAdapter<PwsRecord> {
+    private class ArrayAdapterPwsRecord extends ArrayAdapter<PwsRecord> {
+        private int mTextViewResourceId;
+
         // TODO: Make public so it can be tested.
         /**
          * ComparePwsRecord is a Comparator that compares records by URL.
          */
-        private static class ComparePwsRecord implements Comparator<Object> {
+        private class ComparePwsRecord implements Comparator<Object> {
             public int compare(Object o1, Object o2) {
                 PwsRecord pwsRecord1 = (PwsRecord) o1;
                 PwsRecord pwsRecord2 = (PwsRecord) o2;
@@ -73,6 +76,8 @@ public class RecordListPresenter {
          */
         public ArrayAdapterPwsRecord(Context context, int textViewResourceId, PwsRecord[] pwsRecords) {
             super(context, textViewResourceId);
+
+            mTextViewResourceId = textViewResourceId;
 
             Arrays.sort(pwsRecords, new ComparePwsRecord());
 
@@ -146,7 +151,9 @@ public class RecordListPresenter {
             TextView textView = (TextView) convertView;
 
             if (textView == null) {
-                textView = new TextView(getContext());
+                LayoutInflater inflate = (LayoutInflater) mView.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+                textView = (TextView) inflate.inflate(mTextViewResourceId, null);
             }
 
             textView.setText((String) getItem(position).getField(PwsRecordV3.URL).getValue());

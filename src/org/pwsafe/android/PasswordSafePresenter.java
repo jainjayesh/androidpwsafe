@@ -52,8 +52,12 @@ public class PasswordSafePresenter
      * dialog upon a long click.
      */
     private class ArrayAdapterWithLongClick extends ArrayAdapter<String> {
+        private int mTextViewResourceId;
+        
         public ArrayAdapterWithLongClick(Context context, int textViewResourceId, String[] objects) {
             super(context, textViewResourceId, objects);
+            
+            mTextViewResourceId = textViewResourceId;
         }
 
         // FIXME: Handle trackball clicks.
@@ -71,7 +75,9 @@ public class PasswordSafePresenter
             TextView textView = (TextView) convertView;
 
             if (textView == null) {
-                textView = new TextView(getContext());
+                LayoutInflater inflate = (LayoutInflater) mView.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+                textView = (TextView) inflate.inflate(mTextViewResourceId, null);
             }
 
             listView.setOnCreateContextMenuListener(mView);
