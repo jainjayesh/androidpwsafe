@@ -7,8 +7,8 @@
  */
 package org.pwsafe.android;
 
+import android.app.Activity;
 import android.app.Dialog;
-import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -25,7 +25,7 @@ import android.view.View.OnLongClickListener;
  *
  * @author Noel Yap
  */
-public class PasswordSafeView extends ListActivity
+public class PasswordSafeView extends Activity
     implements OnClickListener, OnCreateContextMenuListener, OnLongClickListener {
     private PasswordSafePresenter mPresenter = new PasswordSafePresenter(this);
 
@@ -51,28 +51,6 @@ public class PasswordSafeView extends ListActivity
      */
     public void onClick(View v) {
         mPresenter.onClick(v);
-    }
-
-    /**
-     * Delegates to {@link PasswordSafePresenter#onCreateOptionsMenu(Menu)}.
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        boolean result = super.onCreateOptionsMenu(menu);
-
-        result &= mPresenter.onCreateOptionsMenu(menu);
-
-        return result;
-    }
-
-    /**
-     * Delegates to {@link PasswordSafePresenter#onOptionsItemSelected(MenuItem)}.
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return (
-                mPresenter.onOptionsItemSelected(item)
-                || super.onOptionsItemSelected(item));
     }
 
     /**

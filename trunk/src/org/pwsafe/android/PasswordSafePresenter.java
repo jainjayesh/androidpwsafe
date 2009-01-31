@@ -35,6 +35,7 @@ import android.view.View.OnClickListener;
 import android.view.View.OnCreateContextMenuListener;
 import android.view.View.OnLongClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -53,10 +54,10 @@ public class PasswordSafePresenter
      */
     private class ArrayAdapterWithLongClick extends ArrayAdapter<String> {
         private int mTextViewResourceId;
-        
+
         public ArrayAdapterWithLongClick(Context context, int textViewResourceId, String[] objects) {
             super(context, textViewResourceId, objects);
-            
+
             mTextViewResourceId = textViewResourceId;
         }
 
@@ -93,8 +94,7 @@ public class PasswordSafePresenter
     private static final int ACTIVITY_OPEN = 1;
     private static final int ACTIVITY_DESTROY = 2;
 
-    private static final int MENU_ITEM_ADD_ITEM = Menu.FIRST;
-    private static final int MENU_ITEM_DELETE_ITEM = Menu.FIRST+1;
+    private static final int MENU_ITEM_DELETE_ITEM = Menu.FIRST;
 
     private static final String DATABASE_NAME = "database-name";
 
@@ -125,6 +125,16 @@ public class PasswordSafePresenter
      * Fills the list of database names.
      */
     private void fillData() {
+        mView.setContentView(R.layout.main);
+        Button addDatabaseButton = (Button) mView.findViewById(R.id.add_database);
+
+        addDatabaseButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(mView, DatabaseCreateView.class);
+                mView.startActivityForResult(intent, ACTIVITY_CREATE);
+            }
+        });
+
         File dataDir = Util.getDatabaseDir(mView);
         String[] encodedDatabases = dataDir.list();
         String[] decodedDatabases = new String[encodedDatabases.length];
@@ -143,31 +153,14 @@ public class PasswordSafePresenter
 
         Arrays.sort(decodedDatabases);
 
-        mView.setListAdapter(
+        ListView databaseList = (ListView) mView.findViewById(R.id.database_list);
+
+        databaseList.setAdapter(
             new ArrayAdapterWithLongClick(
                 mView,
-                R.layout.main,
+                R.layout.database_row,
                 decodedDatabases));
-        mView.getListView().setTextFilterEnabled(true);
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, MENU_ITEM_ADD_ITEM, 0, R.string.menu_add);
-
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case MENU_ITEM_ADD_ITEM: {
-                createDatabase();
-                return true;
-            }
-
-            default: {
-                return false;
-            }
-        }
+        databaseList.setTextFilterEnabled(true);
     }
 
     /**
