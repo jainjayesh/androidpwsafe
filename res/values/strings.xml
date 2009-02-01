@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name='add_database'>Add Database</string>
+    <string name='add_record'>Add Record</string>
     <string name='app_name'>Password Safe</string>
     <string name='confirm'>Confirm</string>
     <string name='database_name'>Database Name</string>
-    <string name='menu_add'>Add Item</string>
     <string name='menu_delete'>Delete Item</string>
     <string name='passphrase'>Passphrase</string>
     <string name='url'>URL</string>
