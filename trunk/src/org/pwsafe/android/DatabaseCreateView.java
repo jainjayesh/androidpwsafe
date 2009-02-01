@@ -28,7 +28,7 @@ public class DatabaseCreateView extends Activity {
     }
 
     /**
-     * Delegates to {@link DatabaseCreatePresenter#onPause(Bundle)}.
+     * Delegates to {@link DatabaseCreatePresenter#onPause()}.
      */
     @Override
     protected void onPause() {
