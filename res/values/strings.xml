@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name='add_database'>Add Database</string>
-    <string name='add_record'>Add Record</string>
-    <string name='app_name'>Password Safe</string>
-    <string name='confirm'>Confirm</string>
-    <string name='database_name'>Database Name</string>
-    <string name='menu_delete'>Delete Item</string>
-    <string name='passphrase'>Passphrase</string>
-    <string name='url'>URL</string>
-    <string name='username'>Username</string>
+  <string name='about'>About</string>
+  <string name='about_text'>
+    Password Safe is a password database utility. Users can keep their passwords securely encrypted on their computers. A single Safe Combination unlocks them all.\n\nPassword Safe protects passwords with the Twofish encryption algorithm, a fast, free alternative to DES. The program\'s security has been thoroughly verified by Counterpane Labs under the supervision of Bruce Schneier, author of Applied Cryptography and creator of the Twofish algorithm.\n
+  </string>
+  <string name='add_record'>Add Record</string>
+  <string name='app_name'>Password Safe</string>
+  <string name='confirm'>Confirm</string>
+  <string name='create_database'>Create Database</string>
+  <string name='database_name'>Database Name</string>
+  <string name='menu_delete'>Delete Item</string>
+  <string name='passphrase'>Passphrase</string>
+  <string name='url'>URL</string>
+  <string name='username'>Username</string>
 </resources>

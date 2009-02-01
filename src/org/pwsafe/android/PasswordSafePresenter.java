@@ -90,11 +90,13 @@ public class PasswordSafePresenter
         }
     }
 
-    private static final int ACTIVITY_CREATE = 0;
-    private static final int ACTIVITY_OPEN = 1;
-    private static final int ACTIVITY_DESTROY = 2;
+    private static final int ACTIVITY_ABOUT = 0;
+    private static final int ACTIVITY_CREATE = 1;
+    private static final int ACTIVITY_OPEN = 2;
+    private static final int ACTIVITY_DESTROY = 3;
 
-    private static final int MENU_ITEM_DELETE_ITEM = Menu.FIRST;
+    private static final int MENU_ITEM_ABOUT = Menu.FIRST;
+    private static final int MENU_ITEM_DELETE_ITEM = Menu.FIRST+1;
 
     private static final String DATABASE_NAME = "database-name";
 
@@ -126,9 +128,9 @@ public class PasswordSafePresenter
      */
     private void fillData() {
         mView.setContentView(R.layout.main);
-        Button addDatabaseButton = (Button) mView.findViewById(R.id.add_database);
+        Button createDatabaseButton = (Button) mView.findViewById(R.id.create_database);
 
-        addDatabaseButton.setOnClickListener(new View.OnClickListener() {
+        createDatabaseButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent(mView, DatabaseCreateView.class);
                 mView.startActivityForResult(intent, ACTIVITY_CREATE);
@@ -164,14 +166,6 @@ public class PasswordSafePresenter
     }
 
     /**
-     * Starts the activity for database creation.
-     */
-    private void createDatabase() {
-        Intent intent = new Intent(mView, DatabaseCreateView.class);
-        mView.startActivityForResult(intent, ACTIVITY_CREATE);
-    }
-
-    /**
      * Shows the dialog for database destruction.
      */
     private void destroyDatabase() {
@@ -182,6 +176,14 @@ public class PasswordSafePresenter
      * Pops up the correct dialog.
      */
     protected Dialog onCreateDialog(int id) {
+        if (id == ACTIVITY_ABOUT) {
+            return new AlertDialog.Builder(mView)
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .setMessage(R.string.about_text)
+                .setTitle(R.string.about)
+                .create();
+        }
+
         LayoutInflater factory = LayoutInflater.from(mView);
 
         final File database = (
@@ -262,10 +264,12 @@ public class PasswordSafePresenter
      * Blanks out password before dialog is opened.
      */
     protected void onPrepareDialog(int id, Dialog dialog) {
-        EditText editText = (EditText) dialog.findViewById(
-            R.id.database_passphrase);
+        if (id == ACTIVITY_DESTROY  ||  id == ACTIVITY_OPEN) {
+            EditText editText = (EditText) dialog.findViewById(
+                    R.id.database_passphrase);
 
-        editText.setText("");
+            editText.setText("");
+        }
     }
 
     /**
@@ -307,6 +311,27 @@ public class PasswordSafePresenter
         mDatabaseName = textView.getText().toString();
 
         mView.showDialog(ACTIVITY_OPEN);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(0, MENU_ITEM_ABOUT, 0, R.string.about)
+            .setIcon(android.R.drawable.ic_menu_info_details);
+
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case MENU_ITEM_ABOUT: {
+                mView.showDialog(ACTIVITY_ABOUT);
+
+                return true;
+            }
+
+            default: {
+                return false;
+            }
+        }
     }
 
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {

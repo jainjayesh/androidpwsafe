@@ -191,8 +191,6 @@ public class RecordListPresenter {
     private static final int ACTIVITY_CREATE = 0;
     private static final int ACTIVITY_MODIFY = 1;
 
-    private static final int INSERT_ID = 0;
-
     private RecordListView mView;
 
     private PwsFile mPwsFile;
