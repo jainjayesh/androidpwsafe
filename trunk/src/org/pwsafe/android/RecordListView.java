@@ -7,7 +7,7 @@
  */
 package org.pwsafe.android;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -20,7 +20,7 @@ import android.widget.ListView;
  *
  * @author Noel Yap
  */
-public class RecordListView extends ListActivity {
+public class RecordListView extends Activity {
     private RecordListPresenter mPresenter = new RecordListPresenter(this);
 
     /**
@@ -42,41 +42,10 @@ public class RecordListView extends ListActivity {
     }
 
     /**
-     * Delegates to {@link RecordListPresenter#onCreateOptionsMenu(Menu)}.
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        boolean result = super.onCreateOptionsMenu(menu);
-
-        result &= mPresenter.onCreateOptionsMenu(menu);
-
-        return result;
-    }
-
-    /**
-     * Delegates to {@link RecordListPresenter#onOptionsItemSelected(MenuItem)}.
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return (
-                mPresenter.onOptionsItemSelected(item)
-                || super.onOptionsItemSelected(item));
-    }
-
-    /**
      * Delegates to {@link RecordListPresenter#onActivityResult(int, int, Intent)}.
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         mPresenter.onActivityResult(requestCode, resultCode, data);
-    }
-
-    /**
-     * Delegates to {@link RecordListPresenter#onListItemClick(ListView, View, int, long)}.
-     */
-    @Override
-    protected void onListItemClick(ListView list, View view, int position, long id) {
-        super.onListItemClick(list, view, position, id);
-        mPresenter.onListItemClick(list, view, position, id);
     }
 }

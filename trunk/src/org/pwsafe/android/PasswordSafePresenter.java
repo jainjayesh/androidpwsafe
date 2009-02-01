@@ -158,7 +158,7 @@ public class PasswordSafePresenter
         databaseList.setAdapter(
             new ArrayAdapterWithLongClick(
                 mView,
-                R.layout.database_row,
+                R.layout.list_row,
                 decodedDatabases));
         databaseList.setTextFilterEnabled(true);
     }

@@ -35,6 +35,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -156,7 +157,34 @@ public class RecordListPresenter {
                 textView = (TextView) inflate.inflate(mTextViewResourceId, null);
             }
 
-            textView.setText((String) getItem(position).getField(PwsRecordV3.URL).getValue());
+            final PwsRecord pwsRecord = getItem(position);
+
+            textView.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View view) {
+                            mPwsRecord = pwsRecord;
+
+                            Intent intent = (
+                                    new Intent(
+                                            mView, RecordEditView.class));
+
+                            intent.putExtra(
+                                    Util.RECORD_PASSPHRASE_FIELD,
+                                    (String) pwsRecord.getField(
+                                            PwsRecordV3.PASSWORD).getValue());
+                            intent.putExtra(
+                                    Util.RECORD_URL_FIELD,
+                                    (String) pwsRecord.getField(
+                                            PwsRecordV3.URL).getValue());
+                            intent.putExtra(
+                                    Util.RECORD_USERNAME_FIELD,
+                                    (String) pwsRecord.getField(
+                                            PwsRecordV3.USERNAME).getValue());
+
+                            mView.startActivityForResult(
+                                    intent, ACTIVITY_MODIFY);
+                    }
+            });
+            textView.setText((String) pwsRecord.getField(PwsRecordV3.URL).getValue());
 
             return textView;
         }
@@ -177,6 +205,15 @@ public class RecordListPresenter {
     }
 
     public void onCreate(Bundle savedInstanceState) {
+        mView.setContentView(R.layout.record_list);
+        Button addRecordButton = (Button) mView.findViewById(R.id.add_record);
+
+        addRecordButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                createRecord();
+            }
+        });
+
         String databaseFilepath = getStringField(savedInstanceState, Util.DATABASE_FILEPATH_FIELD);
         String databasePassphrase = getStringField(savedInstanceState, Util.DATABASE_PASSPHRASE_FIELD);
 
@@ -257,31 +294,14 @@ public class RecordListPresenter {
             pwsRecords[i] = iter.next();
         }
 
-        ArrayAdapterPwsRecord arrayAdapterPwsRecord = (
+        ListView recordList = (ListView) mView.findViewById(R.id.record_list);
+
+        recordList.setAdapter(
                 new ArrayAdapterPwsRecord(
-                        mView, R.layout.record_list, pwsRecords));
-
-        mView.setListAdapter(arrayAdapterPwsRecord);
-        mView.getListView().setTextFilterEnabled(true);
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, INSERT_ID, 0, R.string.menu_add);
-
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case INSERT_ID: {
-                createRecord();
-                return true;
-            }
-
-            default: {
-                return false;
-            }
-        }
+                        mView,
+                        R.layout.list_row,
+                        pwsRecords));
+        recordList.setTextFilterEnabled(true);
     }
 
     /**
@@ -371,7 +391,8 @@ public class RecordListPresenter {
         // TODO: Extract method to make it more testable.
         if (resultCode == Activity.RESULT_OK) {
             try {
-                ArrayAdapterPwsRecord listAdapter = (ArrayAdapterPwsRecord) mView.getListAdapter();
+                ListView recordList = (ListView) mView.findViewById(R.id.record_list);
+                ArrayAdapterPwsRecord listAdapter = (ArrayAdapterPwsRecord) recordList.getAdapter();
 
                 String recordPassphrase = data.getStringExtra(Util.RECORD_PASSPHRASE_FIELD);
                 String recordUrl = data.getStringExtra(Util.RECORD_URL_FIELD);
@@ -395,26 +416,5 @@ public class RecordListPresenter {
                 e.printStackTrace();
             }
         }
-    }
-
-    protected void onListItemClick(ListView list, View view, int position, long id) {
-        editRecord(position);
-    }
-
-    /**
-     * Starts activity for record modification.
-     *
-     * @param position  position of element in list
-     */
-    private void editRecord(int position) {
-        Intent intent = new Intent(mView, RecordEditView.class);
-
-        mPwsRecord = (PwsRecord) mView.getListView().getItemAtPosition(position);
-
-        intent.putExtra(Util.RECORD_PASSPHRASE_FIELD, (String) mPwsRecord.getField(PwsRecordV3.PASSWORD).getValue());
-        intent.putExtra(Util.RECORD_URL_FIELD, (String) mPwsRecord.getField(PwsRecordV3.URL).getValue());
-        intent.putExtra(Util.RECORD_USERNAME_FIELD, (String) mPwsRecord.getField(PwsRecordV3.USERNAME).getValue());
-
-        mView.startActivityForResult(intent, ACTIVITY_MODIFY);
     }
 }
