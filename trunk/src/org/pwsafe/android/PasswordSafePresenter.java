@@ -17,6 +17,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -103,6 +105,7 @@ public class PasswordSafePresenter
     private PasswordSafeView mView;
 
     private String mDatabaseName;
+    private Map<Integer, DialogHelper> mDialogs = new HashMap<Integer, DialogHelper>();
 
     public PasswordSafePresenter(PasswordSafeView view) {
         mView = view;
@@ -126,7 +129,7 @@ public class PasswordSafePresenter
     /**
      * Fills the list of database names.
      */
-    private void fillData() {
+    public void fillData() {
         mView.setContentView(R.layout.main);
         Button createDatabaseButton = (Button) mView.findViewById(R.id.create_database);
 
@@ -172,104 +175,58 @@ public class PasswordSafePresenter
         mView.showDialog(ACTIVITY_DESTROY);
     }
 
+    private DialogHelper getDialogHelper(Integer id) {
+        DialogHelper result;
+
+        if (!mDialogs.containsKey(id)) {
+            switch (id) {
+                case ACTIVITY_ABOUT: {
+                    result = new AboutPasswordSafeDialogHelper(mView);
+
+                    break;
+                }
+
+                case ACTIVITY_CREATE: {
+                    result =
+                            new CreateDatabaseDialogHelper(
+                                    mView, this, mDatabaseName);
+
+                    break;
+                }
+
+                case ACTIVITY_DESTROY: {
+                    result =
+                            new DestroyDatabaseDialogHelper(
+                                    mView, this, mDatabaseName);
+
+                    break;
+                }
+
+                default: {
+                    result = null;
+                }
+            }
+
+            mDialogs.put(id, result);
+        } else {
+            result = mDialogs.get(id);
+        }
+
+        return result;
+    }
+
     /**
      * Pops up the correct dialog.
      */
     protected Dialog onCreateDialog(int id) {
-        if (id == ACTIVITY_ABOUT) {
-            return new AlertDialog.Builder(mView)
-                .setIcon(android.R.drawable.ic_dialog_info)
-                .setMessage(R.string.about_text)
-                .setTitle(R.string.about)
-                .create();
-        }
-
-        LayoutInflater factory = LayoutInflater.from(mView);
-
-        final File database = (
-                new File(
-                    Util.getDatabaseDir(mView),
-                    Util.encode(mDatabaseName)));
-        final View textEntryView = (
-                factory.inflate(
-                        R.layout.passphrase_entry, null));
-
-        DialogInterface.OnClickListener onClickListener;
-
-        switch (id) {
-            // TODO: Extract method.
-            case ACTIVITY_DESTROY: {
-                onClickListener =
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            EditText editText = (EditText) textEntryView.findViewById(R.id.database_passphrase);
-                            String passphrase = editText.getText().toString();
-
-                            try {
-                                PwsFileFactory.loadFile(database.getAbsolutePath(), passphrase);
-                                database.delete();
-                                fillData();
-                            } catch (FileNotFoundException e) {
-                                // TODO: Present error dialog.
-                                e.printStackTrace();
-                            } catch (NoSuchAlgorithmException e) {
-                                // TODO: Present error dialog.
-                                e.printStackTrace();
-                            } catch (EndOfFileException e) {
-                                // TODO: Present error dialog.
-                                e.printStackTrace();
-                            } catch (InvalidPassphraseException e) {
-                                // TODO: Present error dialog.
-                                e.printStackTrace();
-                            } catch (IOException e) {
-                                // TODO: Present error dialog.
-                                e.printStackTrace();
-                            } catch (UnsupportedFileVersionException e) {
-                                // TODO: Present error dialog.
-                                e.printStackTrace();
-                            }
-                        }
-                    };
-
-                break;
-            }
-
-            // TODO: Extract method.
-            case ACTIVITY_OPEN: {
-                onClickListener =
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            EditText editText = (EditText) textEntryView.findViewById(R.id.database_passphrase);
-                            String passphrase = editText.getText().toString();
-
-                            openDatabase(database.getAbsolutePath(), passphrase);
-                        }
-                    };
-
-                break;
-            }
-
-            default: {
-                return null;
-            }
-        }
-
-        return new AlertDialog.Builder(mView)
-            .setView(textEntryView)
-            .setPositiveButton(R.string.confirm, onClickListener)
-            .create();
+        return getDialogHelper(new Integer(id)).onCreateDialog();
     }
 
     /**
      * Blanks out password before dialog is opened.
      */
     protected void onPrepareDialog(int id, Dialog dialog) {
-        if (id == ACTIVITY_DESTROY  ||  id == ACTIVITY_OPEN) {
-            EditText editText = (EditText) dialog.findViewById(
-                    R.id.database_passphrase);
-
-            editText.setText("");
-        }
+        getDialogHelper(new Integer(id)).onPrepareDialog(dialog);
     }
 
     /**
@@ -278,7 +235,7 @@ public class PasswordSafePresenter
      * @param databaseFilepath  filesystem path of database
      * @param databasePassphrase  passphrase to decrypt/encrypt database
      */
-    private void openDatabase(
+    public void openDatabase(
         String databaseFilepath, String databasePassphrase) {
         Intent intent = new Intent(mView, RecordListView.class);
 
