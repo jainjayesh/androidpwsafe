@@ -11,6 +11,7 @@
   <string name='database_name'>Database Name</string>
   <string name='menu_delete'>Delete Item</string>
   <string name='passphrase'>Passphrase</string>
+  <string name='save'>Save</string>
   <string name='url'>URL</string>
   <string name='username'>Username</string>
 </resources>

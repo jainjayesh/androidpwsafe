@@ -46,9 +46,9 @@ public class DatabaseCreatePresenter {
         mDatabaseNameText = (EditText) mView.findViewById(R.id.database_name);
         mDatabasePassphraseText = (EditText) mView.findViewById(R.id.database_passphrase);
 
-        Button confirmButton = (Button) mView.findViewById(R.id.confirm);
+        Button saveButton = (Button) mView.findViewById(R.id.save);
 
-        confirmButton.setOnClickListener(new View.OnClickListener() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 mView.setResult(Activity.RESULT_OK);
                 mView.finish();

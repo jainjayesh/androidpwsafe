@@ -60,9 +60,9 @@ public class RecordEditPresenter {
             mRecordUsernameText.setText(recordUsername);
         }
 
-        Button confirmButton = (Button) mView.findViewById(R.id.confirm);
+        Button saveButton = (Button) mView.findViewById(R.id.save);
 
-        confirmButton.setOnClickListener(new View.OnClickListener() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent();
 
