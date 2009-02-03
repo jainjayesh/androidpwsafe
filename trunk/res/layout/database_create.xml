@@ -30,8 +30,8 @@
       android:layout_weight='1'/>
   </LinearLayout>
 
-  <Button android:id='@+id/confirm'
-    android:text='@string/confirm'
+  <Button android:id='@+id/save'
+    android:text='@string/save'
     android:layout_width='wrap_content'
     android:layout_height='wrap_content' />
 
