@@ -7,23 +7,13 @@
  */
 package org.pwsafe.android;
 
-import org.pwsafe.lib.exception.EndOfFileException;
-import org.pwsafe.lib.exception.InvalidPassphraseException;
-import org.pwsafe.lib.exception.UnsupportedFileVersionException;
-import org.pwsafe.lib.file.PwsFileFactory;
-
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -38,7 +28,6 @@ import android.view.View.OnCreateContextMenuListener;
 import android.view.View.OnLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -186,17 +175,17 @@ public class PasswordSafePresenter
                     break;
                 }
 
-                case ACTIVITY_CREATE: {
+                case ACTIVITY_DESTROY: {
                     result =
-                            new CreateDatabaseDialogHelper(
+                            new DestroyDatabaseDialogHelper(
                                     mView, this, mDatabaseName);
 
                     break;
                 }
 
-                case ACTIVITY_DESTROY: {
+                case ACTIVITY_OPEN: {
                     result =
-                            new DestroyDatabaseDialogHelper(
+                            new OpenDatabaseDialogHelper(
                                     mView, this, mDatabaseName);
 
                     break;

@@ -7,15 +7,7 @@
  */
 package org.pwsafe.android;
 
-import org.pwsafe.lib.exception.EndOfFileException;
-import org.pwsafe.lib.exception.InvalidPassphraseException;
-import org.pwsafe.lib.exception.UnsupportedFileVersionException;
-import org.pwsafe.lib.file.PwsFileFactory;
-
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -25,11 +17,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
-public class CreateDatabaseDialogHelper extends DialogHelper {
+public class OpenDatabaseDialogHelper extends DialogHelper {
     private String mDatabaseName;
     private PasswordSafePresenter mPresenter;
 
-    public CreateDatabaseDialogHelper(Activity activity, PasswordSafePresenter presenter, String databaseName) {
+    public OpenDatabaseDialogHelper(Activity activity, PasswordSafePresenter presenter, String databaseName) {
         super(activity);
 
         mDatabaseName = databaseName;
