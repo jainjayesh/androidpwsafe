@@ -9,7 +9,8 @@
   <string name='confirm'>Confirm</string>
   <string name='create_database'>Create Database</string>
   <string name='database_name'>Database Name</string>
-  <string name='menu_delete'>Delete Item</string>
+  <string name='delete_record'>Delete Record</string>
+  <string name='destroy_database'>Destroy Database</string>
   <string name='passphrase'>Passphrase</string>
   <string name='save'>Save</string>
   <string name='url'>URL</string>

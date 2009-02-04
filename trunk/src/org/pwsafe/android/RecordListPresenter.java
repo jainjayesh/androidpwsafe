@@ -178,7 +178,7 @@ public class RecordListPresenter {
                                     0,
                                     MENU_ITEM_DELETE_ITEM,
                                     0,
-                                    R.string.menu_delete);
+                                    R.string.delete_record);
                         }
                     });
             textView.setOnClickListener(
