@@ -10,6 +10,7 @@ package org.pwsafe.android;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 /**
  * RecordListView delegates to {@link RecordListPresenter}.
@@ -35,6 +36,16 @@ public class RecordListView extends Activity {
     protected void onResume() {
         super.onResume();
         mPresenter.onResume();
+    }
+
+    /**
+     * Delegates to {@link RecordListPresenter#onContextItemSelected(MenuItem)}.
+     */
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        return (
+                mPresenter.onContextItemSelected(item)
+                || super.onContextItemSelected(item));
     }
 
     /**

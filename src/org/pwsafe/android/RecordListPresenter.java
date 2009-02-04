@@ -29,9 +29,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -47,7 +51,8 @@ public class RecordListPresenter {
     /**
      * ArrayAdapterPwsRecord is an ArrayAdapter that sorts its elements by URL.
      */
-    private class ArrayAdapterPwsRecord extends ArrayAdapter<PwsRecord> {
+    private class ArrayAdapterPwsRecord extends ArrayAdapter<PwsRecord>
+            implements OnLongClickListener {
         private int mTextViewResourceId;
 
         // TODO: Make public so it can be tested.
@@ -147,23 +152,42 @@ public class RecordListPresenter {
          */
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+            ListView listView = (ListView) parent;
             TextView textView = (TextView) convertView;
 
             if (textView == null) {
-                LayoutInflater inflate = (LayoutInflater) mView.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LayoutInflater inflate =
+                        (LayoutInflater) mView.getSystemService(
+                                Context.LAYOUT_INFLATER_SERVICE);
 
-                textView = (TextView) inflate.inflate(mTextViewResourceId, null);
+                textView =
+                        (TextView) inflate.inflate(mTextViewResourceId, null);
             }
 
             final PwsRecord pwsRecord = getItem(position);
 
-            textView.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View view) {
+            listView.setOnCreateContextMenuListener(
+                    new View.OnCreateContextMenuListener() {
+                        public void onCreateContextMenu(
+                                ContextMenu menu,
+                                View v,
+                                ContextMenu.ContextMenuInfo menuInfo) {
                             mPwsRecord = pwsRecord;
 
-                            Intent intent = (
-                                    new Intent(
-                                            mView, RecordEditView.class));
+                            menu.add(
+                                    0,
+                                    MENU_ITEM_DELETE_ITEM,
+                                    0,
+                                    R.string.menu_delete);
+                        }
+                    });
+            textView.setOnClickListener(
+                    new View.OnClickListener() {
+                        public void onClick(View view) {
+                            mPwsRecord = pwsRecord;
+
+                            Intent intent =
+                                    new Intent(mView, RecordEditView.class);
 
                             intent.putExtra(
                                     Util.RECORD_PASSPHRASE_FIELD,
@@ -179,17 +203,25 @@ public class RecordListPresenter {
                                             PwsRecordV3.USERNAME).getValue());
 
                             mView.startActivityForResult(
-                                    intent, ACTIVITY_MODIFY);
-                    }
-            });
-            textView.setText((String) pwsRecord.getField(PwsRecordV3.URL).getValue());
+                                intent, ACTIVITY_MODIFY);
+                        }
+                    });
+            textView.setOnLongClickListener(this);
+            textView.setText(
+                    (String) pwsRecord.getField(PwsRecordV3.URL).getValue());
 
             return textView;
+        }
+
+        public boolean onLongClick(View view) {
+            return false;
         }
     }
 
     private static final int ACTIVITY_CREATE = 0;
     private static final int ACTIVITY_MODIFY = 1;
+
+    private static final int MENU_ITEM_DELETE_ITEM = Menu.FIRST;
 
     private RecordListView mView;
 
@@ -387,12 +419,16 @@ public class RecordListPresenter {
         // TODO: Extract method to make it more testable.
         if (resultCode == Activity.RESULT_OK) {
             try {
-                ListView recordList = (ListView) mView.findViewById(R.id.record_list);
-                ArrayAdapterPwsRecord listAdapter = (ArrayAdapterPwsRecord) recordList.getAdapter();
+                ListView recordList =
+                        (ListView) mView.findViewById(R.id.record_list);
+                ArrayAdapterPwsRecord listAdapter =
+                        (ArrayAdapterPwsRecord) recordList.getAdapter();
 
-                String recordPassphrase = data.getStringExtra(Util.RECORD_PASSPHRASE_FIELD);
+                String recordPassphrase =
+                        data.getStringExtra(Util.RECORD_PASSPHRASE_FIELD);
                 String recordUrl = data.getStringExtra(Util.RECORD_URL_FIELD);
-                String recordUsername = data.getStringExtra(Util.RECORD_USERNAME_FIELD);
+                String recordUsername =
+                        data.getStringExtra(Util.RECORD_USERNAME_FIELD);
 
                 if (requestCode == ACTIVITY_CREATE) {
                     addPwsRecord(listAdapter, mPwsRecord, recordPassphrase, recordUrl, recordUsername);
@@ -410,6 +446,34 @@ public class RecordListPresenter {
             } catch (IOException e) {
                 // TODO: Popup error dialog.
                 e.printStackTrace();
+            }
+        }
+    }
+
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case MENU_ITEM_DELETE_ITEM: {
+                try {
+                    ListView recordList =
+                            (ListView) mView.findViewById(R.id.record_list);
+                    ArrayAdapterPwsRecord listAdapter =
+                            (ArrayAdapterPwsRecord) recordList.getAdapter();
+
+                    deletePwsRecord(listAdapter, mPwsRecord);
+                    mPwsFile.save();
+                } catch (NoSuchAlgorithmException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+                return true;
+            }
+
+            default: {
+                return false;
             }
         }
     }
