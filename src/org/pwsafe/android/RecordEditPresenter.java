@@ -105,7 +105,7 @@ public class RecordEditPresenter {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, DELETE_ID, 0, R.string.menu_delete)
+        menu.add(0, DELETE_ID, 0, R.string.delete_record)
             .setIcon(android.R.drawable.ic_menu_delete);
 
         return true;

@@ -281,7 +281,7 @@ public class PasswordSafePresenter
     }
 
     public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
-        menu.add(0, MENU_ITEM_DELETE_ITEM, 0, R.string.menu_delete);
+        menu.add(0, MENU_ITEM_DELETE_ITEM, 0, R.string.destroy_database);
     }
 
     public boolean onLongClick(View v) {
