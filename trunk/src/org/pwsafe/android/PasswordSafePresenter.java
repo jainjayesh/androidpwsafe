@@ -96,11 +96,13 @@ public class PasswordSafePresenter {
 
     private static final int ACTIVITY_ABOUT = 0;
     private static final int ACTIVITY_CREATE = 1;
-    private static final int ACTIVITY_OPEN = 2;
-    private static final int ACTIVITY_DESTROY = 3;
+    private static final int ACTIVITY_DESTROY = 2;
+    private static final int ACTIVITY_HELP = 3;
+    private static final int ACTIVITY_OPEN = 4;
 
     private static final int MENU_ITEM_ABOUT = Menu.FIRST;
     private static final int MENU_ITEM_DESTROY_DATABASE = Menu.FIRST+1;
+    private static final int MENU_ITEM_HELP = Menu.FIRST+2;
 
     private static final String DATABASE_NAME = "database-name";
 
@@ -210,6 +212,12 @@ public class PasswordSafePresenter {
                     break;
                 }
 
+                case ACTIVITY_HELP: {
+                    result = new HelpPasswordSafeDialogHelper(mView);
+
+                    break;
+                }
+
                 case ACTIVITY_OPEN: {
                     result =
                             new OpenDatabaseDialogHelper(
@@ -279,7 +287,9 @@ public class PasswordSafePresenter {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, MENU_ITEM_ABOUT, 0, R.string.about)
+        menu.add(0, MENU_ITEM_HELP, 0, R.string.help)
+            .setIcon(android.R.drawable.ic_menu_help);
+        menu.add(0, MENU_ITEM_ABOUT, 1, R.string.about)
             .setIcon(android.R.drawable.ic_menu_info_details);
 
         return true;
@@ -289,6 +299,12 @@ public class PasswordSafePresenter {
         switch (item.getItemId()) {
             case MENU_ITEM_ABOUT: {
                 mView.showDialog(ACTIVITY_ABOUT);
+
+                return true;
+            }
+
+            case MENU_ITEM_HELP: {
+                mView.showDialog(ACTIVITY_HELP);
 
                 return true;
             }
