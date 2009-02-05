@@ -22,10 +22,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ContextMenu.ContextMenuInfo;
-import android.view.View.OnClickListener;
-import android.view.View.OnCreateContextMenuListener;
-import android.view.View.OnLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -36,8 +32,7 @@ import android.widget.TextView;
  *
  * @author Noel Yap
  */
-public class PasswordSafePresenter
-    implements OnClickListener, OnCreateContextMenuListener, OnLongClickListener {
+public class PasswordSafePresenter {
     // TODO: Extract out this class so it can be tested.
     /**
      * ArrayAdapterWithLongClick is an ArrayAdapter whose elements pop up a
@@ -67,15 +62,33 @@ public class PasswordSafePresenter
             TextView textView = (TextView) convertView;
 
             if (textView == null) {
-                LayoutInflater inflate = (LayoutInflater) mView.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                LayoutInflater inflate =
+                        (LayoutInflater) mView.getSystemService(
+                                Context.LAYOUT_INFLATER_SERVICE);
 
-                textView = (TextView) inflate.inflate(mTextViewResourceId, null);
+                textView =
+                        (TextView) inflate.inflate(mTextViewResourceId, null);
             }
 
-            listView.setOnCreateContextMenuListener(mView);
-            textView.setOnLongClickListener(mView);
-            textView.setOnClickListener(mView);
-            textView.setText(getItem(position));
+            final String databaseName = getItem(position);
+
+            textView.setOnClickListener(
+                    new View.OnClickListener() {
+                        public void onClick(View view) {
+                            mDatabaseName = databaseName;
+
+                            mView.showDialog(ACTIVITY_OPEN);
+                        }
+                    });
+            textView.setOnLongClickListener(
+                    new View.OnLongClickListener() {
+                        public boolean onLongClick(View view) {
+                            mDatabaseName = databaseName;
+
+                            return false;
+                        }
+                    });
+            textView.setText(databaseName);
 
             return textView;
         }
@@ -87,7 +100,7 @@ public class PasswordSafePresenter
     private static final int ACTIVITY_DESTROY = 3;
 
     private static final int MENU_ITEM_ABOUT = Menu.FIRST;
-    private static final int MENU_ITEM_DELETE_ITEM = Menu.FIRST+1;
+    private static final int MENU_ITEM_DESTROY_DATABASE = Menu.FIRST+1;
 
     private static final String DATABASE_NAME = "database-name";
 
@@ -147,13 +160,27 @@ public class PasswordSafePresenter
 
         Arrays.sort(decodedDatabases);
 
-        ListView databaseList = (ListView) mView.findViewById(R.id.database_list);
+        ListView databaseList =
+                (ListView) mView.findViewById(R.id.database_list);
 
         databaseList.setAdapter(
             new ArrayAdapterWithLongClick(
                 mView,
                 R.layout.list_row,
                 decodedDatabases));
+        databaseList.setOnCreateContextMenuListener(
+            new View.OnCreateContextMenuListener() {
+                public void onCreateContextMenu(
+                        ContextMenu menu,
+                        View v,
+                        ContextMenu.ContextMenuInfo menuInfo) {
+                    menu.add(
+                        0,
+                        MENU_ITEM_DESTROY_DATABASE,
+                        0,
+                        R.string.destroy_database);
+                }
+            });
         databaseList.setTextFilterEnabled(true);
     }
 
@@ -240,7 +267,7 @@ public class PasswordSafePresenter
 
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case MENU_ITEM_DELETE_ITEM: {
+            case MENU_ITEM_DESTROY_DATABASE: {
                 destroyDatabase();
                 return true;
             }
@@ -249,14 +276,6 @@ public class PasswordSafePresenter
                 return false;
             }
         }
-    }
-
-    public void onClick(View v) {
-        TextView textView = (TextView) v;
-
-        mDatabaseName = textView.getText().toString();
-
-        mView.showDialog(ACTIVITY_OPEN);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -278,17 +297,5 @@ public class PasswordSafePresenter
                 return false;
             }
         }
-    }
-
-    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
-        menu.add(0, MENU_ITEM_DELETE_ITEM, 0, R.string.destroy_database);
-    }
-
-    public boolean onLongClick(View v) {
-        TextView textView = (TextView) v;
-
-        mDatabaseName = textView.getText().toString();
-
-        return false;
     }
 }
