@@ -11,22 +11,15 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ContextMenu.ContextMenuInfo;
-import android.view.View.OnClickListener;
-import android.view.View.OnCreateContextMenuListener;
-import android.view.View.OnLongClickListener;
 
 /**
  * PasswordSafeView delegates to {@link PasswordSafePresenter}.
  *
  * @author Noel Yap
  */
-public class PasswordSafeView extends Activity
-    implements OnClickListener, OnCreateContextMenuListener, OnLongClickListener {
+public class PasswordSafeView extends Activity {
     private PasswordSafePresenter mPresenter = new PasswordSafePresenter(this);
 
     /**
@@ -44,13 +37,6 @@ public class PasswordSafeView extends Activity
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         mPresenter.onSaveInstanceState(outState);
-    }
-
-    /**
-     * Delegates to {@link PasswordSafePresenter#onClick(View)}.
-     */
-    public void onClick(View v) {
-        mPresenter.onClick(v);
     }
 
     /**
@@ -114,20 +100,5 @@ public class PasswordSafeView extends Activity
         return (
                 mPresenter.onContextItemSelected(item)
                 || super.onContextItemSelected(item));
-    }
-
-    /**
-     * Delegates to {@link PasswordSafePresenter#onCreateContextMenu(ContextMenu, View, ContextMenuInfo)}.
-     */
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
-        mPresenter.onCreateContextMenu(menu, view, menuInfo);
-    }
-
-    /**
-     * Delegates to {@link PasswordSafePresenter#onLongClick(View)}.
-     */
-    public boolean onLongClick(View view) {
-        return mPresenter.onLongClick(view);
     }
 }

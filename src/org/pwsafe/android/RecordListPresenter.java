@@ -35,7 +35,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -51,8 +50,7 @@ public class RecordListPresenter {
     /**
      * ArrayAdapterPwsRecord is an ArrayAdapter that sorts its elements by URL.
      */
-    private class ArrayAdapterPwsRecord extends ArrayAdapter<PwsRecord>
-            implements OnLongClickListener {
+    private class ArrayAdapterPwsRecord extends ArrayAdapter<PwsRecord> {
         private int mTextViewResourceId;
 
         // TODO: Make public so it can be tested.
@@ -166,21 +164,6 @@ public class RecordListPresenter {
 
             final PwsRecord pwsRecord = getItem(position);
 
-            listView.setOnCreateContextMenuListener(
-                    new View.OnCreateContextMenuListener() {
-                        public void onCreateContextMenu(
-                                ContextMenu menu,
-                                View v,
-                                ContextMenu.ContextMenuInfo menuInfo) {
-                            mPwsRecord = pwsRecord;
-
-                            menu.add(
-                                    0,
-                                    MENU_ITEM_DELETE_ITEM,
-                                    0,
-                                    R.string.delete_record);
-                        }
-                    });
             textView.setOnClickListener(
                     new View.OnClickListener() {
                         public void onClick(View view) {
@@ -206,22 +189,25 @@ public class RecordListPresenter {
                                 intent, ACTIVITY_MODIFY);
                         }
                     });
-            textView.setOnLongClickListener(this);
+            textView.setOnLongClickListener(
+                    new View.OnLongClickListener() {
+                        public boolean onLongClick(View view) {
+                            mPwsRecord = pwsRecord;
+
+                            return false;
+                        }
+                    });
             textView.setText(
                     (String) pwsRecord.getField(PwsRecordV3.URL).getValue());
 
             return textView;
-        }
-
-        public boolean onLongClick(View view) {
-            return false;
         }
     }
 
     private static final int ACTIVITY_CREATE = 0;
     private static final int ACTIVITY_MODIFY = 1;
 
-    private static final int MENU_ITEM_DELETE_ITEM = Menu.FIRST;
+    private static final int MENU_ITEM_DELETE_RECORD = Menu.FIRST;
 
     private RecordListView mView;
 
@@ -329,6 +315,19 @@ public class RecordListPresenter {
                         mView,
                         R.layout.list_row,
                         pwsRecords));
+        recordList.setOnCreateContextMenuListener(
+            new View.OnCreateContextMenuListener() {
+                public void onCreateContextMenu(
+                        ContextMenu menu,
+                        View v,
+                        ContextMenu.ContextMenuInfo menuInfo) {
+                    menu.add(
+                        0,
+                        MENU_ITEM_DELETE_RECORD,
+                        0,
+                        R.string.delete_record);
+                }
+            });
         recordList.setTextFilterEnabled(true);
     }
 
@@ -452,7 +451,7 @@ public class RecordListPresenter {
 
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case MENU_ITEM_DELETE_ITEM: {
+            case MENU_ITEM_DELETE_RECORD: {
                 try {
                     ListView recordList =
                             (ListView) mView.findViewById(R.id.record_list);
