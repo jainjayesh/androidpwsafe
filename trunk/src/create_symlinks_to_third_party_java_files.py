@@ -14,7 +14,7 @@ current dependencies.
 
 Usage:
   cd $HOME/androidpwsafe/src
-  create_symlinks.py --classpath=$HOME/blowfish/src:$HOME/bouncyclastle:$HOME/jpwsafe/PasswordSafeLib/src org/pwsafe/android/*.java
+  create_symlinks_to_third_party_java_files.py --classpath=$HOME/blowfish/src:$HOME/bouncyclastle:$HOME/jpwsafe/PasswordSafeLib/src org/pwsafe/android/*.java
 """
 
 import glob
@@ -72,6 +72,42 @@ class SyntaxParser(object):
     return result
 
 
+class ExtendsOrNewParser(SyntaxParser):
+
+  """Parses lines with an 'extends' clause or calling 'new'."""
+
+  RE = re.compile(' (extends|new) ([a-zA-Z0-9_]+)')
+
+  def Matches(self, line):
+    self._matches = self.RE.search(line)
+    print 'YAPN: %s, %s' % (line, self._matches is not None)
+
+    return self._matches is not None
+
+  def NewFiles(self, root, package):
+    return [
+        self._ProcessRootPackageClassname(
+            root, package, self._matches.group(2))]
+
+
+class FunctionDefinitionParser(SyntaxParser):
+
+  """Parses first line of function definitions."""
+
+  RE = re.compile(' ([a-zA-Z0-9_]+ )?([a-zA-Z0-9_]+)\( *([^{]*) *[^;]')
+
+  def Matches(self, line):
+    self._matches = self.RE.search(line)
+
+    return self._matches is not None
+
+  def NewFiles(self, root, package):
+    return [
+        self._ProcessRootPackageClassname(
+            root, package, classname.split(' ')[0].strip())
+        for classname in self._matches.group(3).split(', ')]
+
+
 class ImportParser(SyntaxParser):
 
   """Parses import lines."""
@@ -98,23 +134,6 @@ class ImportParser(SyntaxParser):
         break
 
     return result
-
-
-class ExtendsOrNewParser(SyntaxParser):
-
-  """Parses lines with an 'extends' clause or calling 'new'."""
-
-  RE = re.compile(' (extends|new) ([a-zA-Z0-9_]+)')
-
-  def Matches(self, line):
-    self._matches = self.RE.search(line)
-
-    return self._matches is not None
-
-  def NewFiles(self, root, package):
-    return [
-        self._ProcessRootPackageClassname(
-            root, package, self._matches.group(2))]
 
 
 class ThrowsParser(SyntaxParser):
@@ -219,6 +238,7 @@ def main():
   line_processor = LineProcessor()
   line_processor.Register(ImportParser(classpath))
   line_processor.Register(ExtendsOrNewParser())
+  line_processor.Register(FunctionDefinitionParser())
   line_processor.Register(ThrowsParser())
   line_processor.Register(StaticParser())
 
