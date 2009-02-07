@@ -286,28 +286,20 @@ class ImportParserTestCase(unittest.TestCase):
     mox_factory.UnsetStubs()
 
 
-class ExtendsOrNewParserTestCase(unittest.TestCase):
-  def testMatchForExtend(self):
-    extends_or_new_parser = (
-        create_symlinks_to_third_party_java_files.ExtendsOrNewParser())
+class ExtendsParserTestCase(unittest.TestCase):
+  def testMatch(self):
+    extends_parser = (
+        create_symlinks_to_third_party_java_files.ExtendsParser())
 
-    observed = extends_or_new_parser.Matches('ClassA extends ClassB {')
-
-    self.assertTrue(observed)
-
-  def testMatchForNew(self):
-    extends_or_new_parser = (
-        create_symlinks_to_third_party_java_files.ExtendsOrNewParser())
-
-    observed = extends_or_new_parser.Matches('class_a = new ClassA();')
+    observed = extends_parser.Matches('ClassA extends ClassB {')
 
     self.assertTrue(observed)
 
   def testNoMatch(self):
-    extends_or_new_parser = (
-        create_symlinks_to_third_party_java_files.ExtendsOrNewParser())
+    extends_parser = (
+        create_symlinks_to_third_party_java_files.ExtendsParser())
 
-    observed = extends_or_new_parser.Matches('// no match')
+    observed = extends_parser.Matches('// no match')
 
     self.assertFalse(observed)
 
@@ -316,10 +308,10 @@ class ExtendsOrNewParserTestCase(unittest.TestCase):
 
     line = 'ClassA extends ClassB {'
 
-    ExtendsOrNewParser = (
-        create_symlinks_to_third_party_java_files.ExtendsOrNewParser)
-    extends_or_new_parser = ExtendsOrNewParser()
-    extends_or_new_parser._matches = ExtendsOrNewParser.RE.search(line)
+    ExtendsParser = (
+        create_symlinks_to_third_party_java_files.ExtendsParser)
+    extends_parser = ExtendsParser()
+    extends_parser._matches = ExtendsParser.RE.search(line)
 
     mox_factory = mox.Mox()
 
@@ -330,7 +322,61 @@ class ExtendsOrNewParserTestCase(unittest.TestCase):
 
     mox_factory.ReplayAll()
 
-    observed = extends_or_new_parser.NewFiles('/root', 'package')
+    observed = extends_parser.NewFiles('/root', 'package')
+
+    mox_factory.VerifyAll()
+    self.assertEqual(expected, observed)
+
+    mox_factory.UnsetStubs()
+
+
+class NewParserTestCase(unittest.TestCase):
+  def testMatch(self):
+    new_parser = create_symlinks_to_third_party_java_files.NewParser()
+
+    observed = new_parser.Matches('classA = new ClassA();')
+
+    self.assertTrue(observed)
+
+  def testMatchNested(self):
+    new_parser = create_symlinks_to_third_party_java_files.NewParser()
+
+    observed = new_parser.Matches(' new ClassA(new ClassB())')
+
+    self.assertTrue(observed)
+
+  def testNoMatch(self):
+    new_parser = (
+        create_symlinks_to_third_party_java_files.NewParser())
+
+    observed = new_parser.Matches('// no match')
+
+    self.assertFalse(observed)
+
+  def testNewFiles(self):
+    expected = [
+        ('/root', 'package', 'ClassA.java'),
+        ('/root', 'package', 'ClassB.java')]
+
+    line = ' new ClassA(new ClassB())'
+
+    NewParser = (
+        create_symlinks_to_third_party_java_files.NewParser)
+    new_parser = NewParser()
+    new_parser._matches = NewParser.RE.search(line)
+
+    mox_factory = mox.Mox()
+
+    SyntaxParser = create_symlinks_to_third_party_java_files.SyntaxParser
+    mox_factory.StubOutWithMock(SyntaxParser, '_ProcessRootPackageClassname')
+    SyntaxParser._ProcessRootPackageClassname(
+        '/root', 'package', 'ClassA').AndReturn(expected[0])
+    SyntaxParser._ProcessRootPackageClassname(
+        '/root', 'package', 'ClassB').AndReturn(expected[1])
+
+    mox_factory.ReplayAll()
+
+    observed = new_parser.NewFiles('/root', 'package')
 
     mox_factory.VerifyAll()
     self.assertEqual(expected, observed)
@@ -387,7 +433,7 @@ class StaticParserTestCase(unittest.TestCase):
     static_parser = create_symlinks_to_third_party_java_files.StaticParser()
 
     observed = (
-        static_parser.Matches('ClassA class_a = ClassB.Method();'))
+        static_parser.Matches('ClassA classA = ClassB.Method();'))
 
     self.assertTrue(observed)
 
@@ -401,7 +447,7 @@ class StaticParserTestCase(unittest.TestCase):
   def testNewFiles(self):
     expected = [('/root', 'package', 'ClassB.java')]
 
-    line = 'ClassA class_a = ClassB.Method();'
+    line = 'ClassA classA = ClassB.Method();'
 
     static_parser = create_symlinks_to_third_party_java_files.StaticParser()
     static_parser._matches = (
