@@ -158,6 +158,64 @@ class SyntaxParserTestCase(unittest.TestCase):
     mox_factory.UnsetStubs()
 
 
+class FunctionDefinitionParserTestCase(unittest.TestCase):
+  def testMatchConstructor(self):
+    function_definition_parser = (
+        create_symlinks_to_third_party_java_files.FunctionDefinitionParser())
+
+    observed = (
+        function_definition_parser.Matches('  public ClassA(ClassB classB) {'))
+
+    self.assertTrue(observed)
+
+  def testMatchFunction(self):
+    function_definition_parser = (
+        create_symlinks_to_third_party_java_files.FunctionDefinitionParser())
+
+    observed = (
+        function_definition_parser.Matches('  public void method(Class class) {'))
+
+    self.assertTrue(observed)
+
+  def testNoMatch(self):
+    function_definition_parser = (
+      create_symlinks_to_third_party_java_files.FunctionDefinitionParser())
+
+    observed = function_definition_parser.Matches('// no match')
+
+    self.assertFalse(observed)
+
+  def testNewFiles(self):
+    expected = [('/root', 'package', 'Class.java'),
+                ('/root', 'pakcage', 'ClassB.java')]
+
+    line = 'void Method(ClassA classA, ClassB classB) {'
+
+    function_definition_parser = (
+      create_symlinks_to_third_party_java_files.FunctionDefinitionParser())
+    function_definition_parser._matches = (
+        create_symlinks_to_third_party_java_files.FunctionDefinitionParser.RE.search(
+            line))
+
+    mox_factory = mox.Mox()
+
+    SyntaxParser = create_symlinks_to_third_party_java_files.SyntaxParser
+    mox_factory.StubOutWithMock(SyntaxParser, '_ProcessRootPackageClassname')
+    SyntaxParser._ProcessRootPackageClassname(
+        '/root', 'package', 'ClassA').AndReturn(expected[0])
+    SyntaxParser._ProcessRootPackageClassname(
+        '/root', 'package', 'ClassB').AndReturn(expected[1])
+
+    mox_factory.ReplayAll()
+
+    observed = function_definition_parser.NewFiles('/root', 'package')
+
+    mox_factory.VerifyAll()
+    self.assertEqual(expected, observed)
+
+    mox_factory.UnsetStubs()
+
+
 class ImportParserTestCase(unittest.TestCase):
   def testMatch(self):
     import_parser = create_symlinks_to_third_party_java_files.ImportParser([])
