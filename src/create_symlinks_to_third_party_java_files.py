@@ -72,22 +72,21 @@ class SyntaxParser(object):
     return result
 
 
-class ExtendsOrNewParser(SyntaxParser):
+class ExtendsParser(SyntaxParser):
 
-  """Parses lines with an 'extends' clause or calling 'new'."""
+  """Parses lines with an 'extends' clause."""
 
-  RE = re.compile(' (extends|new) ([a-zA-Z0-9_]+)')
+  RE = re.compile(' extends ([a-zA-Z0-9_]+)')
 
   def Matches(self, line):
     self._matches = self.RE.search(line)
-    print 'YAPN: %s, %s' % (line, self._matches is not None)
 
     return self._matches is not None
 
   def NewFiles(self, root, package):
     return [
         self._ProcessRootPackageClassname(
-            root, package, self._matches.group(2))]
+            root, package, self._matches.group(1))]
 
 
 class FunctionDefinitionParser(SyntaxParser):
@@ -134,6 +133,28 @@ class ImportParser(SyntaxParser):
         break
 
     return result
+
+
+class NewParser(SyntaxParser):
+
+  """Parses lines calling 'new'."""
+
+  RE = re.compile(' new ([a-zA-Z0-9_]+.*)')
+
+  def Matches(self, line):
+    self._matches = self.RE.search(line)
+
+    return self._matches is not None
+
+  def NewFiles(self, root, package):
+    name_regexp = re.compile('([a-zA-Z0-9_]+).*')
+
+    return [
+        self._ProcessRootPackageClassname(
+            root,
+            package,
+            name_regexp.search(term).group(1))
+        for term in self._matches.group(1).split('new ')]
 
 
 class ThrowsParser(SyntaxParser):
@@ -237,7 +258,8 @@ def main():
 
   line_processor = LineProcessor()
   line_processor.Register(ImportParser(classpath))
-  line_processor.Register(ExtendsOrNewParser())
+  line_processor.Register(ExtendsParser())
+  line_processor.Register(NewParser())
   line_processor.Register(FunctionDefinitionParser())
   line_processor.Register(ThrowsParser())
   line_processor.Register(StaticParser())
