@@ -330,6 +330,50 @@ class ExtendsParserTestCase(unittest.TestCase):
     mox_factory.UnsetStubs()
 
 
+class ImplementsParserTestCase(unittest.TestCase):
+  def testMatch(self):
+    implements_parser = (
+        create_symlinks_to_third_party_java_files.ImplementsParser())
+
+    observed = implements_parser.Matches('ClassA implements ClassB {')
+
+    self.assertTrue(observed)
+
+  def testNoMatch(self):
+    implements_parser = (
+        create_symlinks_to_third_party_java_files.ImplementsParser())
+
+    observed = implements_parser.Matches('// no match')
+
+    self.assertFalse(observed)
+
+  def testNewFiles(self):
+    expected = [('/root', 'package', 'ClassB.java')]
+
+    line = 'ClassA implements ClassB {'
+
+    ImplementsParser = (
+        create_symlinks_to_third_party_java_files.ImplementsParser)
+    implements_parser = ImplementsParser()
+    implements_parser._matches = ImplementsParser.RE.search(line)
+
+    mox_factory = mox.Mox()
+
+    SyntaxParser = create_symlinks_to_third_party_java_files.SyntaxParser
+    mox_factory.StubOutWithMock(SyntaxParser, '_ProcessRootPackageClassname')
+    SyntaxParser._ProcessRootPackageClassname(
+        '/root', 'package', 'ClassB').AndReturn(expected[0])
+
+    mox_factory.ReplayAll()
+
+    observed = implements_parser.NewFiles('/root', 'package')
+
+    mox_factory.VerifyAll()
+    self.assertEqual(expected, observed)
+
+    mox_factory.UnsetStubs()
+
+
 class NewParserTestCase(unittest.TestCase):
   def testMatch(self):
     new_parser = create_symlinks_to_third_party_java_files.NewParser()
