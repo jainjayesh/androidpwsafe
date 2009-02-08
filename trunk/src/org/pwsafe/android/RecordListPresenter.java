@@ -13,6 +13,7 @@ import org.pwsafe.lib.exception.PasswordSafeException;
 import org.pwsafe.lib.exception.UnsupportedFileVersionException;
 import org.pwsafe.lib.file.PwsFile;
 import org.pwsafe.lib.file.PwsFileFactory;
+import org.pwsafe.lib.file.PwsFileStorage;
 import org.pwsafe.lib.file.PwsRecord;
 import org.pwsafe.lib.file.PwsRecordV3;
 import org.pwsafe.lib.file.PwsStringUnicodeField;
@@ -438,7 +439,8 @@ public class RecordListPresenter {
                 }
 
                 mPwsFile.save();
-                (new File(mPwsFile.getFilename() + "~")).delete();
+                // TODO: simplify the following by adding methods to jpwsafe
+                (new File(((PwsFileStorage) mPwsFile.getStorage()).getFilename() + "~")).delete();
             } catch (NoSuchAlgorithmException e) {
                 // TODO: Popup error dialog.
                 e.printStackTrace();
