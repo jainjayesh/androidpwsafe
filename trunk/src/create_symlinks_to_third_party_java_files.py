@@ -14,7 +14,7 @@ current dependencies.
 
 Usage:
   cd $HOME/androidpwsafe/src
-  create_symlinks_to_third_party_java_files.py --classpath=$HOME/blowfish/src:$HOME/bouncyclastle:$HOME/jpwsafe/PasswordSafeLib/src org/pwsafe/android/*.java
+  create_symlinks_to_third_party_java_files.py --classpath=$HOME/jpwsafe/src:$HOME/bcprov-jdk16-141/src:$HOME/s3/src/common:$HOME/s3/j3se $(find . -name '*.java')
 """
 
 import glob
@@ -105,6 +105,23 @@ class FunctionDefinitionParser(SyntaxParser):
         self._ProcessRootPackageClassname(
             root, package, classname.split(' ')[0].strip())
         for classname in self._matches.group(3).split(', ')]
+
+
+class ImplementsParser(SyntaxParser):
+
+  """Parses lines with an 'implements' clause."""
+
+  RE = re.compile(' implements ([a-zA-Z0-9_]+)')
+
+  def Matches(self, line):
+    self._matches = self.RE.search(line)
+
+    return self._matches is not None
+
+  def NewFiles(self, root, package):
+    return [
+        self._ProcessRootPackageClassname(
+            root, package, self._matches.group(1))]
 
 
 class ImportParser(SyntaxParser):
@@ -259,6 +276,7 @@ def main():
   line_processor = LineProcessor()
   line_processor.Register(ImportParser(classpath))
   line_processor.Register(ExtendsParser())
+  line_processor.Register(ImplementsParser())
   line_processor.Register(NewParser())
   line_processor.Register(FunctionDefinitionParser())
   line_processor.Register(ThrowsParser())
