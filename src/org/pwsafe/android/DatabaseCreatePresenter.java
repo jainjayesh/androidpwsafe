@@ -9,6 +9,7 @@ package org.pwsafe.android;
 
 import org.pwsafe.lib.file.PwsFile;
 import org.pwsafe.lib.file.PwsFileFactory;
+import org.pwsafe.lib.file.PwsFileStorage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -74,7 +75,8 @@ public class DatabaseCreatePresenter {
             if (!database.exists()) {
                 PwsFile pwsFile = PwsFileFactory.newFile();
 
-                pwsFile.setFilename(database.getAbsolutePath());
+                pwsFile.setStorage(
+                		new PwsFileStorage(database.getAbsolutePath()));
                 pwsFile.setPassphrase(databasePassphrase);
 
                 pwsFile.save();

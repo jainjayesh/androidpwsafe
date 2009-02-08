@@ -1,6 +1,6 @@
 http://jpwsafe.svn.sourceforge.net/viewvc/jpwsafe/trunk/PasswordSafeLib/src.tar.gz
+http://s3.amazonaws.com/awsdownloads/s3-j3ee.zip
 http://www.bouncycastle.org/download/bcprov-jdk16-141.zip
-http://downloads.sourceforge.net/blowfishj/blowfishj-2.14-src.zip
 
 Be sure to run bin/create_symlinks.py in order to minimize the size of the app.
 
