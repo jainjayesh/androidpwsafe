@@ -18,13 +18,11 @@ import android.view.View;
 import android.widget.EditText;
 
 public class OpenDatabaseDialogHelper extends DialogHelper {
-    private String mDatabaseName;
     private PasswordSafePresenter mPresenter;
 
-    public OpenDatabaseDialogHelper(Activity activity, PasswordSafePresenter presenter, String databaseName) {
+    public OpenDatabaseDialogHelper(Activity activity, PasswordSafePresenter presenter) {
         super(activity);
 
-        mDatabaseName = databaseName;
         mPresenter = presenter;
     }
 
@@ -32,10 +30,6 @@ public class OpenDatabaseDialogHelper extends DialogHelper {
     public Dialog onCreateDialog() {
         LayoutInflater factory = LayoutInflater.from(GetActivity());
 
-        final File database = (
-                new File(
-                    Util.getDatabaseDir(GetActivity()),
-                    Util.encode(mDatabaseName)));
         final View textEntryView = (
                 factory.inflate(
                         R.layout.passphrase_entry, null));
@@ -45,6 +39,11 @@ public class OpenDatabaseDialogHelper extends DialogHelper {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         EditText editText = (EditText) textEntryView.findViewById(R.id.database_passphrase);
                         String passphrase = editText.getText().toString();
+                        
+                        File database =
+                        	new File(
+                        			Util.getDatabaseDir(GetActivity()),
+                        			Util.encode(mPresenter.getDatabaseName()));
 
                         mPresenter.openDatabase(database.getAbsolutePath(), passphrase);
                     }

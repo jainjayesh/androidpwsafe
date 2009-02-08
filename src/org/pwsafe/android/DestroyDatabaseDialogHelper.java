@@ -26,13 +26,11 @@ import android.view.View;
 import android.widget.EditText;
 
 public class DestroyDatabaseDialogHelper extends DialogHelper {
-    private String mDatabaseName;
     private PasswordSafePresenter mPresenter;
 
-    public DestroyDatabaseDialogHelper(Activity activity, PasswordSafePresenter presenter, String databaseName) {
+    public DestroyDatabaseDialogHelper(Activity activity, PasswordSafePresenter presenter) {
         super(activity);
 
-        mDatabaseName = databaseName;
         mPresenter = presenter;
     }
 
@@ -40,10 +38,6 @@ public class DestroyDatabaseDialogHelper extends DialogHelper {
     public Dialog onCreateDialog() {
         LayoutInflater factory = LayoutInflater.from(GetActivity());
 
-        final File database =
-                new File(
-                        Util.getDatabaseDir(GetActivity()),
-                        Util.encode(mDatabaseName));
         final View textEntryView =
                 factory.inflate(
                         R.layout.passphrase_entry, null);
@@ -53,6 +47,11 @@ public class DestroyDatabaseDialogHelper extends DialogHelper {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         EditText editText = (EditText) textEntryView.findViewById(R.id.database_passphrase);
                         String passphrase = editText.getText().toString();
+                        
+                        File database = 
+                        	    new File(
+                        	    		Util.getDatabaseDir(GetActivity()),
+                        	    		Util.encode(mPresenter.getDatabaseName()));
 
                         try {
                             PwsFileFactory.loadFile(database.getAbsolutePath(), passphrase);

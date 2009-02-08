@@ -115,6 +115,10 @@ public class PasswordSafePresenter {
         mView = view;
     }
 
+    public String getDatabaseName() {
+    	return mDatabaseName;
+    }
+
     public void onCreate(Bundle savedInstanceState) {
         if (savedInstanceState != null) {
             mDatabaseName = savedInstanceState.getString(DATABASE_NAME);
@@ -206,8 +210,7 @@ public class PasswordSafePresenter {
 
                 case ACTIVITY_DESTROY: {
                     result =
-                            new DestroyDatabaseDialogHelper(
-                                    mView, this, mDatabaseName);
+                            new DestroyDatabaseDialogHelper(mView, this);
 
                     break;
                 }
@@ -220,8 +223,7 @@ public class PasswordSafePresenter {
 
                 case ACTIVITY_OPEN: {
                     result =
-                            new OpenDatabaseDialogHelper(
-                                    mView, this, mDatabaseName);
+                            new OpenDatabaseDialogHelper(mView, this);
 
                     break;
                 }
