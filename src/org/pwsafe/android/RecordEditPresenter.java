@@ -45,17 +45,17 @@ public class RecordEditPresenter {
         mRecordUrlText = (EditText) mView.findViewById(R.id.record_url);
         mRecordUsernameText = (EditText) mView.findViewById(R.id.record_username);
 
-        String recordPassphrase = getStringField(savedInstanceState, Util.RECORD_PASSPHRASE_FIELD);
+        String recordPassphrase = getStringField(savedInstanceState, RecordUtil.PASSPHRASE_FIELD);
         if (recordPassphrase != null) {
             mRecordPassphraseText.setText(recordPassphrase);
         }
 
-        String recordUrl = getStringField(savedInstanceState, Util.RECORD_URL_FIELD);
+        String recordUrl = getStringField(savedInstanceState, RecordUtil.URL_FIELD);
         if (recordUrl != null) {
             mRecordUrlText.setText(recordUrl);
         }
 
-        String recordUsername = getStringField(savedInstanceState, Util.RECORD_USERNAME_FIELD);
+        String recordUsername = getStringField(savedInstanceState, RecordUtil.USERNAME_FIELD);
         if (recordUsername != null) {
             mRecordUsernameText.setText(recordUsername);
         }
@@ -66,9 +66,9 @@ public class RecordEditPresenter {
             public void onClick(View view) {
                 Intent intent = new Intent();
 
-                intent.putExtra(Util.RECORD_PASSPHRASE_FIELD, mRecordPassphraseText.getText().toString());
-                intent.putExtra(Util.RECORD_URL_FIELD, mRecordUrlText.getText().toString());
-                intent.putExtra(Util.RECORD_USERNAME_FIELD, mRecordUsernameText.getText().toString());
+                intent.putExtra(RecordUtil.PASSPHRASE_FIELD, mRecordPassphraseText.getText().toString());
+                intent.putExtra(RecordUtil.URL_FIELD, mRecordUrlText.getText().toString());
+                intent.putExtra(RecordUtil.USERNAME_FIELD, mRecordUsernameText.getText().toString());
 
                 mView.setResult(Activity.RESULT_OK, intent);
                 mView.finish();
@@ -130,9 +130,9 @@ public class RecordEditPresenter {
     private void deleteRecord() {
         Intent intent = new Intent();
 
-        intent.putExtra(Util.RECORD_PASSPHRASE_FIELD, (String) null);
-        intent.putExtra(Util.RECORD_URL_FIELD, (String) null);
-        intent.putExtra(Util.RECORD_USERNAME_FIELD, (String) null);
+        intent.putExtra(RecordUtil.PASSPHRASE_FIELD, (String) null);
+        intent.putExtra(RecordUtil.URL_FIELD, (String) null);
+        intent.putExtra(RecordUtil.USERNAME_FIELD, (String) null);
 
         mView.setResult(Activity.RESULT_OK, intent);
         mView.finish();
