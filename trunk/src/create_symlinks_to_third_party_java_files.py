@@ -14,7 +14,7 @@ current dependencies.
 
 Usage:
   cd $HOME/androidpwsafe/src
-  create_symlinks_to_third_party_java_files.py --classpath=$HOME/jpwsafe/src:$HOME/bcprov-jdk16-141/src:$HOME/s3/src/common:$HOME/s3/j3se $(find . -name '*.java')
+  create_symlinks_to_third_party_java_files.py --classpath=$HOME/jpwsafe/src:$HOME/bcprov-jdk16-141/src:$HOME/s3/src/common:$HOME/s3/src/j2se $(find . -name '*.java')
 """
 
 import glob
