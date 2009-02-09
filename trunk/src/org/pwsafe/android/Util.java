@@ -20,9 +20,6 @@ import android.app.Activity;
 public class Util {
     public static final String DATABASE_FILEPATH_FIELD = "database-filepath";
     public static final String DATABASE_PASSPHRASE_FIELD = "database-passphrase";
-    public static final String RECORD_PASSPHRASE_FIELD = "record-passphrase";
-    public static final String RECORD_URL_FIELD = "record-url";
-    public static final String RECORD_USERNAME_FIELD = "record-username";
 
     // TODO: Write unit tests for this.
     /**

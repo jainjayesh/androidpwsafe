@@ -16,7 +16,6 @@ import org.pwsafe.lib.file.PwsFileFactory;
 import org.pwsafe.lib.file.PwsFileStorage;
 import org.pwsafe.lib.file.PwsRecord;
 import org.pwsafe.lib.file.PwsRecordV3;
-import org.pwsafe.lib.file.PwsStringUnicodeField;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -151,7 +150,6 @@ public class RecordListPresenter {
          */
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ListView listView = (ListView) parent;
             TextView textView = (TextView) convertView;
 
             if (textView == null) {
@@ -174,15 +172,15 @@ public class RecordListPresenter {
                                     new Intent(mView, RecordEditView.class);
 
                             intent.putExtra(
-                                    Util.RECORD_PASSPHRASE_FIELD,
+                                    RecordUtil.PASSPHRASE_FIELD,
                                     (String) pwsRecord.getField(
                                             PwsRecordV3.PASSWORD).getValue());
                             intent.putExtra(
-                                    Util.RECORD_URL_FIELD,
+                                    RecordUtil.URL_FIELD,
                                     (String) pwsRecord.getField(
                                             PwsRecordV3.URL).getValue());
                             intent.putExtra(
-                                    Util.RECORD_USERNAME_FIELD,
+                                    RecordUtil.USERNAME_FIELD,
                                     (String) pwsRecord.getField(
                                             PwsRecordV3.USERNAME).getValue());
 
@@ -344,30 +342,16 @@ public class RecordListPresenter {
     }
 
     /**
-     * Sets fields of <code>pwsRecord</code>.
-     *
-     * @param pwsRecord  PwsRecord object whose fields will be set
-     * @param passphrase  passphrase for <code>url</code> and <code>username</code>
-     * @param url  URL
-     * @param username  Username for <code>url</code>
-     */
-    private static void setFields(PwsRecord pwsRecord, String passphrase, String url, String username) {
-        pwsRecord.setField(new PwsStringUnicodeField(PwsRecordV3.PASSWORD, passphrase));
-        pwsRecord.setField(new PwsStringUnicodeField(PwsRecordV3.URL, url));
-        pwsRecord.setField(new PwsStringUnicodeField(PwsRecordV3.USERNAME, username));
-    }
-
-    /**
      * Adds PwsRecord to database and updates list.
      *
      * @param listAdapter  ListAdapter object to be modified
      * @param pwsRecord  PwsRecord object whose fields will be set
-     * @param passphrase  passphrase for <code>url</code> and <code>username</code>
-     * @param url  URL
-     * @param username  Username for <code>url</code>
+     * @param fields  PwsRecord fields
      */
-    private void addPwsRecord(ArrayAdapterPwsRecord listAdapter, PwsRecord pwsRecord, String passphrase, String url, String username) {
-        setFields(pwsRecord, passphrase, url, username);
+    private void addPwsRecord(ArrayAdapterPwsRecord listAdapter, RecordUtil recordUtil) {
+        PwsRecord pwsRecord = recordUtil.getPwsRecord();
+        
+        recordUtil.setFields();
 
         try {
             mPwsFile.add(pwsRecord);
@@ -375,6 +359,7 @@ public class RecordListPresenter {
             // TODO: Popup error dialog.
             e.printStackTrace();
         }
+
         listAdapter.add(pwsRecord);
     }
 
@@ -384,7 +369,9 @@ public class RecordListPresenter {
      * @param listAdapter  ListAdapter object to be modified
      * @param pwsRecord  PwsRecord object whose fields will be set
      */
-    private void deletePwsRecord(ArrayAdapterPwsRecord listAdapter, PwsRecord pwsRecord) {
+    private void deletePwsRecord(ArrayAdapterPwsRecord listAdapter, RecordUtil recordUtil) {
+        PwsRecord pwsRecord = recordUtil.getPwsRecord();
+        
         pwsRecord.delete();
         listAdapter.remove(pwsRecord);
     }
@@ -394,18 +381,18 @@ public class RecordListPresenter {
      *
      * @param listAdapter  ListAdapter object to be modified
      * @param pwsRecord  PwsRecord object whose fields will be set
-     * @param passphrase  passphrase for <code>url</code> and <code>username</code>
-     * @param url  URL
-     * @param username  Username for <code>url</code>
+     * @param fields  PwsRecord fields
      */
-    private void editPwsRecord(ArrayAdapterPwsRecord listAdapter, PwsRecord pwsRecord, String passphrase, String url, String username) {
+    private void editPwsRecord(ArrayAdapterPwsRecord listAdapter, RecordUtil recordUtil) {
+        PwsRecord pwsRecord = recordUtil.getPwsRecord();
         String originalRecordUrl = (String) pwsRecord.getField(PwsRecordV3.URL).getValue();
+        String url = recordUtil.getUrl();
 
         if (url.compareTo(originalRecordUrl) == 0) {
             listAdapter.remove(pwsRecord);
         }
 
-        setFields(pwsRecord, passphrase, url, username);
+        recordUtil.setFields();
 
         if (url.compareTo(originalRecordUrl) == 0) {
             listAdapter.add(pwsRecord);
@@ -425,17 +412,24 @@ public class RecordListPresenter {
                         (ArrayAdapterPwsRecord) recordList.getAdapter();
 
                 String recordPassphrase =
-                        data.getStringExtra(Util.RECORD_PASSPHRASE_FIELD);
-                String recordUrl = data.getStringExtra(Util.RECORD_URL_FIELD);
+                        data.getStringExtra(RecordUtil.PASSPHRASE_FIELD);
+                String recordUrl = data.getStringExtra(RecordUtil.URL_FIELD);
                 String recordUsername =
-                        data.getStringExtra(Util.RECORD_USERNAME_FIELD);
+                        data.getStringExtra(RecordUtil.USERNAME_FIELD);
 
+                RecordUtil recordUtil =
+                        new RecordUtil(
+                                mPwsRecord,
+                                recordPassphrase,
+                                recordUrl,
+                                recordUsername);
+                
                 if (requestCode == ACTIVITY_CREATE) {
-                    addPwsRecord(listAdapter, mPwsRecord, recordPassphrase, recordUrl, recordUsername);
+                    addPwsRecord(listAdapter, recordUtil);
                 } else if (recordUrl == null) {
-                    deletePwsRecord(listAdapter, mPwsRecord);
+                    deletePwsRecord(listAdapter, recordUtil);
                 } else {
-                    editPwsRecord(listAdapter, mPwsRecord, recordPassphrase, recordUrl, recordUsername);
+                    editPwsRecord(listAdapter, recordUtil);
                 }
 
                 mPwsFile.save();
@@ -459,8 +453,8 @@ public class RecordListPresenter {
                             (ListView) mView.findViewById(R.id.record_list);
                     ArrayAdapterPwsRecord listAdapter =
                             (ArrayAdapterPwsRecord) recordList.getAdapter();
-
-                    deletePwsRecord(listAdapter, mPwsRecord);
+                    
+                    deletePwsRecord(listAdapter, new RecordUtil(mPwsRecord));
                     mPwsFile.save();
                 } catch (NoSuchAlgorithmException e) {
                     // TODO Auto-generated catch block
