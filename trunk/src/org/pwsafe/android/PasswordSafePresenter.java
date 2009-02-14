@@ -9,8 +9,6 @@ package org.pwsafe.android;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -58,7 +56,6 @@ public class PasswordSafePresenter {
          */
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            ListView listView = (ListView) parent;
             TextView textView = (TextView) convertView;
 
             if (textView == null) {
@@ -109,7 +106,7 @@ public class PasswordSafePresenter {
     private PasswordSafeView mView;
 
     private String mDatabaseName;
-    private Map<Integer, DialogHelper> mDialogs = new HashMap<Integer, DialogHelper>();
+    private DialogHelper mDialogHelper;
 
     public PasswordSafePresenter(PasswordSafeView view) {
         mView = view;
@@ -197,45 +194,37 @@ public class PasswordSafePresenter {
         mView.showDialog(ACTIVITY_DESTROY);
     }
 
-    private DialogHelper getDialogHelper(Integer id) {
+    private DialogHelper createDialogHelper(Integer id) {
         DialogHelper result;
 
-        if (!mDialogs.containsKey(id)) {
-            switch (id) {
-                case ACTIVITY_ABOUT: {
-                    result = new AboutPasswordSafeDialogHelper(mView);
-
-                    break;
-                }
-
-                case ACTIVITY_DESTROY: {
-                    result =
-                            new DestroyDatabaseDialogHelper(mView, this);
-
-                    break;
-                }
-
-                case ACTIVITY_HELP: {
-                    result = new HelpPasswordSafeDialogHelper(mView);
-
-                    break;
-                }
-
-                case ACTIVITY_OPEN: {
-                    result =
-                            new OpenDatabaseDialogHelper(mView, this);
-
-                    break;
-                }
-
-                default: {
-                    result = null;
-                }
+        switch (id) {
+            case ACTIVITY_ABOUT: {
+                result = new AboutPasswordSafeDialogHelper(mView);
+		
+                break;
             }
 
-            mDialogs.put(id, result);
-        } else {
-            result = mDialogs.get(id);
+            case ACTIVITY_DESTROY: {
+                result = new DestroyDatabaseDialogHelper(mView, this);
+
+                break;
+            }
+
+            case ACTIVITY_HELP: {
+                result = new HelpPasswordSafeDialogHelper(mView);
+
+                break;
+            }
+
+            case ACTIVITY_OPEN: {
+                result = new OpenDatabaseDialogHelper(mView, this);
+
+                break;
+            }
+
+            default: {
+                result = null;
+            }
         }
 
         return result;
@@ -245,14 +234,16 @@ public class PasswordSafePresenter {
      * Pops up the correct dialog.
      */
     protected Dialog onCreateDialog(int id) {
-        return getDialogHelper(new Integer(id)).onCreateDialog();
+        mDialogHelper = createDialogHelper(new Integer(id));
+
+        return mDialogHelper.onCreateDialog();
     }
 
     /**
      * Blanks out password before dialog is opened.
      */
     protected void onPrepareDialog(int id, Dialog dialog) {
-        getDialogHelper(new Integer(id)).onPrepareDialog(dialog);
+        mDialogHelper.onPrepareDialog(dialog);
     }
 
     /**
