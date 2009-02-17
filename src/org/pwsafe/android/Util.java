@@ -9,7 +9,7 @@ package org.pwsafe.android;
 
 import java.io.File;
 
-import android.app.Activity;
+import android.content.Context;
 
 /**
  * Util contains utility functions.
@@ -21,7 +21,6 @@ public class Util {
     public static final String DATABASE_FILEPATH_FIELD = "database-filepath";
     public static final String DATABASE_PASSPHRASE_FIELD = "database-passphrase";
 
-    // TODO: Write unit tests for this.
     /**
      * Decodes database name.
      *
@@ -35,17 +34,16 @@ public class Util {
             throw new NumberFormatException();
         }
 
-        byte[] textInByte = new byte[length/2];
+        char[] result = new char[length/2];
 
-        for (int i = 0; i != text.length(); i += 2) {
-            String hex_ascii = text.substring(i, i + 2);
-            textInByte[i/2] = Byte.parseByte(hex_ascii, 16);
+        for (int i = 0; i != length; i += 2) {
+            String hexAscii = text.substring(i, i + 2);
+            result[i/2] = (char) Integer.parseInt(hexAscii, 16);
         }
 
-        return new String(textInByte);
+        return new String(result);
     }
 
-    // TODO: Write unit tests for this.
     /**
      * Encodes database name.
      *
@@ -53,30 +51,26 @@ public class Util {
      * @return Hex ascii encoded database name.
      */
     public static String encode(String text) {
-        StringBuffer result = new StringBuffer();
+        int length = text.length();
 
-        byte[] bytes = text.getBytes();
+        char[] result = new char[2*length];
 
-        for (int i = 0, n = bytes.length; i != n; ++i) {
-            byte b = bytes[i];
-
-            if (b < 0x10) {
-                result.append("0");
-            }
-
-            result.append(Integer.toHexString(bytes[i]));
+        for (int i = 0, n = length; i != n; ++i) {
+            String hexAscii = String.format("%02x", (byte) text.charAt(i));
+            result[2*i] = hexAscii.charAt(0);
+            result[2*i+1] = hexAscii.charAt(1);
         }
 
-        return result.toString();
+        return new String(result);
     }
 
     /**
      * Returns directory in which databases are stored.
      *
-     * @param activity  Activity object that owns the directory
+     * @param context  Context object that owns the directory
      * @return File object of the database directory
      */
-    public static File getDatabaseDir(Activity activity) {
-      return activity.getDir("DATABASES", 0);
+    public static File getDatabaseDir(Context context) {
+      return context.getDir("DATABASES", 0);
     }
 }
