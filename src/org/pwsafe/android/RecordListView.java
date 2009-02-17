@@ -30,12 +30,12 @@ public class RecordListView extends Activity {
     }
 
     /**
-     * Delegates to {@link RecordListPresenter#onResume()}.
+     * Delegates to {@link RecordListPresenter#fillData()}.
      */
     @Override
     protected void onResume() {
         super.onResume();
-        mPresenter.onResume();
+        mPresenter.fillData();
     }
 
     /**

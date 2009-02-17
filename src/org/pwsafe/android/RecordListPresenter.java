@@ -291,14 +291,10 @@ public class RecordListPresenter {
         return result;
     }
 
-    protected void onResume() {
-        fillData();
-    }
-
     /**
      * Fills list with records.
      */
-    private void fillData() {
+    public void fillData() {
         int pwsFileRecordCount = mPwsFile.getRecordCount();
         PwsRecord[] pwsRecords = new PwsRecord[pwsFileRecordCount];
 
