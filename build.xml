@@ -270,7 +270,12 @@
     </target>
 
     <path id='test-classpath'>
+        <pathelement location='${android-home}/tools/lib/layoutlib.jar'/>
         <pathelement location='${bindir}/classes'/>
+        <pathelement location='${external-libs}/test/asm-3.1.jar'/>
+        <pathelement location='${external-libs}/test/cglib-2.2.jar'/>
+        <pathelement location='${external-libs}/test/easymock-2.4.jar'/>
+        <pathelement location='${external-libs}/test/easymockclassextension-2.4.jar'/>
         <pathelement location='${external-libs}/test/junit-4.3.1.jar'/>
         <pathelement location='${external-libs}/test/rngpack-1.1a.jar'/>
         <pathelement location='${outdir}'/>
