@@ -10,12 +10,12 @@ package org.pwsafe.android;
 import junit.framework.Assert;
 import org.junit.Test;
 
-public class UtilFunctionalTest {
+public class DatabaseUtilFunctionalTest {
     @Test
     public void testDecodeEncode() {
         String expected = TestUtil.createAnonymousText();
 
-        String observed = Util.decode(Util.encode(expected));
+        String observed = DatabaseUtil.decode(DatabaseUtil.encode(expected));
 
         Assert.assertEquals(expected, observed);
     }
@@ -24,7 +24,7 @@ public class UtilFunctionalTest {
     public void testEncodeDecode() {
         String expected = TestUtil.createAnonymousHexString();
 
-        String observed = Util.encode(Util.decode(expected));
+        String observed = DatabaseUtil.encode(DatabaseUtil.decode(expected));
 
         Assert.assertEquals(expected, observed);
     }
