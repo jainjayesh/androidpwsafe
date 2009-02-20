@@ -234,7 +234,7 @@ public class RecordListPresenter {
         String databasePassphrase =
                 getStringField(
                         savedInstanceState,
-                        Util.DATABASE_PASSPHRASE_FIELD);
+                        DatabaseUtil.DATABASE_PASSPHRASE_FIELD);
 
         loadDatabase(databaseFilepath, databasePassphrase);
     }

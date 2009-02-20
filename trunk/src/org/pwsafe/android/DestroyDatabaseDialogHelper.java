@@ -50,8 +50,8 @@ public class DestroyDatabaseDialogHelper extends DialogHelper {
                         
                         File database = 
                         	    new File(
-                        	    		Util.getDatabaseDir(GetActivity()),
-                        	    		Util.encode(mPresenter.getDatabaseName()));
+                        	    		DatabaseUtil.getDatabaseDir(GetActivity()),
+                        	    		DatabaseUtil.encode(mPresenter.getDatabaseName()));
 
                         try {
                             PwsFileFactory.loadFile(database.getAbsolutePath(), passphrase);

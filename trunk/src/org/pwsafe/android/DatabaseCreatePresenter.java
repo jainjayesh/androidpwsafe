@@ -73,7 +73,7 @@ public class DatabaseCreatePresenter {
             String databasePassphrase =
                     mDatabasePassphraseText.getText().toString();
 
-            File database = new File(Util.getDatabaseDir(mView), databaseFilename);
+            File database = new File(DatabaseUtil.getDatabaseDir(mView), databaseFilename);
             if (!database.exists()) {
                 PwsFile pwsFile = PwsFileFactory.newFile();
 

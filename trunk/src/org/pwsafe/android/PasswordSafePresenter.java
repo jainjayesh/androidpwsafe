@@ -256,8 +256,8 @@ public class PasswordSafePresenter {
         String databaseFilepath, String databasePassphrase) {
         Intent intent = new Intent(mView, RecordListView.class);
 
-        intent.putExtra(Util.DATABASE_FILEPATH_FIELD, databaseFilepath);
-        intent.putExtra(Util.DATABASE_PASSPHRASE_FIELD, databasePassphrase);
+        intent.putExtra(DatabaseUtil.DATABASE_FILEPATH_FIELD, databaseFilepath);
+        intent.putExtra(DatabaseUtil.DATABASE_PASSPHRASE_FIELD, databasePassphrase);
 
         mView.startActivityForResult(intent, ACTIVITY_OPEN);
     }

@@ -42,8 +42,8 @@ public class OpenDatabaseDialogHelper extends DialogHelper {
                         
                         File database =
                         	new File(
-                        			Util.getDatabaseDir(GetActivity()),
-                        			Util.encode(mPresenter.getDatabaseName()));
+                        			DatabaseUtil.getDatabaseDir(GetActivity()),
+                        			DatabaseUtil.encode(mPresenter.getDatabaseName()));
 
                         mPresenter.openDatabase(database.getAbsolutePath(), passphrase);
                     }
