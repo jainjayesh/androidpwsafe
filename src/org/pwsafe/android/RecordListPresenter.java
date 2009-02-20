@@ -227,8 +227,14 @@ public class RecordListPresenter {
             }
         });
 
-        String databaseFilepath = getStringField(savedInstanceState, Util.DATABASE_FILEPATH_FIELD);
-        String databasePassphrase = getStringField(savedInstanceState, Util.DATABASE_PASSPHRASE_FIELD);
+        String databaseFilepath =
+                getStringField(
+                        savedInstanceState,
+                        DatabaseUtil.DATABASE_FILEPATH_FIELD);
+        String databasePassphrase =
+                getStringField(
+                        savedInstanceState,
+                        Util.DATABASE_PASSPHRASE_FIELD);
 
         loadDatabase(databaseFilepath, databasePassphrase);
     }
@@ -346,7 +352,7 @@ public class RecordListPresenter {
      */
     private void addPwsRecord(ArrayAdapterPwsRecord listAdapter, RecordUtil recordUtil) {
         PwsRecord pwsRecord = recordUtil.getPwsRecord();
-        
+
         recordUtil.setFields();
 
         try {
@@ -367,7 +373,7 @@ public class RecordListPresenter {
      */
     private void deletePwsRecord(ArrayAdapterPwsRecord listAdapter, RecordUtil recordUtil) {
         PwsRecord pwsRecord = recordUtil.getPwsRecord();
-        
+
         pwsRecord.delete();
         listAdapter.remove(pwsRecord);
     }
@@ -419,7 +425,7 @@ public class RecordListPresenter {
                                 recordPassphrase,
                                 recordUrl,
                                 recordUsername);
-                
+
                 if (requestCode == ACTIVITY_CREATE) {
                     addPwsRecord(listAdapter, recordUtil);
                 } else if (recordUrl == null) {
@@ -449,7 +455,7 @@ public class RecordListPresenter {
                             (ListView) mView.findViewById(R.id.record_list);
                     ArrayAdapterPwsRecord listAdapter =
                             (ArrayAdapterPwsRecord) recordList.getAdapter();
-                    
+
                     deletePwsRecord(listAdapter, new RecordUtil(mPwsRecord));
                     mPwsFile.save();
                 } catch (NoSuchAlgorithmException e) {

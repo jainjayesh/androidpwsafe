@@ -113,7 +113,7 @@ public class PasswordSafePresenter {
     }
 
     public String getDatabaseName() {
-    	return mDatabaseName;
+	return mDatabaseName;
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -145,13 +145,13 @@ public class PasswordSafePresenter {
             }
         });
 
-        File dataDir = Util.getDatabaseDir(mView);
+        File dataDir = DatabaseUtil.getDatabaseDir(mView);
         String[] encodedDatabases = dataDir.list();
         String[] decodedDatabases = new String[encodedDatabases.length];
 
         for (int i = 0; i != encodedDatabases.length; ++i) {
             try {
-                decodedDatabases[i] = Util.decode(encodedDatabases[i]);
+                decodedDatabases[i] = DatabaseUtil.decode(encodedDatabases[i]);
             } catch (NumberFormatException e) {
                 File corruptDatabase = new File(dataDir, encodedDatabases[i]);
 
@@ -200,7 +200,7 @@ public class PasswordSafePresenter {
         switch (id) {
             case ACTIVITY_ABOUT: {
                 result = new AboutPasswordSafeDialogHelper(mView);
-		
+
                 break;
             }
 

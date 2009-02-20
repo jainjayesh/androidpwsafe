@@ -68,15 +68,17 @@ public class DatabaseCreatePresenter {
      */
     private void saveState() {
         try {
-            String databaseFilename = Util.encode(mDatabaseNameText.getText().toString());
-            String databasePassphrase = mDatabasePassphraseText.getText().toString();
+            String databaseFilename =
+                    DatabaseUtil.encode(mDatabaseNameText.getText().toString());
+            String databasePassphrase =
+                    mDatabasePassphraseText.getText().toString();
 
             File database = new File(Util.getDatabaseDir(mView), databaseFilename);
             if (!database.exists()) {
                 PwsFile pwsFile = PwsFileFactory.newFile();
 
                 pwsFile.setStorage(
-                		new PwsFileStorage(database.getAbsolutePath()));
+		new PwsFileStorage(database.getAbsolutePath()));
                 pwsFile.setPassphrase(databasePassphrase);
 
                 pwsFile.save();

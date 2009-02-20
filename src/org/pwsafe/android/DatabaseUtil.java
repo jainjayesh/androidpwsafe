@@ -12,12 +12,11 @@ import java.io.File;
 import android.content.Context;
 
 /**
- * Util contains utility functions.
+ * DatabaseUtil contains utility functions for database handling.
  *
  * @author Noel Yap
  */
-// TODO: Rename Util class to be more descriptive.
-public class Util {
+public class DatabaseUtil {
     public static final String DATABASE_FILEPATH_FIELD = "database-filepath";
     public static final String DATABASE_PASSPHRASE_FIELD = "database-passphrase";
 

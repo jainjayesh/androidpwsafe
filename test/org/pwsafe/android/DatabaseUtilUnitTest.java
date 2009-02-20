@@ -14,12 +14,12 @@ import org.junit.Test;
 
 import android.content.Context;
 
-public class UtilUnitTest {
+public class DatabaseUtilUnitTest {
     @Test(expected=NumberFormatException.class)
     public void testDecodeInvalidLengthText() {
         String text = "0";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
     }
 
     @Test
@@ -28,7 +28,7 @@ public class UtilUnitTest {
 
         String text = "00ff";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -39,7 +39,7 @@ public class UtilUnitTest {
 
         String text = "00";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -50,7 +50,7 @@ public class UtilUnitTest {
 
         String text = "01";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -61,7 +61,7 @@ public class UtilUnitTest {
 
         String text = "02";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -72,7 +72,7 @@ public class UtilUnitTest {
 
         String text = "03";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -83,7 +83,7 @@ public class UtilUnitTest {
 
         String text = "04";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -94,7 +94,7 @@ public class UtilUnitTest {
 
         String text = "05";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -105,7 +105,7 @@ public class UtilUnitTest {
 
         String text = "06";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -116,7 +116,7 @@ public class UtilUnitTest {
 
         String text = "07";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -127,7 +127,7 @@ public class UtilUnitTest {
 
         String text = "08";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -138,7 +138,7 @@ public class UtilUnitTest {
 
         String text = "09";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -149,7 +149,7 @@ public class UtilUnitTest {
 
         String text = "0a";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -160,7 +160,7 @@ public class UtilUnitTest {
 
         String text = "0b";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -171,7 +171,7 @@ public class UtilUnitTest {
 
         String text = "0c";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -182,7 +182,7 @@ public class UtilUnitTest {
 
         String text = "0d";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -193,7 +193,7 @@ public class UtilUnitTest {
 
         String text = "0e";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -204,7 +204,7 @@ public class UtilUnitTest {
 
         String text = "0f";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -215,7 +215,7 @@ public class UtilUnitTest {
 
         String text = "10";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -226,7 +226,7 @@ public class UtilUnitTest {
 
         String text = "11";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -237,7 +237,7 @@ public class UtilUnitTest {
 
         String text = "12";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -248,7 +248,7 @@ public class UtilUnitTest {
 
         String text = "13";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -259,7 +259,7 @@ public class UtilUnitTest {
 
         String text = "14";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -270,7 +270,7 @@ public class UtilUnitTest {
 
         String text = "15";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -281,7 +281,7 @@ public class UtilUnitTest {
 
         String text = "16";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -292,7 +292,7 @@ public class UtilUnitTest {
 
         String text = "17";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -303,7 +303,7 @@ public class UtilUnitTest {
 
         String text = "18";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -314,7 +314,7 @@ public class UtilUnitTest {
 
         String text = "19";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -325,7 +325,7 @@ public class UtilUnitTest {
 
         String text = "1a";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -336,7 +336,7 @@ public class UtilUnitTest {
 
         String text = "1b";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -347,7 +347,7 @@ public class UtilUnitTest {
 
         String text = "1c";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -358,7 +358,7 @@ public class UtilUnitTest {
 
         String text = "1d";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -369,7 +369,7 @@ public class UtilUnitTest {
 
         String text = "1e";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -380,7 +380,7 @@ public class UtilUnitTest {
 
         String text = "1f";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -391,7 +391,7 @@ public class UtilUnitTest {
 
         String text = "20";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -402,7 +402,7 @@ public class UtilUnitTest {
 
         String text = "21";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -413,7 +413,7 @@ public class UtilUnitTest {
 
         String text = "22";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -424,7 +424,7 @@ public class UtilUnitTest {
 
         String text = "23";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -435,7 +435,7 @@ public class UtilUnitTest {
 
         String text = "24";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -446,7 +446,7 @@ public class UtilUnitTest {
 
         String text = "25";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -457,7 +457,7 @@ public class UtilUnitTest {
 
         String text = "26";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -468,7 +468,7 @@ public class UtilUnitTest {
 
         String text = "27";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -479,7 +479,7 @@ public class UtilUnitTest {
 
         String text = "28";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -490,7 +490,7 @@ public class UtilUnitTest {
 
         String text = "29";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -501,7 +501,7 @@ public class UtilUnitTest {
 
         String text = "2a";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -512,7 +512,7 @@ public class UtilUnitTest {
 
         String text = "2b";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -523,7 +523,7 @@ public class UtilUnitTest {
 
         String text = "2c";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -534,7 +534,7 @@ public class UtilUnitTest {
 
         String text = "2d";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -545,7 +545,7 @@ public class UtilUnitTest {
 
         String text = "2e";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -556,7 +556,7 @@ public class UtilUnitTest {
 
         String text = "2f";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -567,7 +567,7 @@ public class UtilUnitTest {
 
         String text = "30";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -578,7 +578,7 @@ public class UtilUnitTest {
 
         String text = "31";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -589,7 +589,7 @@ public class UtilUnitTest {
 
         String text = "32";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -600,7 +600,7 @@ public class UtilUnitTest {
 
         String text = "33";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -611,7 +611,7 @@ public class UtilUnitTest {
 
         String text = "34";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -622,7 +622,7 @@ public class UtilUnitTest {
 
         String text = "35";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -633,7 +633,7 @@ public class UtilUnitTest {
 
         String text = "36";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -644,7 +644,7 @@ public class UtilUnitTest {
 
         String text = "37";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -655,7 +655,7 @@ public class UtilUnitTest {
 
         String text = "38";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -666,7 +666,7 @@ public class UtilUnitTest {
 
         String text = "39";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -677,7 +677,7 @@ public class UtilUnitTest {
 
         String text = "3a";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -688,7 +688,7 @@ public class UtilUnitTest {
 
         String text = "3b";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -699,7 +699,7 @@ public class UtilUnitTest {
 
         String text = "3c";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -710,7 +710,7 @@ public class UtilUnitTest {
 
         String text = "3d";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -721,7 +721,7 @@ public class UtilUnitTest {
 
         String text = "3e";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -732,7 +732,7 @@ public class UtilUnitTest {
 
         String text = "3f";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -743,7 +743,7 @@ public class UtilUnitTest {
 
         String text = "40";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -754,7 +754,7 @@ public class UtilUnitTest {
 
         String text = "41";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -765,7 +765,7 @@ public class UtilUnitTest {
 
         String text = "42";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -776,7 +776,7 @@ public class UtilUnitTest {
 
         String text = "43";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -787,7 +787,7 @@ public class UtilUnitTest {
 
         String text = "44";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -798,7 +798,7 @@ public class UtilUnitTest {
 
         String text = "45";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -809,7 +809,7 @@ public class UtilUnitTest {
 
         String text = "46";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -820,7 +820,7 @@ public class UtilUnitTest {
 
         String text = "47";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -831,7 +831,7 @@ public class UtilUnitTest {
 
         String text = "48";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -842,7 +842,7 @@ public class UtilUnitTest {
 
         String text = "49";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -853,7 +853,7 @@ public class UtilUnitTest {
 
         String text = "4a";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -864,7 +864,7 @@ public class UtilUnitTest {
 
         String text = "4b";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -875,7 +875,7 @@ public class UtilUnitTest {
 
         String text = "4c";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -886,7 +886,7 @@ public class UtilUnitTest {
 
         String text = "4d";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -897,7 +897,7 @@ public class UtilUnitTest {
 
         String text = "4e";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -908,7 +908,7 @@ public class UtilUnitTest {
 
         String text = "4f";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -919,7 +919,7 @@ public class UtilUnitTest {
 
         String text = "50";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -930,7 +930,7 @@ public class UtilUnitTest {
 
         String text = "51";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -941,7 +941,7 @@ public class UtilUnitTest {
 
         String text = "52";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -952,7 +952,7 @@ public class UtilUnitTest {
 
         String text = "53";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -963,7 +963,7 @@ public class UtilUnitTest {
 
         String text = "54";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -974,7 +974,7 @@ public class UtilUnitTest {
 
         String text = "55";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -985,7 +985,7 @@ public class UtilUnitTest {
 
         String text = "56";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -996,7 +996,7 @@ public class UtilUnitTest {
 
         String text = "57";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1007,7 +1007,7 @@ public class UtilUnitTest {
 
         String text = "58";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1018,7 +1018,7 @@ public class UtilUnitTest {
 
         String text = "59";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1029,7 +1029,7 @@ public class UtilUnitTest {
 
         String text = "5a";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1040,7 +1040,7 @@ public class UtilUnitTest {
 
         String text = "5b";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1051,7 +1051,7 @@ public class UtilUnitTest {
 
         String text = "5c";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1062,7 +1062,7 @@ public class UtilUnitTest {
 
         String text = "5d";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1073,7 +1073,7 @@ public class UtilUnitTest {
 
         String text = "5e";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1084,7 +1084,7 @@ public class UtilUnitTest {
 
         String text = "5f";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1095,7 +1095,7 @@ public class UtilUnitTest {
 
         String text = "60";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1106,7 +1106,7 @@ public class UtilUnitTest {
 
         String text = "61";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1117,7 +1117,7 @@ public class UtilUnitTest {
 
         String text = "62";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1128,7 +1128,7 @@ public class UtilUnitTest {
 
         String text = "63";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1139,7 +1139,7 @@ public class UtilUnitTest {
 
         String text = "64";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1150,7 +1150,7 @@ public class UtilUnitTest {
 
         String text = "65";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1161,7 +1161,7 @@ public class UtilUnitTest {
 
         String text = "66";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1172,7 +1172,7 @@ public class UtilUnitTest {
 
         String text = "67";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1183,7 +1183,7 @@ public class UtilUnitTest {
 
         String text = "68";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1194,7 +1194,7 @@ public class UtilUnitTest {
 
         String text = "69";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1205,7 +1205,7 @@ public class UtilUnitTest {
 
         String text = "6a";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1216,7 +1216,7 @@ public class UtilUnitTest {
 
         String text = "6b";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1227,7 +1227,7 @@ public class UtilUnitTest {
 
         String text = "6c";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1238,7 +1238,7 @@ public class UtilUnitTest {
 
         String text = "6d";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1249,7 +1249,7 @@ public class UtilUnitTest {
 
         String text = "6e";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1260,7 +1260,7 @@ public class UtilUnitTest {
 
         String text = "6f";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1271,7 +1271,7 @@ public class UtilUnitTest {
 
         String text = "70";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1282,7 +1282,7 @@ public class UtilUnitTest {
 
         String text = "71";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1293,7 +1293,7 @@ public class UtilUnitTest {
 
         String text = "72";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1304,7 +1304,7 @@ public class UtilUnitTest {
 
         String text = "73";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1315,7 +1315,7 @@ public class UtilUnitTest {
 
         String text = "74";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1326,7 +1326,7 @@ public class UtilUnitTest {
 
         String text = "75";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1337,7 +1337,7 @@ public class UtilUnitTest {
 
         String text = "76";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1348,7 +1348,7 @@ public class UtilUnitTest {
 
         String text = "77";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1359,7 +1359,7 @@ public class UtilUnitTest {
 
         String text = "78";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1370,7 +1370,7 @@ public class UtilUnitTest {
 
         String text = "79";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1381,7 +1381,7 @@ public class UtilUnitTest {
 
         String text = "7a";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1392,7 +1392,7 @@ public class UtilUnitTest {
 
         String text = "7b";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1403,7 +1403,7 @@ public class UtilUnitTest {
 
         String text = "7c";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1414,7 +1414,7 @@ public class UtilUnitTest {
 
         String text = "7d";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1425,7 +1425,7 @@ public class UtilUnitTest {
 
         String text = "7e";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1436,7 +1436,7 @@ public class UtilUnitTest {
 
         String text = "7f";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1447,7 +1447,7 @@ public class UtilUnitTest {
 
         String text = "80";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1458,7 +1458,7 @@ public class UtilUnitTest {
 
         String text = "81";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1469,7 +1469,7 @@ public class UtilUnitTest {
 
         String text = "82";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1480,7 +1480,7 @@ public class UtilUnitTest {
 
         String text = "83";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1491,7 +1491,7 @@ public class UtilUnitTest {
 
         String text = "84";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1502,7 +1502,7 @@ public class UtilUnitTest {
 
         String text = "85";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1513,7 +1513,7 @@ public class UtilUnitTest {
 
         String text = "86";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1524,7 +1524,7 @@ public class UtilUnitTest {
 
         String text = "87";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1535,7 +1535,7 @@ public class UtilUnitTest {
 
         String text = "88";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1546,7 +1546,7 @@ public class UtilUnitTest {
 
         String text = "89";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1557,7 +1557,7 @@ public class UtilUnitTest {
 
         String text = "8a";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1568,7 +1568,7 @@ public class UtilUnitTest {
 
         String text = "8b";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1579,7 +1579,7 @@ public class UtilUnitTest {
 
         String text = "8c";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1590,7 +1590,7 @@ public class UtilUnitTest {
 
         String text = "8d";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1601,7 +1601,7 @@ public class UtilUnitTest {
 
         String text = "8e";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1612,7 +1612,7 @@ public class UtilUnitTest {
 
         String text = "8f";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1623,7 +1623,7 @@ public class UtilUnitTest {
 
         String text = "90";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1634,7 +1634,7 @@ public class UtilUnitTest {
 
         String text = "91";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1645,7 +1645,7 @@ public class UtilUnitTest {
 
         String text = "92";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1656,7 +1656,7 @@ public class UtilUnitTest {
 
         String text = "93";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1667,7 +1667,7 @@ public class UtilUnitTest {
 
         String text = "94";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1678,7 +1678,7 @@ public class UtilUnitTest {
 
         String text = "95";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1689,7 +1689,7 @@ public class UtilUnitTest {
 
         String text = "96";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1700,7 +1700,7 @@ public class UtilUnitTest {
 
         String text = "97";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1711,7 +1711,7 @@ public class UtilUnitTest {
 
         String text = "98";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1722,7 +1722,7 @@ public class UtilUnitTest {
 
         String text = "99";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1733,7 +1733,7 @@ public class UtilUnitTest {
 
         String text = "9a";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1744,7 +1744,7 @@ public class UtilUnitTest {
 
         String text = "9b";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1755,7 +1755,7 @@ public class UtilUnitTest {
 
         String text = "9c";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1766,7 +1766,7 @@ public class UtilUnitTest {
 
         String text = "9d";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1777,7 +1777,7 @@ public class UtilUnitTest {
 
         String text = "9e";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1788,7 +1788,7 @@ public class UtilUnitTest {
 
         String text = "9f";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1799,7 +1799,7 @@ public class UtilUnitTest {
 
         String text = "a0";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1810,7 +1810,7 @@ public class UtilUnitTest {
 
         String text = "a1";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1821,7 +1821,7 @@ public class UtilUnitTest {
 
         String text = "a2";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1832,7 +1832,7 @@ public class UtilUnitTest {
 
         String text = "a3";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1843,7 +1843,7 @@ public class UtilUnitTest {
 
         String text = "a4";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1854,7 +1854,7 @@ public class UtilUnitTest {
 
         String text = "a5";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1865,7 +1865,7 @@ public class UtilUnitTest {
 
         String text = "a6";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1876,7 +1876,7 @@ public class UtilUnitTest {
 
         String text = "a7";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1887,7 +1887,7 @@ public class UtilUnitTest {
 
         String text = "a8";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1898,7 +1898,7 @@ public class UtilUnitTest {
 
         String text = "a9";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1909,7 +1909,7 @@ public class UtilUnitTest {
 
         String text = "aa";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1920,7 +1920,7 @@ public class UtilUnitTest {
 
         String text = "ab";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1931,7 +1931,7 @@ public class UtilUnitTest {
 
         String text = "ac";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1942,7 +1942,7 @@ public class UtilUnitTest {
 
         String text = "ad";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1953,7 +1953,7 @@ public class UtilUnitTest {
 
         String text = "ae";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1964,7 +1964,7 @@ public class UtilUnitTest {
 
         String text = "af";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1975,7 +1975,7 @@ public class UtilUnitTest {
 
         String text = "b0";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1986,7 +1986,7 @@ public class UtilUnitTest {
 
         String text = "b1";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -1997,7 +1997,7 @@ public class UtilUnitTest {
 
         String text = "b2";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2008,7 +2008,7 @@ public class UtilUnitTest {
 
         String text = "b3";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2019,7 +2019,7 @@ public class UtilUnitTest {
 
         String text = "b4";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2030,7 +2030,7 @@ public class UtilUnitTest {
 
         String text = "b5";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2041,7 +2041,7 @@ public class UtilUnitTest {
 
         String text = "b6";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2052,7 +2052,7 @@ public class UtilUnitTest {
 
         String text = "b7";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2063,7 +2063,7 @@ public class UtilUnitTest {
 
         String text = "b8";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2074,7 +2074,7 @@ public class UtilUnitTest {
 
         String text = "b9";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2085,7 +2085,7 @@ public class UtilUnitTest {
 
         String text = "ba";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2096,7 +2096,7 @@ public class UtilUnitTest {
 
         String text = "bb";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2107,7 +2107,7 @@ public class UtilUnitTest {
 
         String text = "bc";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2118,7 +2118,7 @@ public class UtilUnitTest {
 
         String text = "bd";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2129,7 +2129,7 @@ public class UtilUnitTest {
 
         String text = "be";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2140,7 +2140,7 @@ public class UtilUnitTest {
 
         String text = "bf";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2151,7 +2151,7 @@ public class UtilUnitTest {
 
         String text = "c0";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2162,7 +2162,7 @@ public class UtilUnitTest {
 
         String text = "c1";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2173,7 +2173,7 @@ public class UtilUnitTest {
 
         String text = "c2";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2184,7 +2184,7 @@ public class UtilUnitTest {
 
         String text = "c3";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2195,7 +2195,7 @@ public class UtilUnitTest {
 
         String text = "c4";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2206,7 +2206,7 @@ public class UtilUnitTest {
 
         String text = "c5";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2217,7 +2217,7 @@ public class UtilUnitTest {
 
         String text = "c6";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2228,7 +2228,7 @@ public class UtilUnitTest {
 
         String text = "c7";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2239,7 +2239,7 @@ public class UtilUnitTest {
 
         String text = "c8";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2250,7 +2250,7 @@ public class UtilUnitTest {
 
         String text = "c9";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2261,7 +2261,7 @@ public class UtilUnitTest {
 
         String text = "ca";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2272,7 +2272,7 @@ public class UtilUnitTest {
 
         String text = "cb";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2283,7 +2283,7 @@ public class UtilUnitTest {
 
         String text = "cc";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2294,7 +2294,7 @@ public class UtilUnitTest {
 
         String text = "cd";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2305,7 +2305,7 @@ public class UtilUnitTest {
 
         String text = "ce";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2316,7 +2316,7 @@ public class UtilUnitTest {
 
         String text = "cf";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2327,7 +2327,7 @@ public class UtilUnitTest {
 
         String text = "d0";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2338,7 +2338,7 @@ public class UtilUnitTest {
 
         String text = "d1";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2349,7 +2349,7 @@ public class UtilUnitTest {
 
         String text = "d2";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2360,7 +2360,7 @@ public class UtilUnitTest {
 
         String text = "d3";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2371,7 +2371,7 @@ public class UtilUnitTest {
 
         String text = "d4";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2382,7 +2382,7 @@ public class UtilUnitTest {
 
         String text = "d5";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2393,7 +2393,7 @@ public class UtilUnitTest {
 
         String text = "d6";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2404,7 +2404,7 @@ public class UtilUnitTest {
 
         String text = "d7";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2415,7 +2415,7 @@ public class UtilUnitTest {
 
         String text = "d8";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2426,7 +2426,7 @@ public class UtilUnitTest {
 
         String text = "d9";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2437,7 +2437,7 @@ public class UtilUnitTest {
 
         String text = "da";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2448,7 +2448,7 @@ public class UtilUnitTest {
 
         String text = "db";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2459,7 +2459,7 @@ public class UtilUnitTest {
 
         String text = "dc";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2470,7 +2470,7 @@ public class UtilUnitTest {
 
         String text = "dd";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2481,7 +2481,7 @@ public class UtilUnitTest {
 
         String text = "de";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2492,7 +2492,7 @@ public class UtilUnitTest {
 
         String text = "df";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2503,7 +2503,7 @@ public class UtilUnitTest {
 
         String text = "e0";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2514,7 +2514,7 @@ public class UtilUnitTest {
 
         String text = "e1";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2525,7 +2525,7 @@ public class UtilUnitTest {
 
         String text = "e2";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2536,7 +2536,7 @@ public class UtilUnitTest {
 
         String text = "e3";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2547,7 +2547,7 @@ public class UtilUnitTest {
 
         String text = "e4";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2558,7 +2558,7 @@ public class UtilUnitTest {
 
         String text = "e5";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2569,7 +2569,7 @@ public class UtilUnitTest {
 
         String text = "e6";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2580,7 +2580,7 @@ public class UtilUnitTest {
 
         String text = "e7";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2591,7 +2591,7 @@ public class UtilUnitTest {
 
         String text = "e8";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2602,7 +2602,7 @@ public class UtilUnitTest {
 
         String text = "e9";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2613,7 +2613,7 @@ public class UtilUnitTest {
 
         String text = "ea";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2624,7 +2624,7 @@ public class UtilUnitTest {
 
         String text = "eb";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2635,7 +2635,7 @@ public class UtilUnitTest {
 
         String text = "ec";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2646,7 +2646,7 @@ public class UtilUnitTest {
 
         String text = "ed";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2657,7 +2657,7 @@ public class UtilUnitTest {
 
         String text = "ee";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2668,7 +2668,7 @@ public class UtilUnitTest {
 
         String text = "ef";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2679,7 +2679,7 @@ public class UtilUnitTest {
 
         String text = "f0";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2690,7 +2690,7 @@ public class UtilUnitTest {
 
         String text = "f1";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2701,7 +2701,7 @@ public class UtilUnitTest {
 
         String text = "f2";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2712,7 +2712,7 @@ public class UtilUnitTest {
 
         String text = "f3";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2723,7 +2723,7 @@ public class UtilUnitTest {
 
         String text = "f4";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2734,7 +2734,7 @@ public class UtilUnitTest {
 
         String text = "f5";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2745,7 +2745,7 @@ public class UtilUnitTest {
 
         String text = "f6";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2756,7 +2756,7 @@ public class UtilUnitTest {
 
         String text = "f7";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2767,7 +2767,7 @@ public class UtilUnitTest {
 
         String text = "f8";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2778,7 +2778,7 @@ public class UtilUnitTest {
 
         String text = "f9";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2789,7 +2789,7 @@ public class UtilUnitTest {
 
         String text = "fa";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2800,7 +2800,7 @@ public class UtilUnitTest {
 
         String text = "fb";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2811,7 +2811,7 @@ public class UtilUnitTest {
 
         String text = "fc";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2822,7 +2822,7 @@ public class UtilUnitTest {
 
         String text = "fd";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2833,7 +2833,7 @@ public class UtilUnitTest {
 
         String text = "fe";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2844,7 +2844,7 @@ public class UtilUnitTest {
 
         String text = "ff";
 
-        String observed = Util.decode(text);
+        String observed = DatabaseUtil.decode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2855,7 +2855,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] {(char) 0x00, (char) 0xff });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2866,7 +2866,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x00 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2877,7 +2877,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x01 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2888,7 +2888,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x02 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2899,7 +2899,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x03 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2910,7 +2910,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x04 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2921,7 +2921,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x05 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2932,7 +2932,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x06 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2943,7 +2943,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x07 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2954,7 +2954,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x08 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2965,7 +2965,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x09 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2976,7 +2976,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x0a });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2987,7 +2987,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x0b });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -2998,7 +2998,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x0c });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3009,7 +3009,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x0d });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3020,7 +3020,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x0e });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3031,7 +3031,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x0f });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3042,7 +3042,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x10 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3053,7 +3053,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x11 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3064,7 +3064,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x12 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3075,7 +3075,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x13 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3086,7 +3086,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x14 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3097,7 +3097,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x15 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3108,7 +3108,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x16 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3119,7 +3119,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x17 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3130,7 +3130,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x18 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3141,7 +3141,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x19 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3152,7 +3152,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x1a });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3163,7 +3163,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x1b });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3174,7 +3174,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x1c });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3185,7 +3185,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x1d });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3196,7 +3196,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x1e });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3207,7 +3207,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x1f });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3218,7 +3218,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x20 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3229,7 +3229,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x21 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3240,7 +3240,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x22 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3251,7 +3251,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x23 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3262,7 +3262,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x24 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3273,7 +3273,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x25 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3284,7 +3284,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x26 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3295,7 +3295,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x27 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3306,7 +3306,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x28 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3317,7 +3317,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x29 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3328,7 +3328,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x2a });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3339,7 +3339,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x2b });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3350,7 +3350,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x2c });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3361,7 +3361,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x2d });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3372,7 +3372,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x2e });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3383,7 +3383,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x2f });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3394,7 +3394,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x30 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3405,7 +3405,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x31 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3416,7 +3416,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x32 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3427,7 +3427,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x33 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3438,7 +3438,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x34 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3449,7 +3449,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x35 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3460,7 +3460,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x36 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3471,7 +3471,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x37 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3482,7 +3482,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x38 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3493,7 +3493,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x39 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3504,7 +3504,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x3a });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3515,7 +3515,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x3b });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3526,7 +3526,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x3c });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3537,7 +3537,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x3d });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3548,7 +3548,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x3e });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3559,7 +3559,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x3f });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3570,7 +3570,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x40 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3581,7 +3581,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x41 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3592,7 +3592,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x42 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3603,7 +3603,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x43 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3614,7 +3614,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x44 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3625,7 +3625,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x45 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3636,7 +3636,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x46 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3647,7 +3647,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x47 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3658,7 +3658,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x48 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3669,7 +3669,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x49 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3680,7 +3680,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x4a });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3691,7 +3691,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x4b });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3702,7 +3702,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x4c });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3713,7 +3713,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x4d });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3724,7 +3724,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x4e });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3735,7 +3735,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x4f });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3746,7 +3746,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x50 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3757,7 +3757,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x51 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3768,7 +3768,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x52 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3779,7 +3779,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x53 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3790,7 +3790,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x54 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3801,7 +3801,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x55 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3812,7 +3812,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x56 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3823,7 +3823,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x57 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3834,7 +3834,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x58 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3845,7 +3845,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x59 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3856,7 +3856,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x5a });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3867,7 +3867,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x5b });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3878,7 +3878,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x5c });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3889,7 +3889,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x5d });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3900,7 +3900,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x5e });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3911,7 +3911,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x5f });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3922,7 +3922,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x60 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3933,7 +3933,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x61 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3944,7 +3944,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x62 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3955,7 +3955,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x63 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3966,7 +3966,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x64 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3977,7 +3977,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x65 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3988,7 +3988,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x66 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -3999,7 +3999,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x67 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4010,7 +4010,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x68 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4021,7 +4021,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x69 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4032,7 +4032,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x6a });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4043,7 +4043,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x6b });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4054,7 +4054,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x6c });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4065,7 +4065,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x6d });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4076,7 +4076,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x6e });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4087,7 +4087,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x6f });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4098,7 +4098,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x70 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4109,7 +4109,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x71 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4120,7 +4120,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x72 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4131,7 +4131,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x73 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4142,7 +4142,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x74 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4153,7 +4153,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x75 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4164,7 +4164,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x76 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4175,7 +4175,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x77 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4186,7 +4186,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x78 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4197,7 +4197,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x79 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4208,7 +4208,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x7a });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4219,7 +4219,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x7b });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4230,7 +4230,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x7c });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4241,7 +4241,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x7d });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4252,7 +4252,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x7e });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4263,7 +4263,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x7f });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4274,7 +4274,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x80 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4285,7 +4285,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x81 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4296,7 +4296,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x82 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4307,7 +4307,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x83 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4318,7 +4318,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x84 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4329,7 +4329,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x85 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4340,7 +4340,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x86 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4351,7 +4351,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x87 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4362,7 +4362,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x88 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4373,7 +4373,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x89 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4384,7 +4384,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x8a });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4395,7 +4395,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x8b });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4406,7 +4406,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x8c });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4417,7 +4417,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x8d });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4428,7 +4428,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x8e });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4439,7 +4439,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x8f });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4450,7 +4450,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x90 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4461,7 +4461,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x91 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4472,7 +4472,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x92 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4483,7 +4483,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x93 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4494,7 +4494,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x94 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4505,7 +4505,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x95 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4516,7 +4516,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x96 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4527,7 +4527,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x97 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4538,7 +4538,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x98 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4549,7 +4549,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x99 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4560,7 +4560,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x9a });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4571,7 +4571,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x9b });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4582,7 +4582,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x9c });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4593,7 +4593,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x9d });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4604,7 +4604,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x9e });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4615,7 +4615,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0x9f });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4626,7 +4626,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xa0 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4637,7 +4637,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xa1 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4648,7 +4648,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xa2 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4659,7 +4659,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xa3 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4670,7 +4670,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xa4 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4681,7 +4681,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xa5 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4692,7 +4692,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xa6 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4703,7 +4703,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xa7 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4714,7 +4714,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xa8 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4725,7 +4725,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xa9 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4736,7 +4736,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xaa });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4747,7 +4747,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xab });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4758,7 +4758,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xac });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4769,7 +4769,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xad });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4780,7 +4780,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xae });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4791,7 +4791,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xaf });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4802,7 +4802,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xb0 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4813,7 +4813,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xb1 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4824,7 +4824,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xb2 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4835,7 +4835,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xb3 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4846,7 +4846,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xb4 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4857,7 +4857,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xb5 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4868,7 +4868,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xb6 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4879,7 +4879,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xb7 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4890,7 +4890,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xb8 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4901,7 +4901,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xb9 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4912,7 +4912,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xba });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4923,7 +4923,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xbb });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4934,7 +4934,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xbc });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4945,7 +4945,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xbd });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4956,7 +4956,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xbe });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4967,7 +4967,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xbf });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4978,7 +4978,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xc0 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -4989,7 +4989,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xc1 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5000,7 +5000,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xc2 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5011,7 +5011,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xc3 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5022,7 +5022,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xc4 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5033,7 +5033,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xc5 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5044,7 +5044,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xc6 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5055,7 +5055,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xc7 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5066,7 +5066,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xc8 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5077,7 +5077,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xc9 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5088,7 +5088,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xca });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5099,7 +5099,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xcb });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5110,7 +5110,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xcc });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5121,7 +5121,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xcd });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5132,7 +5132,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xce });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5143,7 +5143,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xcf });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5154,7 +5154,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xd0 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5165,7 +5165,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xd1 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5176,7 +5176,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xd2 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5187,7 +5187,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xd3 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5198,7 +5198,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xd4 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5209,7 +5209,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xd5 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5220,7 +5220,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xd6 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5231,7 +5231,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xd7 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5242,7 +5242,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xd8 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5253,7 +5253,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xd9 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5264,7 +5264,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xda });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5275,7 +5275,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xdb });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5286,7 +5286,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xdc });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5297,7 +5297,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xdd });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5308,7 +5308,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xde });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5319,7 +5319,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xdf });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5330,7 +5330,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xe0 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5341,7 +5341,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xe1 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5352,7 +5352,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xe2 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5363,7 +5363,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xe3 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5374,7 +5374,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xe4 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5385,7 +5385,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xe5 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5396,7 +5396,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xe6 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5407,7 +5407,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xe7 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5418,7 +5418,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xe8 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5429,7 +5429,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xe9 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5440,7 +5440,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xea });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5451,7 +5451,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xeb });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5462,7 +5462,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xec });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5473,7 +5473,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xed });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5484,7 +5484,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xee });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5495,7 +5495,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xef });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5506,7 +5506,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xf0 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5517,7 +5517,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xf1 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5528,7 +5528,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xf2 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5539,7 +5539,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xf3 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5550,7 +5550,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xf4 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5561,7 +5561,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xf5 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5572,7 +5572,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xf6 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5583,7 +5583,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xf7 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5594,7 +5594,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xf8 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5605,7 +5605,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xf9 });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5616,7 +5616,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xfa });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5627,7 +5627,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xfb });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5638,7 +5638,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xfc });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5649,7 +5649,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xfd });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5660,7 +5660,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xfe });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5671,7 +5671,7 @@ public class UtilUnitTest {
 
         String text = new String(new char[] { (char) 0xff });
 
-        String observed = Util.encode(text);
+        String observed = DatabaseUtil.encode(text);
 
         Assert.assertEquals(expected, observed);
     }
@@ -5687,7 +5687,7 @@ public class UtilUnitTest {
 
         EasyMock.replay(context);
 
-        File observed = Util.getDatabaseDir(context);
+        File observed = DatabaseUtil.getDatabaseDir(context);
 
         Assert.assertEquals(expected, observed);
         EasyMock.verify(context);

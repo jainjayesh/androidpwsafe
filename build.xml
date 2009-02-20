@@ -292,8 +292,8 @@
         <junit printsummary='yes' haltonfailure='yes'>
             <classpath refid='test-classpath'/>
             <formatter type='plain'/>
-            <test name='org.pwsafe.android.UtilFunctionalTest'/>
-            <test name='org.pwsafe.android.UtilUnitTest'/>
+            <test name='org.pwsafe.android.DatabaseUtilFunctionalTest'/>
+            <test name='org.pwsafe.android.DatabaseUtilUnitTest'/>
         </junit>
     </target>
 </project>

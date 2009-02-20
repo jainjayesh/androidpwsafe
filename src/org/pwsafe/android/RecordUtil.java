@@ -12,7 +12,7 @@ import org.pwsafe.lib.file.PwsRecordV3;
 import org.pwsafe.lib.file.PwsStringUnicodeField;
 
 /**
- * RecordEditView delegates to {@link RecordEditPresenter}.
+ * RecordUtil contains utility functions for record handling.
  *
  * @author Noel Yap
  */
@@ -22,15 +22,15 @@ public class RecordUtil {
     public static final String USERNAME_FIELD = "record-username";
 
     private PwsRecord mPwsRecord;
-    
+
     private String mPassphrase;
     private String mUrl;
     private String mUsername;
-	
+
     public RecordUtil(PwsRecord pwsRecord) {
         mPwsRecord = pwsRecord;
     }
-    
+
     public RecordUtil(
             PwsRecord pwsRecord,
             String passphrase,
@@ -43,9 +43,9 @@ public class RecordUtil {
     }
 
     public void setFields() {
-    	mPwsRecord.setField(new PwsStringUnicodeField(PwsRecordV3.PASSWORD, mPassphrase));
-    	mPwsRecord.setField(new PwsStringUnicodeField(PwsRecordV3.URL, mUrl));
-    	mPwsRecord.setField(new PwsStringUnicodeField(PwsRecordV3.USERNAME, mUsername));
+	mPwsRecord.setField(new PwsStringUnicodeField(PwsRecordV3.PASSWORD, mPassphrase));
+	mPwsRecord.setField(new PwsStringUnicodeField(PwsRecordV3.URL, mUrl));
+	mPwsRecord.setField(new PwsStringUnicodeField(PwsRecordV3.USERNAME, mUsername));
     }
 
     public PwsRecord getPwsRecord() {
