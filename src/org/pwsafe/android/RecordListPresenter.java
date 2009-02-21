@@ -11,6 +11,7 @@ import org.pwsafe.lib.exception.EndOfFileException;
 import org.pwsafe.lib.exception.InvalidPassphraseException;
 import org.pwsafe.lib.exception.PasswordSafeException;
 import org.pwsafe.lib.exception.UnsupportedFileVersionException;
+import org.pwsafe.lib.file.PwsField;
 import org.pwsafe.lib.file.PwsFile;
 import org.pwsafe.lib.file.PwsFileFactory;
 import org.pwsafe.lib.file.PwsFileStorage;
@@ -171,10 +172,15 @@ public class RecordListPresenter {
                             Intent intent =
                                     new Intent(mView, RecordEditView.class);
 
-                            intent.putExtra(
-                                    RecordUtil.NOTES_FIELD,
-                                    (String) pwsRecord.getField(
-                                            PwsRecordV3.NOTES).getValue());
+                            // TODO: Extract these into a method.
+                            //       It would be best if RecordUtil completely wrapped PwsRecord.
+                            PwsField notesField = pwsRecord.getField(PwsRecordV3.NOTES);
+                            if (notesField != null) {
+                                intent.putExtra(
+                                        RecordUtil.NOTES_FIELD,
+                                        (String) notesField.getValue());
+                            }
+                            
                             intent.putExtra(
                                     RecordUtil.PASSPHRASE_FIELD,
                                     (String) pwsRecord.getField(
