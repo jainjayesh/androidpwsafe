@@ -172,6 +172,10 @@ public class RecordListPresenter {
                                     new Intent(mView, RecordEditView.class);
 
                             intent.putExtra(
+                                    RecordUtil.NOTES_FIELD,
+                                    (String) pwsRecord.getField(
+                                            PwsRecordV3.NOTES).getValue());
+                            intent.putExtra(
                                     RecordUtil.PASSPHRASE_FIELD,
                                     (String) pwsRecord.getField(
                                             PwsRecordV3.PASSWORD).getValue());
@@ -413,8 +417,10 @@ public class RecordListPresenter {
                 ArrayAdapterPwsRecord listAdapter =
                         (ArrayAdapterPwsRecord) recordList.getAdapter();
 
+                String recordNotes =
+                    data.getStringExtra(RecordUtil.NOTES_FIELD);
                 String recordPassphrase =
-                        data.getStringExtra(RecordUtil.PASSPHRASE_FIELD);
+                    data.getStringExtra(RecordUtil.PASSPHRASE_FIELD);
                 String recordUrl = data.getStringExtra(RecordUtil.URL_FIELD);
                 String recordUsername =
                         data.getStringExtra(RecordUtil.USERNAME_FIELD);
@@ -424,7 +430,8 @@ public class RecordListPresenter {
                                 mPwsRecord,
                                 recordPassphrase,
                                 recordUrl,
-                                recordUsername);
+                                recordUsername,
+                                recordNotes);
 
                 if (requestCode == ACTIVITY_CREATE) {
                     addPwsRecord(listAdapter, recordUtil);
