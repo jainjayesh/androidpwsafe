@@ -9,9 +9,7 @@ package org.pwsafe.android;
 
 import org.pwsafe.lib.exception.EndOfFileException;
 import org.pwsafe.lib.exception.InvalidPassphraseException;
-import org.pwsafe.lib.exception.PasswordSafeException;
 import org.pwsafe.lib.exception.UnsupportedFileVersionException;
-import org.pwsafe.lib.file.PwsField;
 import org.pwsafe.lib.file.PwsFile;
 import org.pwsafe.lib.file.PwsFileFactory;
 import org.pwsafe.lib.file.PwsFileStorage;
@@ -51,7 +49,7 @@ public class RecordListPresenter {
     /**
      * ArrayAdapterPwsRecord is an ArrayAdapter that sorts its elements by URL.
      */
-    private class ArrayAdapterPwsRecord extends ArrayAdapter<PwsRecord> {
+    private class ArrayAdapterPwsRecord extends ArrayAdapter<PwsRecordWrapper> {
         private int mTextViewResourceId;
 
         // TODO: Make public so it can be tested.
@@ -60,10 +58,10 @@ public class RecordListPresenter {
          */
         private class ComparePwsRecord implements Comparator<Object> {
             public int compare(Object o1, Object o2) {
-                PwsRecord pwsRecord1 = (PwsRecord) o1;
-                PwsRecord pwsRecord2 = (PwsRecord) o2;
-                String url1 = (String) pwsRecord1.getField(PwsRecordV3.URL).getValue();
-                String url2 = (String) pwsRecord2.getField(PwsRecordV3.URL).getValue();
+                PwsRecordWrapper pwsRecord1 = (PwsRecordWrapper) o1;
+                PwsRecordWrapper pwsRecord2 = (PwsRecordWrapper) o2;
+                String url1 = pwsRecord1.getUrl();
+                String url2 = pwsRecord2.getUrl();
 
                 return url1.compareTo(url2);
             }
@@ -77,7 +75,10 @@ public class RecordListPresenter {
          * @param textViewResourceId
          * @param pwsRecords  PwsRecord objects to populate list
          */
-        public ArrayAdapterPwsRecord(Context context, int textViewResourceId, PwsRecord[] pwsRecords) {
+        public ArrayAdapterPwsRecord(
+                Context context,
+                int textViewResourceId,
+                PwsRecordWrapper[] pwsRecords) {
             super(context, textViewResourceId);
 
             mTextViewResourceId = textViewResourceId;
@@ -95,9 +96,10 @@ public class RecordListPresenter {
          * @param pwsRecord  PwsRecord object to add to list
          */
         @Override
-        public void add(PwsRecord pwsRecord) {
-            String recordUrl = (String) pwsRecord.getField(PwsRecordV3.URL).getValue();
+        public void add(PwsRecordWrapper pwsRecord) {
+            String recordUrl = pwsRecord.getUrl();
             int index = lowerBound(recordUrl);
+
             insert(pwsRecord, index);
         }
 
@@ -115,23 +117,23 @@ public class RecordListPresenter {
                     return lowerBoundIndex;
                 }
 
-                PwsRecord lowerBoundItem = getItem(lowerBoundIndex);
-                String lowerBoundUrl = (String) lowerBoundItem.getField(PwsRecordV3.URL).getValue();
+                PwsRecordWrapper lowerBoundItem = getItem(lowerBoundIndex);
+                String lowerBoundUrl = lowerBoundItem.getUrl();
 
                 if (url.compareTo(lowerBoundUrl) < 0) {
                     return lowerBoundIndex;
                 }
 
-                PwsRecord upperBoundItem = getItem(upperBoundIndex-1);
-                String upperBoundUrl= (String) upperBoundItem.getField(PwsRecordV3.URL).getValue();
+                PwsRecordWrapper upperBoundItem = getItem(upperBoundIndex-1);
+                String upperBoundUrl= upperBoundItem.getUrl();
 
                 if (upperBoundUrl.compareTo(url) < 0) {
                     return upperBoundIndex;
                 }
 
                 int midPointIndex = (lowerBoundIndex+upperBoundIndex)/2;
-                PwsRecord midPointItem = getItem(midPointIndex);
-                String midPointUrl = (String) midPointItem.getField(PwsRecordV3.URL).getValue();
+                PwsRecordWrapper midPointItem = getItem(midPointIndex);
+                String midPointUrl = midPointItem.getUrl();
 
                 if (url.compareTo(midPointUrl) < 0) {
                     upperBoundIndex = midPointIndex;
@@ -162,7 +164,7 @@ public class RecordListPresenter {
                         (TextView) inflate.inflate(mTextViewResourceId, null);
             }
 
-            final PwsRecord pwsRecord = getItem(position);
+            final PwsRecordWrapper pwsRecord = getItem(position);
 
             textView.setOnClickListener(
                     new View.OnClickListener() {
@@ -172,27 +174,18 @@ public class RecordListPresenter {
                             Intent intent =
                                     new Intent(mView, RecordEditView.class);
 
-                            // TODO: Extract these into a method.
-                            //       It would be best if RecordUtil completely wrapped PwsRecord.
-                            PwsField notesField = pwsRecord.getField(PwsRecordV3.NOTES);
-                            if (notesField != null) {
-                                intent.putExtra(
-                                        RecordUtil.NOTES_FIELD,
-                                        (String) notesField.getValue());
-                            }
-                            
+                            intent.putExtra(
+                                    RecordUtil.NOTES_FIELD,
+                                    pwsRecord.getNotes());
                             intent.putExtra(
                                     RecordUtil.PASSPHRASE_FIELD,
-                                    (String) pwsRecord.getField(
-                                            PwsRecordV3.PASSWORD).getValue());
+                                    pwsRecord.getPassword());
                             intent.putExtra(
                                     RecordUtil.URL_FIELD,
-                                    (String) pwsRecord.getField(
-                                            PwsRecordV3.URL).getValue());
+                                    pwsRecord.getUrl());
                             intent.putExtra(
                                     RecordUtil.USERNAME_FIELD,
-                                    (String) pwsRecord.getField(
-                                            PwsRecordV3.USERNAME).getValue());
+                                    pwsRecord.getUsername());
 
                             mView.startActivityForResult(
                                 intent, ACTIVITY_MODIFY);
@@ -206,22 +199,22 @@ public class RecordListPresenter {
                             return false;
                         }
                     });
-            textView.setText(
-                    (String) pwsRecord.getField(PwsRecordV3.URL).getValue());
+            textView.setText(pwsRecord.getUrl());
 
             return textView;
         }
     }
 
-    private static final int ACTIVITY_CREATE = 0;
-    private static final int ACTIVITY_MODIFY = 1;
+    public static final int ACTIVITY_CREATE = 0;
+    public static final int ACTIVITY_DELETE = 1;
+    public static final int ACTIVITY_MODIFY = 2;
 
     private static final int MENU_ITEM_DELETE_RECORD = Menu.FIRST;
 
     private RecordListView mView;
 
     private PwsFile mPwsFile;
-    private PwsRecord mPwsRecord;
+    private PwsRecordWrapper mPwsRecord;
 
     public RecordListPresenter(RecordListView view) {
         mView = view;
@@ -312,11 +305,13 @@ public class RecordListPresenter {
      */
     public void fillData() {
         int pwsFileRecordCount = mPwsFile.getRecordCount();
-        PwsRecord[] pwsRecords = new PwsRecord[pwsFileRecordCount];
+        PwsRecordWrapper[] pwsRecords =
+                new PwsRecordWrapper[pwsFileRecordCount];
 
         Iterator<PwsRecord> iter = mPwsFile.getRecords();
         for (int i = 0; i != pwsFileRecordCount; ++i) {
-            pwsRecords[i] = iter.next();
+            pwsRecords[i] =
+                    new PwsRecordWrapper(mPwsFile, (PwsRecordV3) iter.next());
         }
 
         ListView recordList = (ListView) mView.findViewById(R.id.record_list);
@@ -348,7 +343,7 @@ public class RecordListPresenter {
     private void createRecord() {
         Intent intent = new Intent(mView, RecordEditView.class);
 
-        mPwsRecord = mPwsFile.newRecord();
+        mPwsRecord = new PwsRecordWrapper(mPwsFile, (PwsRecordV3) mPwsFile.newRecord());
 
         mView.startActivityForResult(intent, ACTIVITY_CREATE);
     }
@@ -358,20 +353,10 @@ public class RecordListPresenter {
      *
      * @param listAdapter  ListAdapter object to be modified
      * @param pwsRecord  PwsRecord object whose fields will be set
-     * @param fields  PwsRecord fields
      */
-    private void addPwsRecord(ArrayAdapterPwsRecord listAdapter, RecordUtil recordUtil) {
-        PwsRecord pwsRecord = recordUtil.getPwsRecord();
-
-        recordUtil.setFields();
-
-        try {
-            mPwsFile.add(pwsRecord);
-        } catch (PasswordSafeException e) {
-            // TODO: Popup error dialog.
-            e.printStackTrace();
-        }
-
+    private void addPwsRecord(
+            ArrayAdapterPwsRecord listAdapter, PwsRecordWrapper pwsRecord) {
+        pwsRecord.add();
         listAdapter.add(pwsRecord);
     }
 
@@ -381,9 +366,8 @@ public class RecordListPresenter {
      * @param listAdapter  ListAdapter object to be modified
      * @param pwsRecord  PwsRecord object whose fields will be set
      */
-    private void deletePwsRecord(ArrayAdapterPwsRecord listAdapter, RecordUtil recordUtil) {
-        PwsRecord pwsRecord = recordUtil.getPwsRecord();
-
+    private void deletePwsRecord(
+            ArrayAdapterPwsRecord listAdapter, PwsRecordWrapper pwsRecord) {
         pwsRecord.delete();
         listAdapter.remove(pwsRecord);
     }
@@ -393,28 +377,19 @@ public class RecordListPresenter {
      *
      * @param listAdapter  ListAdapter object to be modified
      * @param pwsRecord  PwsRecord object whose fields will be set
-     * @param fields  PwsRecord fields
      */
-    private void editPwsRecord(ArrayAdapterPwsRecord listAdapter, RecordUtil recordUtil) {
-        PwsRecord pwsRecord = recordUtil.getPwsRecord();
-        String originalRecordUrl = (String) pwsRecord.getField(PwsRecordV3.URL).getValue();
-        String url = recordUtil.getUrl();
-
-        if (url.compareTo(originalRecordUrl) == 0) {
-            listAdapter.remove(pwsRecord);
-        }
-
-        recordUtil.setFields();
-
-        if (url.compareTo(originalRecordUrl) == 0) {
-            listAdapter.add(pwsRecord);
-        }
+    private void editPwsRecord(
+            ArrayAdapterPwsRecord listAdapter, PwsRecordWrapper pwsRecord) {
+        // TODO: Remove/add from list iff URL has changed.
+        listAdapter.remove(pwsRecord);
+        listAdapter.add(pwsRecord);
     }
 
     /**
      * Handles result of activity (add, edit, delete) and saves database.
      */
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(
+            int requestCode, int resultCode, Intent data) {
         // TODO: Extract method to make it more testable.
         if (resultCode == Activity.RESULT_OK) {
             try {
@@ -423,28 +398,25 @@ public class RecordListPresenter {
                 ArrayAdapterPwsRecord listAdapter =
                         (ArrayAdapterPwsRecord) recordList.getAdapter();
 
-                String recordNotes =
-                    data.getStringExtra(RecordUtil.NOTES_FIELD);
-                String recordPassphrase =
-                    data.getStringExtra(RecordUtil.PASSPHRASE_FIELD);
-                String recordUrl = data.getStringExtra(RecordUtil.URL_FIELD);
-                String recordUsername =
-                        data.getStringExtra(RecordUtil.USERNAME_FIELD);
+                long activity = data.getIntExtra("activity", -1);
 
-                RecordUtil recordUtil =
-                        new RecordUtil(
-                                mPwsRecord,
-                                recordPassphrase,
-                                recordUrl,
-                                recordUsername,
-                                recordNotes);
-
-                if (requestCode == ACTIVITY_CREATE) {
-                    addPwsRecord(listAdapter, recordUtil);
-                } else if (recordUrl == null) {
-                    deletePwsRecord(listAdapter, recordUtil);
+                if (activity == ACTIVITY_DELETE) {
+                    deletePwsRecord(listAdapter, mPwsRecord);
                 } else {
-                    editPwsRecord(listAdapter, recordUtil);
+                    mPwsRecord.setNotes(
+                            data.getStringExtra(RecordUtil.NOTES_FIELD));
+                    mPwsRecord.setPassword(
+                            data.getStringExtra(RecordUtil.PASSPHRASE_FIELD));
+                    mPwsRecord.setUrl(
+                            data.getStringExtra(RecordUtil.URL_FIELD));
+                    mPwsRecord.setUsername(
+                            data.getStringExtra(RecordUtil.USERNAME_FIELD));
+
+                    if (requestCode == ACTIVITY_CREATE) {
+                        addPwsRecord(listAdapter, mPwsRecord);
+                    } else {
+                        editPwsRecord(listAdapter, mPwsRecord);
+                    }
                 }
 
                 mPwsFile.save();
@@ -469,7 +441,7 @@ public class RecordListPresenter {
                     ArrayAdapterPwsRecord listAdapter =
                             (ArrayAdapterPwsRecord) recordList.getAdapter();
 
-                    deletePwsRecord(listAdapter, new RecordUtil(mPwsRecord));
+                    deletePwsRecord(listAdapter, mPwsRecord);
                     mPwsFile.save();
                 } catch (NoSuchAlgorithmException e) {
                     // TODO Auto-generated catch block
