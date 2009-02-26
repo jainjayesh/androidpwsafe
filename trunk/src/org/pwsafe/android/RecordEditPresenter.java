@@ -82,6 +82,9 @@ public class RecordEditPresenter {
                 Intent intent = new Intent();
 
                 intent.putExtra(
+                        "activity",
+                        RecordListPresenter.ACTIVITY_MODIFY);
+                intent.putExtra(
                         RecordUtil.NOTES_FIELD,
                         mRecordNotesText.getText().toString());
                 intent.putExtra(
@@ -154,10 +157,7 @@ public class RecordEditPresenter {
     private void deleteRecord() {
         Intent intent = new Intent();
 
-        intent.putExtra(RecordUtil.NOTES_FIELD, (String) null);
-        intent.putExtra(RecordUtil.PASSPHRASE_FIELD, (String) null);
-        intent.putExtra(RecordUtil.URL_FIELD, (String) null);
-        intent.putExtra(RecordUtil.USERNAME_FIELD, (String) null);
+        intent.putExtra("activity", RecordListPresenter.ACTIVITY_DELETE);
 
         mView.setResult(Activity.RESULT_OK, intent);
         mView.finish();
