@@ -13,8 +13,10 @@ package org.pwsafe.android;
  * @author Noel Yap
  */
 public class RecordUtil {
+    public static final String GROUP_FIELD = "record-group";
     public static final String NOTES_FIELD = "record-notes";
     public static final String PASSPHRASE_FIELD = "record-passphrase";
+    public static final String TITLE_FIELD = "record-title";
     public static final String URL_FIELD = "record-url";
     public static final String USERNAME_FIELD = "record-username";
 }

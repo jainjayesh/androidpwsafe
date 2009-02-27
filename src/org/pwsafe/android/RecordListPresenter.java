@@ -178,8 +178,14 @@ public class RecordListPresenter {
                                     RecordUtil.NOTES_FIELD,
                                     pwsRecord.getNotes());
                             intent.putExtra(
+                                    RecordUtil.GROUP_FIELD,
+                                    pwsRecord.getGroup());
+                            intent.putExtra(
                                     RecordUtil.PASSPHRASE_FIELD,
                                     pwsRecord.getPassword());
+                            intent.putExtra(
+                                    RecordUtil.TITLE_FIELD,
+                                    pwsRecord.getTitle());
                             intent.putExtra(
                                     RecordUtil.URL_FIELD,
                                     pwsRecord.getUrl());
@@ -403,10 +409,14 @@ public class RecordListPresenter {
                 if (activity == ACTIVITY_DELETE) {
                     deletePwsRecord(listAdapter, mPwsRecord);
                 } else {
+                    mPwsRecord.setGroup(
+                            data.getStringExtra(RecordUtil.GROUP_FIELD));
                     mPwsRecord.setNotes(
                             data.getStringExtra(RecordUtil.NOTES_FIELD));
                     mPwsRecord.setPassword(
                             data.getStringExtra(RecordUtil.PASSPHRASE_FIELD));
+                    mPwsRecord.setTitle(
+                            data.getStringExtra(RecordUtil.TITLE_FIELD));
                     mPwsRecord.setUrl(
                             data.getStringExtra(RecordUtil.URL_FIELD));
                     mPwsRecord.setUsername(
