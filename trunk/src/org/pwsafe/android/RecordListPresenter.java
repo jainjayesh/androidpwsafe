@@ -60,8 +60,8 @@ public class RecordListPresenter {
             public int compare(Object o1, Object o2) {
                 PwsRecordWrapper pwsRecord1 = (PwsRecordWrapper) o1;
                 PwsRecordWrapper pwsRecord2 = (PwsRecordWrapper) o2;
-                String url1 = pwsRecord1.getUrl();
-                String url2 = pwsRecord2.getUrl();
+                String url1 = pwsRecordDisplayString(pwsRecord1);
+                String url2 = pwsRecordDisplayString(pwsRecord2);
 
                 return url1.compareTo(url2);
             }
@@ -90,6 +90,27 @@ public class RecordListPresenter {
             }
         }
 
+        private String pwsRecordDisplayString(PwsRecordWrapper pwsRecord) {
+            String title = pwsRecord.getTitle();
+            
+            if ("".compareTo(title) == 0) {
+                return pwsRecord.getUrl();
+            } else {
+                String group = pwsRecord.getGroup();
+                
+                if ("".compareTo(group) == 0) {
+                    return title;
+                } else {
+                    StringBuffer result = new StringBuffer(group);
+                    
+                    result.append("|");
+                    result.append(title);
+                    
+                    return result.toString();
+                }
+            }
+        }
+        
         /**
          * Adds record to correct place in list.
          *
@@ -97,7 +118,7 @@ public class RecordListPresenter {
          */
         @Override
         public void add(PwsRecordWrapper pwsRecord) {
-            String recordUrl = pwsRecord.getUrl();
+            String recordUrl = pwsRecordDisplayString(pwsRecord);
             int index = lowerBound(recordUrl);
 
             insert(pwsRecord, index);
@@ -118,14 +139,14 @@ public class RecordListPresenter {
                 }
 
                 PwsRecordWrapper lowerBoundItem = getItem(lowerBoundIndex);
-                String lowerBoundUrl = lowerBoundItem.getUrl();
+                String lowerBoundUrl = pwsRecordDisplayString(lowerBoundItem);
 
                 if (url.compareTo(lowerBoundUrl) < 0) {
                     return lowerBoundIndex;
                 }
 
                 PwsRecordWrapper upperBoundItem = getItem(upperBoundIndex-1);
-                String upperBoundUrl= upperBoundItem.getUrl();
+                String upperBoundUrl= pwsRecordDisplayString(upperBoundItem);
 
                 if (upperBoundUrl.compareTo(url) < 0) {
                     return upperBoundIndex;
@@ -133,7 +154,7 @@ public class RecordListPresenter {
 
                 int midPointIndex = (lowerBoundIndex+upperBoundIndex)/2;
                 PwsRecordWrapper midPointItem = getItem(midPointIndex);
-                String midPointUrl = midPointItem.getUrl();
+                String midPointUrl = pwsRecordDisplayString(midPointItem);
 
                 if (url.compareTo(midPointUrl) < 0) {
                     upperBoundIndex = midPointIndex;
@@ -205,7 +226,7 @@ public class RecordListPresenter {
                             return false;
                         }
                     });
-            textView.setText(pwsRecord.getUrl());
+            textView.setText(pwsRecordDisplayString(pwsRecord));
 
             return textView;
         }
