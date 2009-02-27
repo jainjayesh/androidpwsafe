@@ -38,7 +38,7 @@ public class RecordEditPresenter {
     }
 
     private String safeGetStringField(Bundle savedInstanceState, String fieldName) {
-        String result = this.getStringField(savedInstanceState, fieldName);
+        String result = getStringField(savedInstanceState, fieldName);
 
         return (result == null)
                 ? ""

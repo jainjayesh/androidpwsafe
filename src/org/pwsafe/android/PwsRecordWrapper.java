@@ -8,10 +8,8 @@
 package org.pwsafe.android;
 
 import org.pwsafe.lib.exception.PasswordSafeException;
-import org.pwsafe.lib.file.PwsField;
 import org.pwsafe.lib.file.PwsFile;
 import org.pwsafe.lib.file.PwsRecordV3;
-import org.pwsafe.lib.file.PwsStringUnicodeField;
 
 public class PwsRecordWrapper {
     private PwsFile mPwsFile;
