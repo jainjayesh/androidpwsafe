@@ -18,8 +18,6 @@ public class PwsFieldUtil {
     }
 
     public static PwsField convertStringToField(int type, String value) {
-        return (value.compareTo("") == 0)
-                ? null
-                : new PwsStringUnicodeField(type, value);
+        return new PwsStringUnicodeField(type, value);
     }
 }
