@@ -26,8 +26,10 @@ public class RecordEditPresenter {
 
     private RecordEditView mView;
 
+    private EditText mRecordGroupText;
     private EditText mRecordNotesText;
     private EditText mRecordPassphraseText;
+    private EditText mRecordTitleText;
     private EditText mRecordUrlText;
     private EditText mRecordUsernameText;
 
@@ -35,48 +37,51 @@ public class RecordEditPresenter {
         mView = view;
     }
 
-    // TODO: Extract method.
+    private String safeGetStringField(Bundle savedInstanceState, String fieldName) {
+        String result = this.getStringField(savedInstanceState, fieldName);
+
+        return (result == null)
+                ? ""
+                : result;
+    }
+
     /**
      * Creates form or fields for record.
      */
     protected void onCreate(Bundle savedInstanceState) {
         mView.setContentView(R.layout.record_edit);
 
+        mRecordGroupText =
+            (EditText) mView.findViewById(R.id.record_group);
+        mRecordGroupText.setText(safeGetStringField(savedInstanceState, RecordUtil.GROUP_FIELD));
+
         mRecordNotesText =
                 (EditText) mView.findViewById(R.id.record_notes);
+        mRecordNotesText.setText(safeGetStringField(savedInstanceState, RecordUtil.NOTES_FIELD));
+
         mRecordPassphraseText =
                 (EditText) mView.findViewById(R.id.record_passphrase);
+        mRecordPassphraseText.setText(
+                safeGetStringField(
+                        savedInstanceState, RecordUtil.PASSPHRASE_FIELD));
+
+        mRecordTitleText =
+            (EditText) mView.findViewById(R.id.record_title);
+        mRecordTitleText.setText(
+                safeGetStringField(savedInstanceState, RecordUtil.TITLE_FIELD));
+
         mRecordUrlText =
                 (EditText) mView.findViewById(R.id.record_url);
+        mRecordUrlText.setText(safeGetStringField(
+                    savedInstanceState, RecordUtil.URL_FIELD));
+
         mRecordUsernameText =
                 (EditText) mView.findViewById(R.id.record_username);
-
-        String recordNotes =
-                getStringField(savedInstanceState, RecordUtil.NOTES_FIELD);
-        if (recordNotes != null) {
-            mRecordNotesText.setText(recordNotes);
-        }
-
-        String recordPassphrase =
-                getStringField(savedInstanceState, RecordUtil.PASSPHRASE_FIELD);
-        if (recordPassphrase != null) {
-            mRecordPassphraseText.setText(recordPassphrase);
-        }
-
-        String recordUrl =
-                getStringField(savedInstanceState, RecordUtil.URL_FIELD);
-        if (recordUrl != null) {
-            mRecordUrlText.setText(recordUrl);
-        }
-
-        String recordUsername =
-                getStringField(savedInstanceState, RecordUtil.USERNAME_FIELD);
-        if (recordUsername != null) {
-            mRecordUsernameText.setText(recordUsername);
-        }
+        mRecordUsernameText.setText(
+                safeGetStringField(
+                        savedInstanceState, RecordUtil.USERNAME_FIELD));
 
         Button saveButton = (Button) mView.findViewById(R.id.save);
-
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent intent = new Intent();
@@ -85,11 +90,17 @@ public class RecordEditPresenter {
                         "activity",
                         RecordListPresenter.ACTIVITY_MODIFY);
                 intent.putExtra(
+                        RecordUtil.GROUP_FIELD,
+                        mRecordGroupText.getText().toString());
+                intent.putExtra(
                         RecordUtil.NOTES_FIELD,
                         mRecordNotesText.getText().toString());
                 intent.putExtra(
                         RecordUtil.PASSPHRASE_FIELD,
                         mRecordPassphraseText.getText().toString());
+                intent.putExtra(
+                        RecordUtil.TITLE_FIELD,
+                        mRecordTitleText.getText().toString());
                 intent.putExtra(
                         RecordUtil.URL_FIELD,
                         mRecordUrlText.getText().toString());

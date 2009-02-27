@@ -35,6 +35,16 @@ public class PwsRecordWrapper {
         mPwsRecord.delete();
     }
 
+    public String getGroup() {
+        return PwsFieldUtil.convertFieldToString(
+                mPwsRecord.getField(PwsRecordV3.GROUP));
+    }
+
+    public void setGroup(String group) {
+        mPwsRecord.setField(
+                PwsFieldUtil.convertStringToField(PwsRecordV3.GROUP, group));
+    }
+
     public String getNotes() {
         return PwsFieldUtil.convertFieldToString(
                 mPwsRecord.getField(PwsRecordV3.NOTES));
@@ -54,6 +64,16 @@ public class PwsRecordWrapper {
         mPwsRecord.setField(
                 PwsFieldUtil.convertStringToField(
                         PwsRecordV3.PASSWORD, password));
+    }
+
+    public String getTitle() {
+        return PwsFieldUtil.convertFieldToString(
+                mPwsRecord.getField(PwsRecordV3.TITLE));
+    }
+
+    public void setTitle(String title) {
+        mPwsRecord.setField(
+                PwsFieldUtil.convertStringToField(PwsRecordV3.TITLE, title));
     }
 
     public String getUrl() {
