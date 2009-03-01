@@ -22,7 +22,8 @@ import android.widget.EditText;
  * @author Noel Yap
  */
 public class RecordEditPresenter {
-    private static final int DELETE_ID = Menu.FIRST;
+    private static final int SAVE_ID = Menu.FIRST;
+    private static final int DELETE_ID = Menu.FIRST+1;
 
     private RecordEditView mView;
 
@@ -80,38 +81,6 @@ public class RecordEditPresenter {
         mRecordUsernameText.setText(
                 safeGetStringField(
                         savedInstanceState, RecordUtil.USERNAME_FIELD));
-
-        Button saveButton = (Button) mView.findViewById(R.id.save);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent();
-
-                intent.putExtra(
-                        "activity",
-                        RecordListPresenter.ACTIVITY_MODIFY);
-                intent.putExtra(
-                        RecordUtil.GROUP_FIELD,
-                        mRecordGroupText.getText().toString());
-                intent.putExtra(
-                        RecordUtil.NOTES_FIELD,
-                        mRecordNotesText.getText().toString());
-                intent.putExtra(
-                        RecordUtil.PASSPHRASE_FIELD,
-                        mRecordPassphraseText.getText().toString());
-                intent.putExtra(
-                        RecordUtil.TITLE_FIELD,
-                        mRecordTitleText.getText().toString());
-                intent.putExtra(
-                        RecordUtil.URL_FIELD,
-                        mRecordUrlText.getText().toString());
-                intent.putExtra(
-                        RecordUtil.USERNAME_FIELD,
-                        mRecordUsernameText.getText().toString());
-
-                mView.setResult(Activity.RESULT_OK, intent);
-                mView.finish();
-            }
-        });
     }
 
     // TODO: Extract method so it can be reused.
@@ -143,8 +112,10 @@ public class RecordEditPresenter {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(0, SAVE_ID, 0, R.string.save)
+                .setIcon(android.R.drawable.ic_menu_save);
         menu.add(0, DELETE_ID, 0, R.string.delete_record)
-            .setIcon(android.R.drawable.ic_menu_delete);
+                .setIcon(android.R.drawable.ic_menu_delete);
 
         return true;
     }
@@ -153,6 +124,13 @@ public class RecordEditPresenter {
         switch (item.getItemId()) {
             case DELETE_ID: {
                 deleteRecord();
+
+                return true;
+            }
+                
+            case SAVE_ID: {
+                saveRecord();
+                
                 return true;
             }
 
@@ -170,6 +148,38 @@ public class RecordEditPresenter {
 
         intent.putExtra("activity", RecordListPresenter.ACTIVITY_DELETE);
 
+        mView.setResult(Activity.RESULT_OK, intent);
+        mView.finish();
+    }
+    
+    /**
+     * Saves record.
+     */
+    private void saveRecord() {
+        Intent intent = new Intent();
+        
+        intent.putExtra(
+                        "activity",
+                        RecordListPresenter.ACTIVITY_MODIFY);
+        intent.putExtra(
+                        RecordUtil.GROUP_FIELD,
+                        mRecordGroupText.getText().toString());
+        intent.putExtra(
+                        RecordUtil.NOTES_FIELD,
+                        mRecordNotesText.getText().toString());
+        intent.putExtra(
+                        RecordUtil.PASSPHRASE_FIELD,
+                        mRecordPassphraseText.getText().toString());
+        intent.putExtra(
+                        RecordUtil.TITLE_FIELD,
+                        mRecordTitleText.getText().toString());
+        intent.putExtra(
+                        RecordUtil.URL_FIELD,
+                        mRecordUrlText.getText().toString());
+        intent.putExtra(
+                        RecordUtil.USERNAME_FIELD,
+                        mRecordUsernameText.getText().toString());
+        
         mView.setResult(Activity.RESULT_OK, intent);
         mView.finish();
     }
