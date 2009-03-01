@@ -12,8 +12,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 /**
@@ -23,7 +21,6 @@ import android.widget.EditText;
  */
 public class RecordEditPresenter {
     private static final int SAVE_ID = Menu.FIRST;
-    private static final int DELETE_ID = Menu.FIRST+1;
 
     private RecordEditView mView;
 
@@ -114,20 +111,12 @@ public class RecordEditPresenter {
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(0, SAVE_ID, 0, R.string.save)
                 .setIcon(android.R.drawable.ic_menu_save);
-        menu.add(0, DELETE_ID, 0, R.string.delete_record)
-                .setIcon(android.R.drawable.ic_menu_delete);
 
         return true;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case DELETE_ID: {
-                deleteRecord();
-
-                return true;
-            }
-                
             case SAVE_ID: {
                 saveRecord();
                 
@@ -139,28 +128,13 @@ public class RecordEditPresenter {
             }
         }
     }
-
-    /**
-     * Deletes record.
-     */
-    private void deleteRecord() {
-        Intent intent = new Intent();
-
-        intent.putExtra("activity", RecordListPresenter.ACTIVITY_DELETE);
-
-        mView.setResult(Activity.RESULT_OK, intent);
-        mView.finish();
-    }
     
     /**
      * Saves record.
      */
     private void saveRecord() {
         Intent intent = new Intent();
-        
-        intent.putExtra(
-                        "activity",
-                        RecordListPresenter.ACTIVITY_MODIFY);
+
         intent.putExtra(
                         RecordUtil.GROUP_FIELD,
                         mRecordGroupText.getText().toString());

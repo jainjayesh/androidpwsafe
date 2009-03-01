@@ -232,9 +232,8 @@ public class RecordListPresenter {
         }
     }
 
-    public static final int ACTIVITY_CREATE = 0;
-    public static final int ACTIVITY_DELETE = 1;
-    public static final int ACTIVITY_MODIFY = 2;
+    private static final int ACTIVITY_CREATE = 0;
+    private static final int ACTIVITY_MODIFY = 1;
 
     private static final int MENU_ITEM_DELETE_RECORD = Menu.FIRST;
 
@@ -425,29 +424,23 @@ public class RecordListPresenter {
                 ArrayAdapterPwsRecord listAdapter =
                         (ArrayAdapterPwsRecord) recordList.getAdapter();
 
-                long activity = data.getIntExtra("activity", -1);
+                mPwsRecord.setGroup(
+                        data.getStringExtra(RecordUtil.GROUP_FIELD));
+                mPwsRecord.setNotes(
+                        data.getStringExtra(RecordUtil.NOTES_FIELD));
+                mPwsRecord.setPassword(
+                        data.getStringExtra(RecordUtil.PASSPHRASE_FIELD));
+                mPwsRecord.setTitle(
+                        data.getStringExtra(RecordUtil.TITLE_FIELD));
+                mPwsRecord.setUrl(
+                        data.getStringExtra(RecordUtil.URL_FIELD));
+                mPwsRecord.setUsername(
+                        data.getStringExtra(RecordUtil.USERNAME_FIELD));
 
-                if (activity == ACTIVITY_DELETE) {
-                    deletePwsRecord(listAdapter, mPwsRecord);
+                if (requestCode == ACTIVITY_CREATE) {
+                    addPwsRecord(listAdapter, mPwsRecord);
                 } else {
-                    mPwsRecord.setGroup(
-                            data.getStringExtra(RecordUtil.GROUP_FIELD));
-                    mPwsRecord.setNotes(
-                            data.getStringExtra(RecordUtil.NOTES_FIELD));
-                    mPwsRecord.setPassword(
-                            data.getStringExtra(RecordUtil.PASSPHRASE_FIELD));
-                    mPwsRecord.setTitle(
-                            data.getStringExtra(RecordUtil.TITLE_FIELD));
-                    mPwsRecord.setUrl(
-                            data.getStringExtra(RecordUtil.URL_FIELD));
-                    mPwsRecord.setUsername(
-                            data.getStringExtra(RecordUtil.USERNAME_FIELD));
-
-                    if (requestCode == ACTIVITY_CREATE) {
-                        addPwsRecord(listAdapter, mPwsRecord);
-                    } else {
-                        editPwsRecord(listAdapter, mPwsRecord);
-                    }
+                    editPwsRecord(listAdapter, mPwsRecord);
                 }
 
                 mPwsFile.save();
