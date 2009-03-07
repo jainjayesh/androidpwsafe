@@ -294,6 +294,7 @@
             <formatter type='plain'/>
             <test name='org.pwsafe.android.DatabaseUtilFunctionalTest'/>
             <test name='org.pwsafe.android.DatabaseUtilUnitTest'/>
+            <test name='org.pwsafe.android.PwsFieldUtilUnitTest'/>
         </junit>
     </target>
 </project>
