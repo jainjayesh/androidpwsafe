@@ -13,10 +13,10 @@ import edu.cornell.lassp.houle.RngPack.RanMT;
 
 public class TestUtil {
     private static RandomElement mCharacterPrng = new Ranmar();
-    private static RandomElement mLengthPrng = new RanMT();
+    private static RandomElement mIntegerPrng = new RanMT();
 
     public static String createAnonymousHexString() {
-        int length = 2*mLengthPrng.choose(256);
+        int length = 2*mIntegerPrng.choose(256);
 
         char[] result = new char[length];
 
@@ -33,8 +33,12 @@ public class TestUtil {
         return new String(result);
     }
 
+    public static int createAnonymousInt() {
+        return mIntegerPrng.choose(16777216);
+    }
+
     public static String createAnonymousText() {
-        int length = mLengthPrng.choose(256);
+        int length = mIntegerPrng.choose(256);
 
         char[] result = new char[length];
 

@@ -8,30 +8,11 @@
 package org.pwsafe.android;
 
 import junit.framework.Assert;
-import org.easymock.classextension.EasyMock;
 import org.junit.Test;
 import org.pwsafe.lib.file.PwsField;
+import org.pwsafe.lib.file.PwsStringUnicodeField;
 
 import android.content.Context;
-
-class PwsFieldSubclass extends PwsField {
-    public PwsFieldSubclass(int type, String value) {
-        super(type, value);
-    }
-
-    public byte[] getBytes() {
-        throw new UnsupportedOperationException();
-    }
-
-    public int compareTo(Object rhs) {
-        throw new UnsupportedOperationException();
-    }
-
-    public boolean equals(Object rhs) {
-        return getType() == ((PwsField) rhs).getType()
-            &&  getValue().equals(((PwsField) rhs).getValue());
-    }
-}
 
 public class PwsFieldUtilUnitTest {
     @Test
@@ -55,10 +36,11 @@ public class PwsFieldUtilUnitTest {
 
     @Test
     public void testConvertStringToField() {
-        String value = "aoeu"; //TestUtil.createAnonymousText();
-        PwsField expected = new PwsFieldSubclass(0, value);
+        int type = TestUtil.createAnonymousInt();
+        String value = TestUtil.createAnonymousText();
+        PwsField expected = new PwsStringUnicodeField(type, value);
 
-        PwsField observed = PwsFieldUtil.convertStringToField(0, value);
+        PwsField observed = PwsFieldUtil.convertStringToField(type, value);
 
         Assert.assertEquals(expected, observed);
     }
