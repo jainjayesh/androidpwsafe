@@ -5683,7 +5683,7 @@ public class DatabaseUtilUnitTest {
         Context context = EasyMock.createMock(Context.class);
 
         EasyMock.expect(context.getDir("DATABASES", 0))
-            .andReturn(expected);
+                .andReturn(expected);
 
         EasyMock.replay(context);
 
