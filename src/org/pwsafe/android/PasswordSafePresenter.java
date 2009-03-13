@@ -11,19 +11,14 @@ import java.io.File;
 import java.util.Arrays;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 /**
  * PasswordSafePresenter presents a list of existing Password Safe databases.
@@ -31,71 +26,11 @@ import android.widget.TextView;
  * @author Noel Yap
  */
 public class PasswordSafePresenter {
-    // TODO: Extract out this class so it can be tested.
-    /**
-     * ArrayAdapterWithLongClick is an ArrayAdapter whose elements pop up a
-     * dialog upon a long click.
-     */
-    private class ArrayAdapterWithLongClick extends ArrayAdapter<String> {
-        private int mTextViewResourceId;
-
-        public ArrayAdapterWithLongClick(Context context, int textViewResourceId, String[] objects) {
-            super(context, textViewResourceId, objects);
-
-            mTextViewResourceId = textViewResourceId;
-        }
-
-        // FIXME: Handle trackball clicks.
-        /**
-         * Sets listeners on ArrayAdapter elements.
-         *
-         * @param position  index in the list
-         * @param convertView  the list element view
-         * @param parent the list view
-         * @return  the list element view with listeners
-         */
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            TextView textView = (TextView) convertView;
-
-            if (textView == null) {
-                LayoutInflater inflate =
-                        (LayoutInflater) mView.getSystemService(
-                                Context.LAYOUT_INFLATER_SERVICE);
-
-                textView =
-                        (TextView) inflate.inflate(mTextViewResourceId, null);
-            }
-
-            final String databaseName = getItem(position);
-
-            textView.setOnClickListener(
-                    new View.OnClickListener() {
-                        public void onClick(View view) {
-                            mDatabaseName = databaseName;
-
-                            mView.showDialog(ACTIVITY_OPEN);
-                        }
-                    });
-            textView.setOnLongClickListener(
-                    new View.OnLongClickListener() {
-                        public boolean onLongClick(View view) {
-                            mDatabaseName = databaseName;
-
-                            return false;
-                        }
-                    });
-            textView.setText(databaseName);
-
-            return textView;
-        }
-    }
-
-    private static final int ACTIVITY_ABOUT = 0;
-    private static final int ACTIVITY_CREATE = 1;
-    private static final int ACTIVITY_DESTROY = 2;
-    private static final int ACTIVITY_HELP = 3;
-    private static final int ACTIVITY_OPEN = 4;
+    public static final int ACTIVITY_ABOUT = 0;
+    public static final int ACTIVITY_CREATE = 1;
+    public static final int ACTIVITY_DESTROY = 2;
+    public static final int ACTIVITY_HELP = 3;
+    public static final int ACTIVITY_OPEN = 4;
 
     private static final int MENU_ITEM_ABOUT = Menu.FIRST;
     private static final int MENU_ITEM_DESTROY_DATABASE = Menu.FIRST+1;
@@ -114,6 +49,14 @@ public class PasswordSafePresenter {
 
     public String getDatabaseName() {
 	return mDatabaseName;
+    }
+
+    public void setDatabaseName(String databaseName) {
+        mDatabaseName = databaseName;
+    }
+
+    public PasswordSafeView getView() {
+        return mView;
     }
 
     public void onCreate(Bundle savedInstanceState) {
@@ -167,8 +110,8 @@ public class PasswordSafePresenter {
                 (ListView) mView.findViewById(R.id.database_list);
 
         databaseList.setAdapter(
-            new ArrayAdapterWithLongClick(
-                mView,
+            new DatabaseListArrayAdapter(
+                this,
                 R.layout.list_row,
                 decodedDatabases));
         databaseList.setOnCreateContextMenuListener(
