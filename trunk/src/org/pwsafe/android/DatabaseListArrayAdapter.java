@@ -7,8 +7,6 @@
  */
 package org.pwsafe.android;
 
-import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -44,16 +42,11 @@ public class DatabaseListArrayAdapter extends ArrayAdapter<String> {
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TextView textView = (TextView) convertView;
-
-        if (textView == null) {
-            LayoutInflater inflate =
-                    (LayoutInflater) mPresenter.getView().getSystemService(
-                            Context.LAYOUT_INFLATER_SERVICE);
-
-            textView =
-                    (TextView) inflate.inflate(mTextViewResourceId, null);
-        }
+        TextView textView =
+                ViewUtil.getTextView(
+                        (TextView) convertView,
+                        mPresenter.getView(),
+                        mTextViewResourceId);
 
         final String databaseName = getItem(position);
 
