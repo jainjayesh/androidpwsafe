@@ -8,6 +8,7 @@
 package org.pwsafe.android;
 
 import junit.framework.Assert;
+import org.easymock.classextension.EasyMock;
 import org.junit.Test;
 import org.pwsafe.lib.file.PwsField;
 import org.pwsafe.lib.file.PwsStringUnicodeField;
@@ -28,10 +29,15 @@ public class PwsFieldUtilUnitTest {
     public void testConvertFieldToStringWhenPwsFieldIsNotNull() {
         String expected = TestUtil.createAnonymousText();
 
-        String observed = PwsFieldUtil.convertFieldToString(
-                new PwsFieldSubclass(0, expected));
+        PwsField pwsField = EasyMock.createMock(PwsField.class);
+        EasyMock.expect(pwsField.getValue())
+                .andReturn(expected);
+        EasyMock.replay(pwsField);
+
+        String observed = PwsFieldUtil.convertFieldToString(pwsField);
 
         Assert.assertEquals(expected, observed);
+        EasyMock.verify(pwsField);
     }
 
     @Test
