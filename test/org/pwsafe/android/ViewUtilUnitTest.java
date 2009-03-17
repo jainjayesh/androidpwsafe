@@ -14,23 +14,23 @@ import org.junit.Test;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.widget.TextView;
+import android.view.View;
 
 public class ViewUtilUnitTest {
     @Test
-    public void testGetTextViewWithNonNullTextView() {
-        TextView expected = EasyMock.createMock(TextView.class);
+    public void testGetViewWithNonNullView() {
+        View expected = EasyMock.createMock(View.class);
         EasyMock.replay(expected);
 
-        TextView observed = ViewUtil.getTextView(expected, null, 0);
+        View observed = ViewUtil.getView(expected, null, 0);
 
         Assert.assertEquals(expected, observed);
         EasyMock.verify(expected);
     }
 
     @Test
-    public void testGetTextViewWithNullTextView() {
-        TextView expected = EasyMock.createMock(TextView.class);
+    public void testGetViewWithNullView() {
+        View expected = EasyMock.createMock(View.class);
         EasyMock.replay(expected);
 
         int resourceId = TestUtil.createAnonymousInt();
@@ -47,7 +47,7 @@ public class ViewUtilUnitTest {
                 .andReturn(layoutInflater);
         EasyMock.replay(activity);
 
-        TextView observed = ViewUtil.getTextView(null, activity, resourceId);
+        View observed = ViewUtil.getView(null, activity, resourceId);
 
         Assert.assertEquals(expected, observed);
         EasyMock.verify(activity);

@@ -13,8 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 /**
- * DatabaseListArrayAdapter is an ArrayAdapter whose elements pop up a
- * dialog upon a long click.
+ * DatabaseListArrayAdapter is an ArrayAdapter for PasswordSafePresenter.
  */
 public class DatabaseListArrayAdapter extends ArrayAdapter<String> {
     private PasswordSafePresenter mPresenter;
@@ -43,10 +42,8 @@ public class DatabaseListArrayAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         TextView textView =
-                ViewUtil.getTextView(
-                        (TextView) convertView,
-                        mPresenter.getView(),
-                        mTextViewResourceId);
+                (TextView) ViewUtil.getView(
+                        convertView, mPresenter.getView(), mTextViewResourceId);
 
         final String databaseName = getItem(position);
 
