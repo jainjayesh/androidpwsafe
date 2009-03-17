@@ -50,34 +50,39 @@ public class RecordEditPresenter {
         mView.setContentView(R.layout.record_edit);
 
         mRecordGroupText =
-            (EditText) mView.findViewById(R.id.record_group);
-        mRecordGroupText.setText(safeGetStringField(savedInstanceState, RecordUtil.GROUP_FIELD));
+                (EditText) mView.findViewById(R.id.record_group);
+        mRecordGroupText.setText(
+                safeGetStringField(
+                        savedInstanceState, PwsRecordUtil.GROUP_FIELD));
 
         mRecordNotesText =
                 (EditText) mView.findViewById(R.id.record_notes);
-        mRecordNotesText.setText(safeGetStringField(savedInstanceState, RecordUtil.NOTES_FIELD));
+        mRecordNotesText.setText(
+                safeGetStringField(
+                        savedInstanceState, PwsRecordUtil.NOTES_FIELD));
 
         mRecordPassphraseText =
                 (EditText) mView.findViewById(R.id.record_passphrase);
         mRecordPassphraseText.setText(
                 safeGetStringField(
-                        savedInstanceState, RecordUtil.PASSPHRASE_FIELD));
+                        savedInstanceState, PwsRecordUtil.PASSPHRASE_FIELD));
 
         mRecordTitleText =
             (EditText) mView.findViewById(R.id.record_title);
         mRecordTitleText.setText(
-                safeGetStringField(savedInstanceState, RecordUtil.TITLE_FIELD));
+                safeGetStringField(
+                        savedInstanceState, PwsRecordUtil.TITLE_FIELD));
 
         mRecordUrlText =
                 (EditText) mView.findViewById(R.id.record_url);
         mRecordUrlText.setText(safeGetStringField(
-                    savedInstanceState, RecordUtil.URL_FIELD));
+                    savedInstanceState, PwsRecordUtil.URL_FIELD));
 
         mRecordUsernameText =
                 (EditText) mView.findViewById(R.id.record_username);
         mRecordUsernameText.setText(
                 safeGetStringField(
-                        savedInstanceState, RecordUtil.USERNAME_FIELD));
+                        savedInstanceState, PwsRecordUtil.USERNAME_FIELD));
     }
 
     // TODO: Extract method so it can be reused.
@@ -119,7 +124,7 @@ public class RecordEditPresenter {
         switch (item.getItemId()) {
             case SAVE_ID: {
                 saveRecord();
-                
+
                 return true;
             }
 
@@ -128,7 +133,7 @@ public class RecordEditPresenter {
             }
         }
     }
-    
+
     /**
      * Saves record.
      */
@@ -136,24 +141,24 @@ public class RecordEditPresenter {
         Intent intent = new Intent();
 
         intent.putExtra(
-                        RecordUtil.GROUP_FIELD,
+                        PwsRecordUtil.GROUP_FIELD,
                         mRecordGroupText.getText().toString());
         intent.putExtra(
-                        RecordUtil.NOTES_FIELD,
+                        PwsRecordUtil.NOTES_FIELD,
                         mRecordNotesText.getText().toString());
         intent.putExtra(
-                        RecordUtil.PASSPHRASE_FIELD,
+                        PwsRecordUtil.PASSPHRASE_FIELD,
                         mRecordPassphraseText.getText().toString());
         intent.putExtra(
-                        RecordUtil.TITLE_FIELD,
+                        PwsRecordUtil.TITLE_FIELD,
                         mRecordTitleText.getText().toString());
         intent.putExtra(
-                        RecordUtil.URL_FIELD,
+                        PwsRecordUtil.URL_FIELD,
                         mRecordUrlText.getText().toString());
         intent.putExtra(
-                        RecordUtil.USERNAME_FIELD,
+                        PwsRecordUtil.USERNAME_FIELD,
                         mRecordUsernameText.getText().toString());
-        
+
         mView.setResult(Activity.RESULT_OK, intent);
         mView.finish();
     }
