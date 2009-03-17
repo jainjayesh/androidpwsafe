@@ -10,23 +10,22 @@ package org.pwsafe.android;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.widget.TextView;
+import android.view.View;
 
 /**
  * ViewUtil contains some utility functions for Android views.
  */
 public class ViewUtil {
-    public static TextView getTextView(
-            TextView textView, Activity activity, int resourceId) {
-        if (textView == null) {
+    public static View getView(
+            View view, Activity activity, int resourceId) {
+        if (view == null) {
             LayoutInflater layoutInflater =
                     (LayoutInflater) activity.getSystemService(
                             Context.LAYOUT_INFLATER_SERVICE);
 
-            textView =
-                    (TextView) layoutInflater.inflate(resourceId, null);
+            view = layoutInflater.inflate(resourceId, null);
         }
 
-        return textView;
+        return view;
     }
 }
