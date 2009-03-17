@@ -295,6 +295,7 @@
             <test name='org.pwsafe.android.DatabaseUtilFunctionalTest'/>
             <test name='org.pwsafe.android.DatabaseUtilUnitTest'/>
             <test name='org.pwsafe.android.PwsFieldUtilUnitTest'/>
+            <test name='org.pwsafe.android.PwsRecordUtilUnitTest'/>
             <test name='org.pwsafe.android.ViewUtilUnitTest'/>
         </junit>
     </target>

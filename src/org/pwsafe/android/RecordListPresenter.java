@@ -239,17 +239,17 @@ public class RecordListPresenter {
                         (RecordListArrayAdapter) recordList.getAdapter();
 
                 mPwsRecord.setGroup(
-                        data.getStringExtra(RecordUtil.GROUP_FIELD));
+                        data.getStringExtra(PwsRecordUtil.GROUP_FIELD));
                 mPwsRecord.setNotes(
-                        data.getStringExtra(RecordUtil.NOTES_FIELD));
+                        data.getStringExtra(PwsRecordUtil.NOTES_FIELD));
                 mPwsRecord.setPassword(
-                        data.getStringExtra(RecordUtil.PASSPHRASE_FIELD));
+                        data.getStringExtra(PwsRecordUtil.PASSPHRASE_FIELD));
                 mPwsRecord.setTitle(
-                        data.getStringExtra(RecordUtil.TITLE_FIELD));
+                        data.getStringExtra(PwsRecordUtil.TITLE_FIELD));
                 mPwsRecord.setUrl(
-                        data.getStringExtra(RecordUtil.URL_FIELD));
+                        data.getStringExtra(PwsRecordUtil.URL_FIELD));
                 mPwsRecord.setUsername(
-                        data.getStringExtra(RecordUtil.USERNAME_FIELD));
+                        data.getStringExtra(PwsRecordUtil.USERNAME_FIELD));
 
                 if (requestCode == ACTIVITY_CREATE) {
                     addPwsRecord(listAdapter, mPwsRecord);

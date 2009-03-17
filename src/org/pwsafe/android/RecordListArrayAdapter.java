@@ -34,10 +34,10 @@ public class RecordListArrayAdapter extends ArrayAdapter<PwsRecordWrapper> {
         public int compare(Object o1, Object o2) {
             PwsRecordWrapper pwsRecord1 = (PwsRecordWrapper) o1;
             PwsRecordWrapper pwsRecord2 = (PwsRecordWrapper) o2;
-            String url1 = pwsRecordDisplayString(pwsRecord1);
-            String url2 = pwsRecordDisplayString(pwsRecord2);
+            String display1 = PwsRecordUtil.getDisplayString(pwsRecord1);
+            String display2 = PwsRecordUtil.getDisplayString(pwsRecord2);
 
-            return url1.compareTo(url2);
+            return display1.compareTo(display2);
         }
     }
 
@@ -65,27 +65,6 @@ public class RecordListArrayAdapter extends ArrayAdapter<PwsRecordWrapper> {
         }
     }
 
-    private String pwsRecordDisplayString(PwsRecordWrapper pwsRecord) {
-        String title = pwsRecord.getTitle();
-
-        if ("".compareTo(title) == 0) {
-            return pwsRecord.getUrl();
-        } else {
-            String group = pwsRecord.getGroup();
-
-            if ("".compareTo(group) == 0) {
-                return title;
-            } else {
-                StringBuffer result = new StringBuffer(group);
-
-                result.append("|");
-                result.append(title);
-
-                return result.toString();
-            }
-        }
-    }
-
     /**
      * Adds record to correct place in list.
      *
@@ -93,8 +72,8 @@ public class RecordListArrayAdapter extends ArrayAdapter<PwsRecordWrapper> {
      */
     @Override
     public void add(PwsRecordWrapper pwsRecord) {
-        String recordUrl = pwsRecordDisplayString(pwsRecord);
-        int index = lowerBound(recordUrl);
+        String recordDisplay = PwsRecordUtil.getDisplayString(pwsRecord);
+        int index = lowerBound(recordDisplay);
 
         insert(pwsRecord, index);
     }
@@ -104,7 +83,7 @@ public class RecordListArrayAdapter extends ArrayAdapter<PwsRecordWrapper> {
      *
      * @param url  URL to insert into list
      */
-    private int lowerBound(String url) {
+    private int lowerBound(String display) {
         int lowerBoundIndex = 0;
         int upperBoundIndex = getCount();
 
@@ -114,24 +93,24 @@ public class RecordListArrayAdapter extends ArrayAdapter<PwsRecordWrapper> {
             }
 
             PwsRecordWrapper lowerBoundItem = getItem(lowerBoundIndex);
-            String lowerBoundUrl = pwsRecordDisplayString(lowerBoundItem);
+            String lowerBoundDisplay = PwsRecordUtil.getDisplayString(lowerBoundItem);
 
-            if (url.compareTo(lowerBoundUrl) < 0) {
+            if (display.compareTo(lowerBoundDisplay) < 0) {
                 return lowerBoundIndex;
             }
 
             PwsRecordWrapper upperBoundItem = getItem(upperBoundIndex-1);
-            String upperBoundUrl= pwsRecordDisplayString(upperBoundItem);
+            String upperBoundDisplay= PwsRecordUtil.getDisplayString(upperBoundItem);
 
-            if (upperBoundUrl.compareTo(url) < 0) {
+            if (upperBoundDisplay.compareTo(display) < 0) {
                 return upperBoundIndex;
             }
 
             int midPointIndex = (lowerBoundIndex+upperBoundIndex)/2;
             PwsRecordWrapper midPointItem = getItem(midPointIndex);
-            String midPointUrl = pwsRecordDisplayString(midPointItem);
+            String midPointDisplay = PwsRecordUtil.getDisplayString(midPointItem);
 
-            if (url.compareTo(midPointUrl) < 0) {
+            if (display.compareTo(midPointDisplay) < 0) {
                 upperBoundIndex = midPointIndex;
             } else {
                 lowerBoundIndex = midPointIndex;
@@ -164,22 +143,22 @@ public class RecordListArrayAdapter extends ArrayAdapter<PwsRecordWrapper> {
                                 new Intent(mPresenter.getView(), RecordEditView.class);
 
                         intent.putExtra(
-                                RecordUtil.NOTES_FIELD,
+                                PwsRecordUtil.NOTES_FIELD,
                                 pwsRecord.getNotes());
                         intent.putExtra(
-                                RecordUtil.GROUP_FIELD,
+                                PwsRecordUtil.GROUP_FIELD,
                                 pwsRecord.getGroup());
                         intent.putExtra(
-                                RecordUtil.PASSPHRASE_FIELD,
+                                PwsRecordUtil.PASSPHRASE_FIELD,
                                 pwsRecord.getPassword());
                         intent.putExtra(
-                                RecordUtil.TITLE_FIELD,
+                                PwsRecordUtil.TITLE_FIELD,
                                 pwsRecord.getTitle());
                         intent.putExtra(
-                                RecordUtil.URL_FIELD,
+                                PwsRecordUtil.URL_FIELD,
                                 pwsRecord.getUrl());
                         intent.putExtra(
-                                RecordUtil.USERNAME_FIELD,
+                                PwsRecordUtil.USERNAME_FIELD,
                                 pwsRecord.getUsername());
 
                         mPresenter.getView().startActivityForResult(
@@ -194,7 +173,7 @@ public class RecordListArrayAdapter extends ArrayAdapter<PwsRecordWrapper> {
                         return false;
                     }
                 });
-        textView.setText(pwsRecordDisplayString(pwsRecord));
+        textView.setText(PwsRecordUtil.getDisplayString(pwsRecord));
 
         return textView;
     }
