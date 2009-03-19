@@ -81,7 +81,7 @@ public class RecordListArrayAdapter extends ArrayAdapter<PwsRecordWrapper> {
     /**
      * Returns index for insertion point.
      *
-     * @param url  URL to insert into list
+     * @param display  Display to insert into list
      */
     private int lowerBound(String display) {
         int lowerBoundIndex = 0;

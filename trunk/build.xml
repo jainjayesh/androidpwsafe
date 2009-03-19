@@ -292,6 +292,7 @@
         <junit printsummary='yes' haltonfailure='yes'>
             <classpath refid='test-classpath'/>
             <formatter type='plain'/>
+            <test name='org.pwsafe.android.BundleUtilUnitTest'/>
             <test name='org.pwsafe.android.DatabaseUtilFunctionalTest'/>
             <test name='org.pwsafe.android.DatabaseUtilUnitTest'/>
             <test name='org.pwsafe.android.PwsFieldUtilUnitTest'/>

@@ -36,7 +36,10 @@ public class RecordEditPresenter {
     }
 
     private String safeGetStringField(Bundle savedInstanceState, String fieldName) {
-        String result = getStringField(savedInstanceState, fieldName);
+        Bundle extras = mView.getIntent().getExtras();
+        String result =
+                BundleUtil.getStringField(
+                        savedInstanceState, extras, fieldName);
 
         return (result == null)
                 ? ""
@@ -83,34 +86,6 @@ public class RecordEditPresenter {
         mRecordUsernameText.setText(
                 safeGetStringField(
                         savedInstanceState, PwsRecordUtil.USERNAME_FIELD));
-    }
-
-    // TODO: Extract method so it can be reused.
-    /**
-     * Retrieves saved field value.
-     *
-     * @param savedInstanceState  holds stored fields
-     * @param fieldName  name of field to retrieve
-     * @return  value of field
-     */
-    private String getStringField(Bundle savedInstanceState, String fieldName) {
-        String result = (savedInstanceState != null
-                ? savedInstanceState.getString(fieldName)
-                : null);
-
-        if (result == null) {
-            Bundle extras = mView.getIntent().getExtras();
-
-            result = (extras != null
-                    ? extras.getString(fieldName)
-                    : null);
-        }
-
-        if (result == null) {
-            // TODO: Popup error dialog.
-        }
-
-        return result;
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
