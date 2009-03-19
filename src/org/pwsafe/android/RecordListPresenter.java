@@ -70,13 +70,17 @@ public class RecordListPresenter {
             }
         });
 
+        Bundle extras = mView.getIntent().getExtras();
+
         String databaseFilepath =
-                getStringField(
+                BundleUtil.getStringField(
                         savedInstanceState,
+                        extras,
                         DatabaseUtil.DATABASE_FILEPATH_FIELD);
         String databasePassphrase =
-                getStringField(
+                BundleUtil.getStringField(
                         savedInstanceState,
+                        extras,
                         DatabaseUtil.DATABASE_PASSPHRASE_FIELD);
 
         loadDatabase(databaseFilepath, databasePassphrase);
@@ -110,34 +114,6 @@ public class RecordListPresenter {
             // TODO: Present error dialog.
             e.printStackTrace();
         }
-    }
-
-    // TODO: Extract method so it can be reused.
-    /**
-     * Retrieves saved field value.
-     *
-     * @param savedInstanceState  holds stored fields
-     * @param fieldName  name of field to retrieve
-     * @return  value of field
-     */
-    private String getStringField(Bundle savedInstanceState, String fieldName) {
-        String result = (savedInstanceState != null
-                ? savedInstanceState.getString(fieldName)
-                : null);
-
-        if (result == null) {
-            Bundle extras = mView.getIntent().getExtras();
-
-            result = (extras != null
-                    ? extras.getString(fieldName)
-                    : null);
-        }
-
-        if (result == null) {
-            // TODO: Popup error dialog.
-        }
-
-        return result;
     }
 
     /**
