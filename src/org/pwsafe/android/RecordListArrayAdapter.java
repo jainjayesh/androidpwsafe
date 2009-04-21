@@ -8,23 +8,28 @@
 package org.pwsafe.android;
 
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Comparator;
 
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
+
 
 /**
  * RecordListArrayAdapter is an ArrayAdapter for PasswordSafePresenter.
  *
  * @author Noel Yap
  */
-public class RecordListArrayAdapter extends ArrayAdapter<PwsRecordWrapper> {
+public class RecordListArrayAdapter extends ArrayAdapter<PwsRecordWrapper> implements Filterable {
     private RecordListPresenter mPresenter;
 
     private int mTextViewResourceId;
+    private ArrayList<PwsRecordWrapper> mAllRecords = new ArrayList<PwsRecordWrapper>();
 
     // TODO: Make public so it can be tested.
     /**
@@ -62,6 +67,7 @@ public class RecordListArrayAdapter extends ArrayAdapter<PwsRecordWrapper> {
 
         for (int i = 0; i != pwsRecords.length; ++i) {
             super.add(pwsRecords[i]);
+            mAllRecords.add(pwsRecords[i]);
         }
     }
 
@@ -76,6 +82,7 @@ public class RecordListArrayAdapter extends ArrayAdapter<PwsRecordWrapper> {
         int index = lowerBound(recordDisplay);
 
         insert(pwsRecord, index);
+        mAllRecords.add(index, pwsRecord);
     }
 
     /**
@@ -177,4 +184,54 @@ public class RecordListArrayAdapter extends ArrayAdapter<PwsRecordWrapper> {
 
         return textView;
     }
+
+
+    /**
+     * Creates filter for PwsRecords
+     *
+     */
+    private class PwsRecordFilter extends Filter {
+        public CharSequence convertResultToString (Object resultValue) {
+            return PwsRecordUtil.getDisplayString((PwsRecordWrapper)resultValue);
+        }
+
+        protected FilterResults performFiltering (CharSequence constraint) {
+            FilterResults matches = new FilterResults();
+
+            String lowered = "";
+            if (constraint != null) {
+                lowered = constraint.toString().toLowerCase();
+            }
+
+            ArrayList<PwsRecordWrapper> results = new ArrayList<PwsRecordWrapper>();
+
+            for (int i = 0; i != mAllRecords.size(); ++i) {
+                PwsRecordWrapper record = mAllRecords.get(i);
+                if (constraint == null ||
+                        PwsRecordUtil.getDisplayString(record).toLowerCase().contains(lowered)) {
+                    results.add(record);
+                    matches.count++;
+                }
+            }
+
+            matches.values = results;
+            return matches;
+        }
+
+        protected void publishResults (CharSequence constraint, Filter.FilterResults results) {
+            if (results != null) {
+                clear();
+                ArrayList<PwsRecordWrapper> values = (ArrayList<PwsRecordWrapper>)results.values;
+                for (int i = 0; i != results.count; ++i) {
+                    insert(values.get(i),i);
+                }
+                notifyDataSetChanged();
+            }
+        }
+    }
+    public Filter getFilter() {
+        return new PwsRecordFilter();
+    }
+
+
 }
