@@ -7,8 +7,8 @@
  */
 package org.pwsafe.android;
 
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 
 import android.content.Intent;
@@ -106,14 +106,14 @@ public class RecordListArrayAdapter extends ArrayAdapter<PwsRecordWrapper> imple
                 return lowerBoundIndex;
             }
 
-            PwsRecordWrapper upperBoundItem = getItem(upperBoundIndex-1);
-            String upperBoundDisplay= PwsRecordUtil.getDisplayString(upperBoundItem);
+            PwsRecordWrapper upperBoundItem = getItem(upperBoundIndex - 1);
+            String upperBoundDisplay = PwsRecordUtil.getDisplayString(upperBoundItem);
 
             if (upperBoundDisplay.compareTo(display) < 0) {
                 return upperBoundIndex;
             }
 
-            int midPointIndex = (lowerBoundIndex+upperBoundIndex)/2;
+            int midPointIndex = (lowerBoundIndex + upperBoundIndex) / 2;
             PwsRecordWrapper midPointItem = getItem(midPointIndex);
             String midPointDisplay = PwsRecordUtil.getDisplayString(midPointItem);
 
@@ -187,15 +187,14 @@ public class RecordListArrayAdapter extends ArrayAdapter<PwsRecordWrapper> imple
 
 
     /**
-     * Creates filter for PwsRecords
-     *
+     * Creates Filter class for PwsRecords to implement Filterable.
      */
     private class PwsRecordFilter extends Filter {
-        public CharSequence convertResultToString (Object resultValue) {
-            return PwsRecordUtil.getDisplayString((PwsRecordWrapper)resultValue);
+        public CharSequence convertResultToString(Object resultValue) {
+            return PwsRecordUtil.getDisplayString((PwsRecordWrapper) resultValue);
         }
 
-        protected FilterResults performFiltering (CharSequence constraint) {
+        protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults matches = new FilterResults();
 
             String lowered = "";
@@ -218,17 +217,22 @@ public class RecordListArrayAdapter extends ArrayAdapter<PwsRecordWrapper> imple
             return matches;
         }
 
-        protected void publishResults (CharSequence constraint, Filter.FilterResults results) {
+        protected void publishResults(CharSequence constraint, Filter.FilterResults results) {
             if (results != null) {
                 clear();
-                ArrayList<PwsRecordWrapper> values = (ArrayList<PwsRecordWrapper>)results.values;
+                ArrayList<PwsRecordWrapper> values = (ArrayList<PwsRecordWrapper>) results.values;
                 for (int i = 0; i != results.count; ++i) {
-                    insert(values.get(i),i);
+                    insert(values.get(i), i);
                 }
                 notifyDataSetChanged();
             }
         }
     }
+
+    /**
+     * Return filter for PwsRecord, required to implement Filterable interface.
+     */
+
     public Filter getFilter() {
         return new PwsRecordFilter();
     }
