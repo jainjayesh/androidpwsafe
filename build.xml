@@ -141,7 +141,6 @@
                 srcdir='${srcdir}'
                 destdir='${bindir-classes}'
                 bootclasspath='${android-jar}'>
-          <compilerarg value="-Xlint"/>
             <classpath>
                 <fileset dir='${external-libs}' includes='*.jar'/>
             </classpath>
