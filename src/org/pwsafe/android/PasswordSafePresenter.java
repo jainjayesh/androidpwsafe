@@ -8,6 +8,8 @@
 package org.pwsafe.android;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.Arrays;
 
 import android.app.Dialog;
@@ -31,10 +33,12 @@ public class PasswordSafePresenter {
     public static final int ACTIVITY_DESTROY = 2;
     public static final int ACTIVITY_HELP = 3;
     public static final int ACTIVITY_OPEN = 4;
+    public static final int ACTIVITY_IMPORT = 5;
 
     private static final int MENU_ITEM_ABOUT = Menu.FIRST;
     private static final int MENU_ITEM_DESTROY_DATABASE = Menu.FIRST+1;
     private static final int MENU_ITEM_HELP = Menu.FIRST+2;
+    private static final int MENU_ITEM_IMPORT = Menu.FIRST+3;
 
     private static final String DATABASE_NAME = "database-name";
 
@@ -165,6 +169,12 @@ public class PasswordSafePresenter {
                 break;
             }
 
+            case ACTIVITY_IMPORT: {
+                result = new ImportPasswordSafeDialogHelper(mView);
+
+                break;
+            }
+
             default: {
                 result = null;
             }
@@ -227,6 +237,8 @@ public class PasswordSafePresenter {
             .setIcon(android.R.drawable.ic_menu_help);
         menu.add(0, MENU_ITEM_ABOUT, 1, R.string.about)
             .setIcon(android.R.drawable.ic_menu_info_details);
+        menu.add(0, MENU_ITEM_IMPORT, 2, R.string.importdb)
+            .setIcon(android.R.drawable.ic_menu_add);
 
         return true;
     }
@@ -242,6 +254,43 @@ public class PasswordSafePresenter {
             case MENU_ITEM_HELP: {
                 mView.showDialog(ACTIVITY_HELP);
 
+                return true;
+            }
+
+            case MENU_ITEM_IMPORT: {
+                mView.showDialog(ACTIVITY_IMPORT);
+                /* copy from /sdcard/*psafe3 */
+
+                File sdCardDir = new File("/sdcard");
+                String[] sdCardDatabases = sdCardDir.list();
+
+                for (int i = 0; i < sdCardDatabases.length; ++i) {
+                    if (sdCardDatabases[i].endsWith(".psafe3")) {
+                        try {
+                            File sdCardDatabase = new File(sdCardDir, sdCardDatabases[i]);
+                            FileInputStream sdCardDB = new FileInputStream(sdCardDatabase);
+                            File privateDatabase = new File(DatabaseUtil.getDatabaseDir(mView),
+                                    DatabaseUtil.encode(sdCardDatabases[i].replace(".psafe3","")));
+
+                            FileOutputStream privateDB = new FileOutputStream(privateDatabase);
+                            byte[] dataBuffer = new byte[64*1024];
+                            int len;
+                            while ((len = sdCardDB.read(dataBuffer)) > 0) {
+                                privateDB.write(dataBuffer, 0, len);
+                            }
+                            sdCardDB.close();
+                            privateDB.close();
+                            sdCardDatabase.delete();
+                        } catch(java.io.FileNotFoundException e) {
+                            /* TODO(shawn.ledbetter): catch if files not found */
+                        } catch(java.io.IOException e) {
+                            /* TODO(shawn.ledbetter): catch if IO errors */
+                        }
+                    }
+                }
+
+                fillData();
+                mView.dismissDialog(ACTIVITY_IMPORT);
                 return true;
             }
 
