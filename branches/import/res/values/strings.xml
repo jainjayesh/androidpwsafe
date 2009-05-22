@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name='about'>About</string>
+  <string name='about_text'>
+    Password Safe is a password database utility. Users can keep their passwords securely encrypted on their computers. A single Safe Combination unlocks them all.\n\nPassword Safe protects passwords with the Twofish encryption algorithm, a fast, free alternative to DES. The program\'s security has been thoroughly verified by Counterpane Labs under the supervision of Bruce Schneier, author of Applied Cryptography and creator of the Twofish algorithm.\n
+  </string>
+  <string name='add_record'>Add Record</string>
+  <string name='app_name'>Password Safe</string>
+  <string name='confirm'>Confirm</string>
+  <string name='create_database'>Create Database</string>
+  <string name='database_name'>Database Name</string>
+  <string name='delete_record'>Delete Record</string>
+  <string name='destroy_database'>Destroy Database</string>
+  <string name='group'>Group</string>
+  <string name='help'>Help</string>
+  <string name='help_text'>
+    What is a database?\nA database is a place to group and store records.\n\nHow do I create a database?\nClick on the \'Create Database\' button.\n\nHow do I open a database?\nClick on the database to be opened.\n\nHow do I change a database\'s name and/or password?\nThis feature is in the works.\n\nHow do I destroy a database?\nLong click the database to be destroyed then click \'Destroy Database\'.\n\nWhat is a record?\nA record holds the information associated with an account.  It includes the URL for the site, the username, password, etc.\n\nHow do I add a record?\nClick on the \'Add Record\' button.\n\nHow do I view or modify a record?\nClick on the record to be viewed or modified.  Click the back button if no changes are to be saved.  Click the \'Save\' menu option if changes are to be saved.\n\nHow do I delete a record?\nLong click on the record to be deleted then click \'Delete Record\'.\n\nHow do I use a database created by another Password Safe client?\nThis feature is in the works.\n\nHow do I use a database created by this app in another Password Safe client?\nThis feature is in the works.\n
+  </string>
+  <string name='notes'>Notes</string>
+  <string name='passphrase'>Passphrase</string>
+  <string name='save'>Save</string>
+  <string name='title'>Title</string>
+  <string name='url'>URL</string>
+  <string name='username'>Username</string>
+</resources>
