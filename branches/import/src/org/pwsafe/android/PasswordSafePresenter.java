@@ -242,7 +242,7 @@ public class PasswordSafePresenter {
         menu.add(0, MENU_ITEM_IMPORT, 2, R.string.importdb)
             .setIcon(android.R.drawable.ic_menu_add);
         menu.add(0, MENU_ITEM_EXPORT, 2, R.string.exportdb)
-            .setIcon(android.R.drawable.ic_menu_add);
+            .setIcon(android.R.drawable.ic_menu_edit);
 
         return true;
     }
