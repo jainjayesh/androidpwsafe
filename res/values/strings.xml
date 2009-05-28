@@ -18,6 +18,8 @@
   </string>
   <string name='importdb'>Import</string>
   <string name='import_text'>Importing /sdcard/*psafe3</string>
+  <string name='exportdb'>Export</string>
+  <string name='export_text'>Exporting internal database to /sdcard</string>
   <string name='notes'>Notes</string>
   <string name='passphrase'>Passphrase</string>
   <string name='save'>Save</string>

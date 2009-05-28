@@ -34,11 +34,13 @@ public class PasswordSafePresenter {
     public static final int ACTIVITY_HELP = 3;
     public static final int ACTIVITY_OPEN = 4;
     public static final int ACTIVITY_IMPORT = 5;
+    public static final int ACTIVITY_EXPORT = 5;
 
     private static final int MENU_ITEM_ABOUT = Menu.FIRST;
     private static final int MENU_ITEM_DESTROY_DATABASE = Menu.FIRST+1;
     private static final int MENU_ITEM_HELP = Menu.FIRST+2;
     private static final int MENU_ITEM_IMPORT = Menu.FIRST+3;
+    private static final int MENU_ITEM_EXPORT = Menu.FIRST+4;
 
     private static final String DATABASE_NAME = "database-name";
 
@@ -239,6 +241,8 @@ public class PasswordSafePresenter {
             .setIcon(android.R.drawable.ic_menu_info_details);
         menu.add(0, MENU_ITEM_IMPORT, 2, R.string.importdb)
             .setIcon(android.R.drawable.ic_menu_add);
+        menu.add(0, MENU_ITEM_EXPORT, 2, R.string.exportdb)
+            .setIcon(android.R.drawable.ic_menu_add);
 
         return true;
     }
@@ -294,6 +298,42 @@ public class PasswordSafePresenter {
                 return true;
             }
 
+            case MENU_ITEM_EXPORT: {
+                mView.showDialog(ACTIVITY_EXPORT);
+
+                File sdCardDir = new File("/sdcard");
+                File dataDir = DatabaseUtil.getDatabaseDir(mView);
+                String[] encodedDatabases = dataDir.list();
+
+                for (int i = 0; i < encodedDatabases.length; ++i) {
+                    try {
+                        File sdCardDatabase = new File(sdCardDir, DatabaseUtil.decode(encodedDatabases[i]) + ".psafe3");
+
+                        /* Delete existing file on sdcard */
+                        sdCardDatabase.delete();
+                        FileOutputStream sdCardDB = new FileOutputStream(sdCardDatabase);
+                        File privateDatabase = new File(DatabaseUtil.getDatabaseDir(mView),
+                                                        encodedDatabases[i]);
+
+                        FileInputStream privateDB = new FileInputStream(privateDatabase);
+                        byte[] dataBuffer = new byte[64*1024];
+                        int len;
+                        while ((len = privateDB.read(dataBuffer)) > 0) {
+                                sdCardDB.write(dataBuffer, 0, len);
+                        }
+                        sdCardDB.close();
+                        privateDB.close();
+                    } catch(java.io.FileNotFoundException e) {
+                        /* TODO(shawn.ledbetter): catch if files not found */
+                    } catch(java.io.IOException e) {
+                        /* TODO(shawn.ledbetter): catch if IO errors */
+                    }
+                }
+
+                mView.dismissDialog(ACTIVITY_EXPORT);
+
+                return true;
+            }
             default: {
                 return false;
             }
