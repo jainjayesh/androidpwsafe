@@ -1,0 +1,1 @@
+Android front end for the Password Safe password management utility (http://passwordsafe.sourceforge.net/). This utility allows you to manage easily and securely multiple passwords, in a format that is compatible with the original Password Safe utility.  It uses the Java Password Safe (https://sourceforge.net/projects/jpwsafe/) library PasswordSafeLib.
